@@ -1,0 +1,569 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  spanish,
+  a4paper,
+]{scrreport}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{venndiagram}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\DeclareMathOperator{\operatorname{Int}}{Int}
+\DeclareMathOperator{\operatorname{Ext}}{Ext}
+\DeclareMathOperator{\operatorname{Fr}}{Fr}
+\DeclareMathOperator{\Adh}{Adh}
+\DeclareMathOperator{\Ac}{Ac}
+\DeclareMathOperator{\sen}{sen}
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Listado de Figuras}
+\else
+  \newcommand\listfigurename{Listado de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Listado de Tablas}
+\else
+  \newcommand\listtablename{Listado de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Listado de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Prácticas de Bioestadística con R},
+  pdfauthor={Alfredo Sánchez Alberca},
+  pdflang={es},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Prácticas de Bioestadística con R}
+\author{Alfredo Sánchez Alberca}
+\date{2025-01-06}
+\begin{document}
+\begin{titlepage}
+
+%\AddToShipoutPicture*{\put(0,0){\includegraphics[scale=0.8]{img/background2}}} % Imagen de fondo, requiere el paquete eso-pic.
+\begin{center}
+\vspace*{5cm}
+
+\Huge
+{\textbf{\textsf{Prácticas de Bioestadística con R}}}
+
+\vspace{0.5cm}
+\LARGE
+{\textbf{\textsf{}}}
+
+\vspace{1.5cm}
+
+\includegraphics[width=0.4\textwidth]{img/logos/sticker-bioestadistica-r.png}
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\begin{tabular}{ll}
+\includegraphics[width=0.1\textwidth]{img/logos/aprendeconalf.png} & \parbox[b]{5cm}{\Large\textsf{Alfredo
+Sánchez
+Alberca}\\ \textsf{asalber@ceu.es} \\ \textsf{https://aprendeconalf.es}}
+\end{tabular}
+\end{flushleft}
+\end{titlepage}
+\renewcommand*\contentsname{Tabla de contenidos}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\bookmarksetup{startatroot}
+
+\chapter*{Prefacio}\label{prefacio}
+\addcontentsline{toc}{chapter}{Prefacio}
+
+\markboth{Prefacio}{Prefacio}
+
+¡Bienvenido a Prácticas de Bioestadística con R!
+
+Este libro presenta una recopilación de prácticas de Bioestadística
+Descriptiva e Inferencial con el lenguaje de programación
+\href{https://www.r-project.org/}{R}, con problemas aplicados a las
+Ciencias de la Salud.
+
+No es un libro para aprender a programar con R, ya que solo enseña el
+uso del lenguaje y de algunos de sus paquetes para resolver problemas de
+Bioestadística. Para quienes estén interesados en aprender a programar
+en este lenguaje, os recomiendo leer este
+\href{https://aprendeconalf.es/manual-r/}{manual de R}.
+
+\section*{Capítulos}\label{capuxedtulos}
+\addcontentsline{toc}{section}{Capítulos}
+
+\markright{Capítulos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{./01-intro.qmd}{Introducción a R}
+\item
+  \href{02-tipos-datos.qmd}{Tipos y estructuras de datos}
+\end{enumerate}
+
+\section*{Licencia}\label{licencia}
+\addcontentsline{toc}{section}{Licencia}
+
+\markright{Licencia}
+
+Esta obra está bajo una licencia Reconocimiento -- No comercial --
+Compartir bajo la misma licencia 3.0 España de Creative Commons. Para
+ver una copia de esta licencia, visite
+\url{https://creativecommons.org/licenses/by-nc-sa/3.0/es/}.
+
+Con esta licencia eres libre de:
+
+\begin{itemize}
+\tightlist
+\item
+  Copiar, distribuir y mostrar este trabajo.
+\item
+  Realizar modificaciones de este trabajo.
+\end{itemize}
+
+Bajo las siguientes condiciones:
+
+\begin{itemize}
+\item
+  \textbf{Reconocimiento}. Debe reconocer los créditos de la obra de la
+  manera especificada por el autor o el licenciador (pero no de una
+  manera que sugiera que tiene su apoyo o apoyan el uso que hace de su
+  obra).
+\item
+  \textbf{No comercial}. No puede utilizar esta obra para fines
+  comerciales.
+\item
+  \textbf{Compartir bajo la misma licencia}. Si altera o transforma esta
+  obra, o genera una obra derivada, sólo puede distribuir la obra
+  generada bajo una licencia idéntica a ésta.
+\end{itemize}
+
+Al reutilizar o distribuir la obra, tiene que dejar bien claro los
+términos de la licencia de esta obra.
+
+Estas condiciones pueden no aplicarse si se obtiene el permiso del
+titular de los derechos de autor.
+
+Nada en esta licencia menoscaba o restringe los derechos morales del
+autor.
+
+\bookmarksetup{startatroot}
+
+\chapter{Introducción a R}\label{introducciuxf3n-a-r}
+
+La gran potencia de cómputo alcanzada por los ordenadores ha convertido
+a los mismos en poderosas herramientas al servicio de todas aquellas
+disciplinas que, como la Estadística, requieren manejar un gran volumen
+de datos. Actualmente, prácticamente nadie se plantea hacer un estudio
+estadístico serio sin la ayuda de un buen programa de análisis de datos.
+
+\textbf{R} es un potente lenguaje de programación que incluye multitud
+de funciones para la representación y el análisis de datos. Fue
+desarrollado por Robert Gentleman y Ross Ihaka en la Universidad de
+Auckland en Nueva Zelanda, aunque actualmente es mantenido por una
+enorme comunidad científica en todo el mundo.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.25\linewidth,height=\textheight,keepaspectratio]{img/logos/Rlogo.png}
+
+}
+
+\caption{Logotipo de R}
+
+\end{figure}%
+
+Las ventajas de R frente a otros programas habituales de análisis de
+datos, como pueden ser SPSS, SAS o Matlab, son múltiples:
+
+\begin{itemize}
+\tightlist
+\item
+  Es software libre y por tanto gratuito. Puede descargarse desde la web
+  \url{http://www.r-project.org/}.
+\item
+  Es multiplataforma. Existen versiones para Windows, Mac, Linux y otras
+  plataformas.
+\item
+  Está avalado y en constante desarrollo por una amplia comunidad
+  científica distribuida por todo el mundo que lo utiliza como estándar
+  para el análisis de datos.
+\item
+  Cuenta con multitud de paquetes para todo tipo de análisis
+  estadísticos y representaciones gráficas, desde los más habituales,
+  hasta los más novedosos y sofisticados que no incluyen otros
+  programas. Los paquetes están organizados y documentados en un
+  \href{https://cran.r-project.org/}{repositorio CRAN} (Comprehensive R
+  Archive Network) desde donde pueden descargarse libremente.
+\item
+  Es programable, lo que permite que el usuario pueda crear fácilmente
+  sus propias funciones o paquetes para análisis de datos específicos.
+\item
+  Existen multitud de libros, manuales y tutoriales libres que permiten
+  su aprendizaje e ilustran el análisis estadístico de datos en
+  distintas disciplinas científicas como las Matemáticas, la Física, la
+  Biología, la Psicología, la Medicina, etc.
+\end{itemize}
+
+\section{Instalación de R}\label{instalaciuxf3n-de-r}
+
+R puede descargarse desde el \href{https://www.r-project.org/}{sitio web
+oficial de R} o desde el repositorio principal de paquetes de R
+\href{https://cran.r-project.org/}{CRAN}. Basta con descargar el archivo
+de instalación correspondiente al sistema operativo de nuestro ordenador
+y realizar la instalación como cualquier otro programa.
+
+El intérprete de R se arranca desde la terminal, aunque en Windows
+incorpora su propia aplicación, pero es muy básica. En general, para
+trabajos serios, conviene utilizar un entorno de desarrollo para R.
+
+\section{Entornos de desarrollo}\label{entornos-de-desarrollo}
+
+Por defecto el entorno de trabajo de R es en línea de comandos, lo que
+significa que los cálculos y los análisis se realizan mediante comandos
+o instrucciones que el usuario teclea en una ventana de texto. No
+obstante, existen distintas interfaces gráficas de usuario que facilitan
+su uso, sobre todo para usuarios noveles. Algunas de ellas, como las que
+se enumeran a continuación, son completos entornos de desarrollo que
+facilitan la gestión de cualquier proyecto:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.rstudio.com/}{RStudio}. Probablemente el entorno de
+  desarrollo más extendido para programar con R ya que incorpora
+  multitud de utilidades para facilitar la programación con R.
+\end{itemize}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=8.33333in,height=\textheight,keepaspectratio]{img/rstudio.png}
+
+}
+
+\caption{Entorno de desarrollo RStudio}
+
+\end{figure}%
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://rkward.kde.org}{RKWard}. Es otra otro de los entornos de
+  desarrollo más completos que además incluye a posibilidad de añadir
+  nuevos menús y cuadros de diálogo personalizados.
+\end{itemize}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=8.33333in,height=\textheight,keepaspectratio]{img/rkward.png}
+
+}
+
+\caption{Entorno de desarrollo RKWard}
+
+\end{figure}%
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jupyter.org/}{Jupyter Lab}. Es un entorno de desarrollo
+  interactivo que permite la creación de documentos que contienen
+  código, texto, gráficos. Aunque no es un entorno de desarrollo
+  específico para R, incluye un kernel para R que permite ejecutar
+  código R en los documentos.
+\end{itemize}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=8.33333in,height=\textheight,keepaspectratio]{img/jupyter-lab.png}
+
+}
+
+\caption{Entorno de desarrollo Jupyter Lab}
+
+\end{figure}%
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://code.visualstudio.com/}{Visual Studio Code}. Es un
+  entorno de desarrollo de propósito general ampliamente extendido.
+  Aunque no es un entorno de desarrollo específico para R, incluye una
+  extensión con utilidades que facilitan mucho el desarrollo con R.
+\end{itemize}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=8.33333in,height=\textheight,keepaspectratio]{img/vscode-r.png}
+
+}
+
+\caption{Entorno de desarrollo Visual Studio Code}
+
+\end{figure}%
+
+\section{Instalación de paquetes}\label{instalaciuxf3n-de-paquetes}
+
+R es un lenguaje de programación modular, lo que significa que su
+funcionalidad se extiende mediante paquetes. Los paquetes son
+colecciones de funciones, datos y documentación sobre el uso de esas
+funciones o conjuntos de datos.
+
+El repositorio de paquetes más importante es
+\href{https://cran.r-project.org/}{CRAN} (Comprehensive R Archive
+Network), pero existen otros repositorios como
+\href{https://www.bioconductor.org/}{Bioconductor} que contiene paquetes
+específicos para el análisis de datos biológicos.
+
+\subsection{Instalación de paquetes desde
+CRAN}\label{instalaciuxf3n-de-paquetes-desde-cran}
+
+Para instalar un paquete en R basta con ejecutar la función
+\texttt{install.packages()} con el nombre del paquete que se desea
+instalar. Por ejemplo, para instalar el paquete \texttt{ggplot2} que es
+uno de los paquetes más utilizados para realizar gráficos en R, basta
+con ejecutar el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Los ubicación de los paquete instalados en R depende del sistema
+operativo, pero puede consultarse en la variable \texttt{.libPaths()}.
+
+\subsection{Instalación de paquetes desde
+Bioconductor}\label{instalaciuxf3n-de-paquetes-desde-bioconductor}
+
+Para instalar un paquete desde Bioconductor es necesario instalar
+primero el paquete \texttt{BiocManager} y después utilizar la función
+\texttt{BiocManager::install()} con el nombre del paquete que se desea
+instalar. Por ejemplo, para instalar el paquete \texttt{DESeq2} que es
+uno de los paquetes más utilizados para el análisis de datos de
+expresión génica, basta con ejecutar el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"BiocManager"}\NormalTok{)}
+\NormalTok{BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"DESeq2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Actualización de paquetes}\label{actualizaciuxf3n-de-paquetes}
+
+Cada cierto tiempo conviene actualizar los paquetes instalados en R para
+asegurarse de que se dispone de las últimas versiones de los mismos.
+Para ello se puede utilizar la función \texttt{update.packages()}. Por
+ejemplo, para actualizar todos los paquetes instalados en R sin
+necesidad de confirmación por parte del usuario, basta con ejecutar el
+siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{update.packages}\NormalTok{(}\AttributeTok{ask =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+
+
+
+\end{document}
