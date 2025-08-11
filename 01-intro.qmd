@@ -35,19 +35,19 @@ Por defecto el entorno de trabajo de R es en línea de comandos, lo que signific
 
 - [RStudio](https://www.rstudio.com/). Probablemente el entorno de desarrollo más extendido para programar con R ya que incorpora multitud de utilidades para facilitar la programación con R.
 
-![Entorno de desarrollo RStudio](img/rstudio.png){width=800}
+![Entorno de desarrollo RStudio](img/rstudio.png)
 
 - [RKWard](https://rkward.kde.org). Es otra otro de los entornos de desarrollo más completos que además incluye a posibilidad de añadir nuevos menús y cuadros de diálogo personalizados.
 
-![Entorno de desarrollo RKWard](img/rkward.png){width=800}
+![Entorno de desarrollo RKWard](img/rkward.png)
 
 - [Jupyter Lab](https://jupyter.org/). Es un entorno de desarrollo interactivo que permite la creación de documentos que contienen código, texto, gráficos. Aunque no es un entorno de desarrollo específico para R, incluye un kernel para R que permite ejecutar código R en los documentos.
 
-![Entorno de desarrollo Jupyter Lab](img/jupyter-lab.png){width=800}
+![Entorno de desarrollo Jupyter Lab](img/jupyter-lab.png)
 
 - [Visual Studio Code](https://code.visualstudio.com/). Es un entorno de desarrollo de propósito general ampliamente extendido. Aunque no es un entorno de desarrollo específico para R, incluye una extensión con utilidades que facilitan mucho el desarrollo con R.
 
-![Entorno de desarrollo Visual Studio Code](img/vscode-r.png){width=800}
+![Entorno de desarrollo Visual Studio Code](img/vscode-r.png)
 
 ## Instalación de paquetes
 

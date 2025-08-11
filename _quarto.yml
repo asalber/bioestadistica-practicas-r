@@ -6,12 +6,26 @@ project:
     browser: false
   resources: "datos"
 
-execute: 
+execute:
+  engine: knitr
   freeze: auto
   cache: true
   daemon: 3600
   warning: false
   message: false
+  fig-width: 6
+  fig-height: 4
+  df-print: kable
+
+knitr: 
+  opts_chunk:
+    fig-align: center
+    fig-sanitize: true
+    out.width: "\\linewidth"
+    echo: true
+    R.options:
+      width: 70
+      pillar.width: 70
 
 website:
   favicon: "img/logos/favicon.ico"
@@ -68,6 +82,7 @@ format:
     email: asalber@ceu.es
     web: https://aprendeconalf.es
     logo: img/logos/aprendeconalf.png
+    geometry: a4paper, top=25mm, bottom=25mm, left=25mm, right=25mm
     include-in-header:
       - preamble.tex
       - macros.tex

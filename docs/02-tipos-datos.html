@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>2&nbsp; Tipos y estructuras de datos – Prácticas de Bioestadística con R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,7 +54,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -79,8 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-1699091d44597d0c8f84ae72681b78e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-75b2c55e9f636e40016495970155da41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-dark-75b2c55e9f636e40016495970155da41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -106,12 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Enviar",
     "search-label": "Buscar"
   }
-}</script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -137,13 +127,11 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
 <meta property="og:title" content="2&nbsp; Tipos y estructuras de datos – Prácticas de Bioestadística con R">
 <meta property="og:description" content="">
 <meta property="og:image" content="img/logos/sticker-bioestadistica-r.png">
 <meta property="og:site_name" content="Prácticas de Bioestadística con R">
 </head>
-
 <body class="nav-sidebar floating fullcontent quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -307,9 +295,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -320,16 +306,11 @@ window.Quarto = {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./img/logos/aprendeconalf.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+      <img src="./img/logos/aprendeconalf.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Prácticas de Bioestadística con R</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -337,7 +318,7 @@ window.Quarto = {
     <div class="dropdown">
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="./bioestadistica-practicas-r.pdf">
               <i class="bi bi-file-pdf pe-1"></i>
             Download PDF
@@ -350,7 +331,7 @@ window.Quarto = {
             </a>
           </li>
       </ul>
-    </div>
+</div>
     <a href="https://www.linkedin.com/sharing/share-offsite/?url=|url|" title="LinkedIn" class="quarto-navigation-tool px-1" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
 </div>
@@ -363,7 +344,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefacio</span></a>
@@ -394,18 +375,15 @@ window.Quarto = {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tipos y estructuras de datos</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tipos y estructuras de datos</span>
+</h1>
 </div>
 
 
@@ -419,10 +397,7 @@ window.Quarto = {
   
 
 
-</header>
-
-
-<p>Esta práctica contiene ejercicios que muestran cómo trabajar con los tipos y estructuras de datos en R. En concreto, las estructuras de datos que se utilizan son</p>
+</header><p>Esta práctica contiene ejercicios que muestran cómo trabajar con los tipos y estructuras de datos en R. En concreto, las estructuras de datos que se utilizan son</p>
 <ul>
 <li>Vectores.</li>
 <li>Factores.</li>
@@ -430,18 +405,19 @@ window.Quarto = {
 <li>Listas.</li>
 <li>Dataframes.</li>
 </ul>
-<section id="ejercicios-resueltos" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="ejercicios-resueltos"><span class="header-section-number">2.1</span> Ejercicios Resueltos</h2>
+<section id="ejercicios-resueltos" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="ejercicios-resueltos">
+<span class="header-section-number">2.1</span> Ejercicios Resueltos</h2>
 <p>Para la realización de esta práctica se requieren los siguientes paquetes.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Incluye los siguientes paquetes:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - readr: para la lectura de ficheros csv. </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - dplyr: para el preprocesamiento y manipulación de datos.</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># Para el formateo de tablas.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> </span>
+<span><span class="co"># Incluye los siguientes paquetes:</span></span>
+<span><span class="co"># - readr: para la lectura de ficheros csv. </span></span>
+<span><span class="co"># - dplyr: para el preprocesamiento y manipulación de datos.</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span> <span class="co"># Para el formateo de tablas.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="exr-vectores-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 2.1</strong></span> Realizar las siguientes operaciones con vectores.</p>
 <ol type="a">
-<li><p>Crear un vector con los números del 1 al 10.</p>
+<li>
+<p>Crear un vector con los números del 1 al 10.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -455,25 +431,28 @@ Solución
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Función c</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Operador :</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Función c</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Operador :</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>La función <code>c()</code> permite combinar elementos en un vector. Los elementos se introducen separados por comas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>numeros</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La función <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> permite combinar elementos en un vector. Los elementos se introducen separados por comas.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numeros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">numeros</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre><code>NA  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>El operador <code>inicio:fin</code> permite crear un vector con la secuencia de números enteros desde el número <code>inicio</code> hasta el número <code>fin</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>numeros</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numeros</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="va">numeros</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre><code>NA  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
 </div>
@@ -481,8 +460,10 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Mostrar el número de elementos del vector anterior.</p>
+</div>
+</li>
+<li>
+<p>Mostrar el número de elementos del vector anterior.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -495,16 +476,18 @@ Solución
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(numeros)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">numeros</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 10</code></pre>
+<pre><code>NA [1] 10</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear un vector con los números pares del 1 al 10.</p>
+</div>
+</li>
+<li>
+<p>Crear un vector con los números pares del 1 al 10.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -518,24 +501,27 @@ Solución
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Función c</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Función seq</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Función c</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Función seq</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pares <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pares</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pares</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">pares</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  2  4  6  8 10</code></pre>
+<pre><code>NA [1]  2  4  6  8 10</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>La función <code>seq(inicio, fin, salto)</code> permite crear un vector con la secuencia de números enteros desde el número <code>inicio</code> hasta el número <code>fin</code> con un salto de <code>salto</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pares <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pares</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pares</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">pares</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  2  4  6  8 10</code></pre>
+<pre><code>NA [1]  2  4  6  8 10</code></pre>
 </div>
 </div>
 </div>
@@ -543,8 +529,10 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear un vector con el cuadrado de los elementos del vector anterior.</p>
+</div>
+</li>
+<li>
+<p>Crear un vector con el cuadrado de los elementos del vector anterior.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -558,17 +546,19 @@ Solución
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>El operador <code>^</code> permite elevar un número a otro. Cuando se aplica a un vector, eleva cada elemento del vector al número indicado.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cuadrados <span class="ot">&lt;-</span> pares<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cuadrados</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cuadrados</span> <span class="op">&lt;-</span> <span class="va">pares</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="va">cuadrados</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]   4  16  36  64 100</code></pre>
+<pre><code>NA [1]   4  16  36  64 100</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear un vector con 5 números aleatorios entre 1 y 10.</p>
+</div>
+</li>
+<li>
+<p>Crear un vector con 5 números aleatorios entre 1 y 10.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -582,17 +572,19 @@ Solución
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>sample(vector, n)</code> permite seleccionar <code>n</code> elementos aleatorios de <code>vector</code>. El muestreo es sin reemplazamiento.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>aleatorios</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">aleatorios</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">aleatorios</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  3 10  8  6  7</code></pre>
+<pre><code>NA [1] 10  2  8  5  3</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear un vector booleano con los números del vector anterior que son pares.</p>
+</div>
+</li>
+<li>
+<p>Crear un vector booleano con los números del vector anterior que son pares.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -606,17 +598,19 @@ Solución
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>El operador <code>%%</code> permite calcular el resto de la división entera de dos números. Si el resto es 0, el número es par. Y el operador <code>==</code> permite comparar dos vectores elemento a elemento.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>par <span class="ot">&lt;-</span> aleatorios <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>par</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">par</span> <span class="op">&lt;-</span> <span class="va">aleatorios</span><span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span><span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
+<span><span class="va">par</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre><code>NA [1]  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear un vector con 100 números aleatorios entre 0 y 1.</p>
+</div>
+</li>
+<li>
+<p>Crear un vector con 100 números aleatorios entre 0 y 1.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -630,33 +624,38 @@ Solución
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>runif(n, min, max)</code> permite generar <code>n</code> números aleatorios entre <code>min</code> y <code>max</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>aleatorios2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>aleatorios2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">aleatorios2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">aleatorios2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 0.21517991 0.97648128 0.12689251 0.74736187 0.10881718 0.47455017
-  [7] 0.41593912 0.86813236 0.84516808 0.53372865 0.14285496 0.02502309
- [13] 0.99219331 0.89033836 0.26147488 0.89836391 0.08651130 0.62208661
- [19] 0.82807720 0.17036603 0.97146878 0.42349843 0.84184186 0.73603424
- [25] 0.73482820 0.64349610 0.17561831 0.60592639 0.32732820 0.69261484
- [31] 0.39938545 0.71709330 0.32073971 0.68309748 0.65862959 0.10083952
- [37] 0.15269756 0.59292973 0.38203105 0.76290172 0.80754127 0.10257308
- [43] 0.73914603 0.10440852 0.67338355 0.23200077 0.48660789 0.67244577
- [49] 0.58292359 0.13169521 0.21351257 0.98048524 0.78317274 0.56164556
- [55] 0.72642852 0.82555627 0.32232547 0.40819898 0.71524446 0.86009918
- [61] 0.24018752 0.72258016 0.46875852 0.55029727 0.53711044 0.41020957
- [67] 0.78043666 0.92157490 0.90555592 0.37605303 0.92111721 0.12629681
- [73] 0.33728132 0.56234971 0.85568764 0.87661142 0.38918696 0.53903686
- [79] 0.60041942 0.40501730 0.11989215 0.53409546 0.23272721 0.83673552
- [85] 0.01776149 0.13608400 0.84857232 0.05418704 0.91653027 0.79831634
- [91] 0.68302986 0.95211338 0.79544869 0.33429679 0.50403701 0.85381744
- [97] 0.57827657 0.32566592 0.93807270 0.80532241</code></pre>
+<pre><code>NA   [1] 0.70093134 0.51444436 0.50033851 0.49987841 0.99258584
+NA   [6] 0.37709242 0.92929447 0.87719605 0.03362775 0.56437373
+NA  [11] 0.35755724 0.50158498 0.87151782 0.43747243 0.80047219
+NA  [16] 0.25124476 0.74694249 0.82391348 0.84133458 0.87623783
+NA  [21] 0.04416926 0.25074276 0.23909836 0.26258453 0.22961854
+NA  [26] 0.74017511 0.19177061 0.78734779 0.89383176 0.15679040
+NA  [31] 0.44604168 0.12793957 0.03023479 0.70798219 0.01011875
+NA  [36] 0.15727406 0.50480045 0.56736403 0.60148096 0.53303988
+NA  [41] 0.53277980 0.41383721 0.49309501 0.95583698 0.81072503
+NA  [46] 0.62039387 0.55980391 0.68179498 0.58456358 0.24298017
+NA  [51] 0.70207234 0.35686812 0.85999598 0.21209034 0.40370831
+NA  [56] 0.25729871 0.50427730 0.48879563 0.90879583 0.52323296
+NA  [61] 0.29050201 0.25853896 0.71250034 0.51605030 0.53960834
+NA  [66] 0.23115014 0.66190638 0.47195067 0.81732680 0.97760659
+NA  [71] 0.82615265 0.30859989 0.79783699 0.72148746 0.33380386
+NA  [76] 0.42344802 0.48933247 0.16954620 0.13549628 0.18877436
+NA  [81] 0.71079402 0.16807544 0.63775337 0.96125977 0.57931077
+NA  [86] 0.29379083 0.52128579 0.27138711 0.19826331 0.52057025
+NA  [91] 0.43146344 0.61369545 0.37892275 0.88289328 0.80196008
+NA  [96] 0.80441395 0.95454964 0.16287340 0.34361011 0.37291295</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Ordenar el vector anterior de menor a mayor.</p>
+</div>
+</li>
+<li>
+<p>Ordenar el vector anterior de menor a mayor.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -670,32 +669,37 @@ Solución
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>sort(vector)</code> permite ordenar los elementos de un vector de menor a mayor.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(aleatorios2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">aleatorios2</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 0.01776149 0.02502309 0.05418704 0.08651130 0.10083952 0.10257308
-  [7] 0.10440852 0.10881718 0.11989215 0.12629681 0.12689251 0.13169521
- [13] 0.13608400 0.14285496 0.15269756 0.17036603 0.17561831 0.21351257
- [19] 0.21517991 0.23200077 0.23272721 0.24018752 0.26147488 0.32073971
- [25] 0.32232547 0.32566592 0.32732820 0.33429679 0.33728132 0.37605303
- [31] 0.38203105 0.38918696 0.39938545 0.40501730 0.40819898 0.41020957
- [37] 0.41593912 0.42349843 0.46875852 0.47455017 0.48660789 0.50403701
- [43] 0.53372865 0.53409546 0.53711044 0.53903686 0.55029727 0.56164556
- [49] 0.56234971 0.57827657 0.58292359 0.59292973 0.60041942 0.60592639
- [55] 0.62208661 0.64349610 0.65862959 0.67244577 0.67338355 0.68302986
- [61] 0.68309748 0.69261484 0.71524446 0.71709330 0.72258016 0.72642852
- [67] 0.73482820 0.73603424 0.73914603 0.74736187 0.76290172 0.78043666
- [73] 0.78317274 0.79544869 0.79831634 0.80532241 0.80754127 0.82555627
- [79] 0.82807720 0.83673552 0.84184186 0.84516808 0.84857232 0.85381744
- [85] 0.85568764 0.86009918 0.86813236 0.87661142 0.89033836 0.89836391
- [91] 0.90555592 0.91653027 0.92111721 0.92157490 0.93807270 0.95211338
- [97] 0.97146878 0.97648128 0.98048524 0.99219331</code></pre>
+<pre><code>NA   [1] 0.01011875 0.03023479 0.03362775 0.04416926 0.12793957
+NA   [6] 0.13549628 0.15679040 0.15727406 0.16287340 0.16807544
+NA  [11] 0.16954620 0.18877436 0.19177061 0.19826331 0.21209034
+NA  [16] 0.22961854 0.23115014 0.23909836 0.24298017 0.25074276
+NA  [21] 0.25124476 0.25729871 0.25853896 0.26258453 0.27138711
+NA  [26] 0.29050201 0.29379083 0.30859989 0.33380386 0.34361011
+NA  [31] 0.35686812 0.35755724 0.37291295 0.37709242 0.37892275
+NA  [36] 0.40370831 0.41383721 0.42344802 0.43146344 0.43747243
+NA  [41] 0.44604168 0.47195067 0.48879563 0.48933247 0.49309501
+NA  [46] 0.49987841 0.50033851 0.50158498 0.50427730 0.50480045
+NA  [51] 0.51444436 0.51605030 0.52057025 0.52128579 0.52323296
+NA  [56] 0.53277980 0.53303988 0.53960834 0.55980391 0.56437373
+NA  [61] 0.56736403 0.57931077 0.58456358 0.60148096 0.61369545
+NA  [66] 0.62039387 0.63775337 0.66190638 0.68179498 0.70093134
+NA  [71] 0.70207234 0.70798219 0.71079402 0.71250034 0.72148746
+NA  [76] 0.74017511 0.74694249 0.78734779 0.79783699 0.80047219
+NA  [81] 0.80196008 0.80441395 0.81072503 0.81732680 0.82391348
+NA  [86] 0.82615265 0.84133458 0.85999598 0.87151782 0.87623783
+NA  [91] 0.87719605 0.88289328 0.89383176 0.90879583 0.92929447
+NA  [96] 0.95454964 0.95583698 0.96125977 0.97760659 0.99258584</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Ordenar el vector anterior de mayor a menor.</p>
+</div>
+</li>
+<li>
+<p>Ordenar el vector anterior de mayor a menor.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -709,32 +713,37 @@ Solución
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>sort(vector, decreasing = TRUE)</code> permite ordenar los elementos de un vector de mayor a menor.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(aleatorios2, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">aleatorios2</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 0.99219331 0.98048524 0.97648128 0.97146878 0.95211338 0.93807270
-  [7] 0.92157490 0.92111721 0.91653027 0.90555592 0.89836391 0.89033836
- [13] 0.87661142 0.86813236 0.86009918 0.85568764 0.85381744 0.84857232
- [19] 0.84516808 0.84184186 0.83673552 0.82807720 0.82555627 0.80754127
- [25] 0.80532241 0.79831634 0.79544869 0.78317274 0.78043666 0.76290172
- [31] 0.74736187 0.73914603 0.73603424 0.73482820 0.72642852 0.72258016
- [37] 0.71709330 0.71524446 0.69261484 0.68309748 0.68302986 0.67338355
- [43] 0.67244577 0.65862959 0.64349610 0.62208661 0.60592639 0.60041942
- [49] 0.59292973 0.58292359 0.57827657 0.56234971 0.56164556 0.55029727
- [55] 0.53903686 0.53711044 0.53409546 0.53372865 0.50403701 0.48660789
- [61] 0.47455017 0.46875852 0.42349843 0.41593912 0.41020957 0.40819898
- [67] 0.40501730 0.39938545 0.38918696 0.38203105 0.37605303 0.33728132
- [73] 0.33429679 0.32732820 0.32566592 0.32232547 0.32073971 0.26147488
- [79] 0.24018752 0.23272721 0.23200077 0.21517991 0.21351257 0.17561831
- [85] 0.17036603 0.15269756 0.14285496 0.13608400 0.13169521 0.12689251
- [91] 0.12629681 0.11989215 0.10881718 0.10440852 0.10257308 0.10083952
- [97] 0.08651130 0.05418704 0.02502309 0.01776149</code></pre>
+<pre><code>NA   [1] 0.99258584 0.97760659 0.96125977 0.95583698 0.95454964
+NA   [6] 0.92929447 0.90879583 0.89383176 0.88289328 0.87719605
+NA  [11] 0.87623783 0.87151782 0.85999598 0.84133458 0.82615265
+NA  [16] 0.82391348 0.81732680 0.81072503 0.80441395 0.80196008
+NA  [21] 0.80047219 0.79783699 0.78734779 0.74694249 0.74017511
+NA  [26] 0.72148746 0.71250034 0.71079402 0.70798219 0.70207234
+NA  [31] 0.70093134 0.68179498 0.66190638 0.63775337 0.62039387
+NA  [36] 0.61369545 0.60148096 0.58456358 0.57931077 0.56736403
+NA  [41] 0.56437373 0.55980391 0.53960834 0.53303988 0.53277980
+NA  [46] 0.52323296 0.52128579 0.52057025 0.51605030 0.51444436
+NA  [51] 0.50480045 0.50427730 0.50158498 0.50033851 0.49987841
+NA  [56] 0.49309501 0.48933247 0.48879563 0.47195067 0.44604168
+NA  [61] 0.43747243 0.43146344 0.42344802 0.41383721 0.40370831
+NA  [66] 0.37892275 0.37709242 0.37291295 0.35755724 0.35686812
+NA  [71] 0.34361011 0.33380386 0.30859989 0.29379083 0.29050201
+NA  [76] 0.27138711 0.26258453 0.25853896 0.25729871 0.25124476
+NA  [81] 0.25074276 0.24298017 0.23909836 0.23115014 0.22961854
+NA  [86] 0.21209034 0.19826331 0.19177061 0.18877436 0.16954620
+NA  [91] 0.16807544 0.16287340 0.15727406 0.15679040 0.13549628
+NA  [96] 0.12793957 0.04416926 0.03362775 0.03023479 0.01011875</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear un vector con los días laborables de la semana.</p>
+</div>
+</li>
+<li>
+<p>Crear un vector con los días laborables de la semana.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -747,17 +756,19 @@ Solución
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dias_laborables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Lunes"</span>, <span class="st">"Martes"</span>, <span class="st">"Miércoles"</span>, <span class="st">"Jueves"</span>, <span class="st">"Viernes"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>dias_laborables</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dias_laborables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Lunes"</span>, <span class="st">"Martes"</span>, <span class="st">"Miércoles"</span>, <span class="st">"Jueves"</span>, <span class="st">"Viernes"</span><span class="op">)</span></span>
+<span><span class="va">dias_laborables</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Lunes"     "Martes"    "Miércoles" "Jueves"    "Viernes"  </code></pre>
+<pre><code>NA [1] "Lunes"     "Martes"    "Miércoles" "Jueves"    "Viernes"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Añadir los días del fin de semana al vector anterior y guardar el resultado en una nueva variable.</p>
+</div>
+</li>
+<li>
+<p>Añadir los días del fin de semana al vector anterior y guardar el resultado en una nueva variable.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -770,18 +781,20 @@ Solución
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dias <span class="ot">&lt;-</span> <span class="fu">c</span>(dias_laborables, <span class="st">"Sábado"</span>, <span class="st">"Domingo"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>dias</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">dias_laborables</span>, <span class="st">"Sábado"</span>, <span class="st">"Domingo"</span><span class="op">)</span></span>
+<span><span class="va">dias</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Lunes"     "Martes"    "Miércoles" "Jueves"    "Viernes"   "Sábado"   
-[7] "Domingo"  </code></pre>
+<pre><code>NA [1] "Lunes"     "Martes"    "Miércoles" "Jueves"    "Viernes"  
+NA [6] "Sábado"    "Domingo"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Acceder al tercer elemento del vector.</p>
+</div>
+</li>
+<li>
+<p>Acceder al tercer elemento del vector.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -794,16 +807,18 @@ Solución
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dias_laborables[<span class="dv">3</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dias_laborables</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Miércoles"</code></pre>
+<pre><code>NA [1] "Miércoles"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Seleccionar los días pares del vector.</p>
+</div>
+</li>
+<li>
+<p>Seleccionar los días pares del vector.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -817,29 +832,33 @@ Solución
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Índices numéricos</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Índices numéricos negativos</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Índices lógicos</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Índices numéricos</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Índices numéricos negativos</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Índices lógicos</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dias[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dias</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Martes" "Jueves" "Sábado"</code></pre>
+<pre><code>NA [1] "Martes" "Jueves" "Sábado"</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dias[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dias</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Martes" "Jueves" "Sábado"</code></pre>
+<pre><code>NA [1] "Martes" "Jueves" "Sábado"</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dias[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dias</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Martes" "Jueves" "Sábado"</code></pre>
+<pre><code>NA [1] "Martes" "Jueves" "Sábado"</code></pre>
 </div>
 </div>
 </div>
@@ -847,8 +866,10 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Concatenar los elementos del vector en una cadena de texto.</p>
+</div>
+</li>
+<li>
+<p>Concatenar los elementos del vector en una cadena de texto.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -862,16 +883,18 @@ Solución
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>paste(vector, collapse = " ")</code> permite concatenar los elementos de un vector en una cadena de texto separados por un espacio.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(dias, <span class="at">collapse =</span> <span class="st">" "</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">dias</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Lunes Martes Miércoles Jueves Viernes Sábado Domingo"</code></pre>
+<pre><code>NA [1] "Lunes Martes Miércoles Jueves Viernes Sábado Domingo"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Concatenar los elementos del vector en una cadena de texto separados por comas.</p>
+</div>
+</li>
+<li>
+<p>Concatenar los elementos del vector en una cadena de texto separados por comas.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -884,17 +907,19 @@ Solución
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>semana <span class="ot">&lt;-</span> <span class="fu">paste</span>(dias, <span class="at">collapse =</span> <span class="st">", "</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>semana</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">semana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">dias</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></span>
+<span><span class="va">semana</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo"</code></pre>
+<pre><code>NA [1] "Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Dividir la cadena anterior en subcadenas usando como separador la coma.</p>
+</div>
+</li>
+<li>
+<p>Dividir la cadena anterior en subcadenas usando como separador la coma.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -908,17 +933,18 @@ Solución
 <div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>strsplit(cadena, separador)</code> permite dividir una cadena de texto en subcadenas usando como separador el valor de <code>separador</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">strsplit</span>(semana, <span class="st">", "</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">semana</span>, <span class="st">", "</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[1] "Lunes"     "Martes"    "Miércoles" "Jueves"    "Viernes"   "Sábado"   
-[7] "Domingo"  </code></pre>
+<pre><code>NA [[1]]
+NA [1] "Lunes"     "Martes"    "Miércoles" "Jueves"    "Viernes"  
+NA [6] "Sábado"    "Domingo"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
+</div>
+</li>
 </ol>
 </div>
 <div id="exr-factores-1" class="theorem exercise">
@@ -927,7 +953,8 @@ Solución
 \mbox{Mujer, Hombre, Mujer, Hombre, Mujer, Mujer, Hombre, Hombre}
 \]</span></p>
 <ol type="a">
-<li><p>Crear un vector con los datos de la muestra.</p>
+<li>
+<p>Crear un vector con los datos de la muestra.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -940,17 +967,21 @@ Solución
 </div>
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sexo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mujer"</span>, <span class="st">"Hombre"</span>, <span class="st">"Mujer"</span>, <span class="st">"Hombre"</span>, <span class="st">"Mujer"</span>, <span class="st">"Mujer"</span>, <span class="st">"Hombre"</span>, <span class="st">"Hombre"</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>sexo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sexo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mujer"</span>, <span class="st">"Hombre"</span>, <span class="st">"Mujer"</span>, <span class="st">"Hombre"</span>, <span class="st">"Mujer"</span>, <span class="st">"Mujer"</span>, <span class="st">"Hombre"</span>,</span>
+<span>    <span class="st">"Hombre"</span><span class="op">)</span></span>
+<span><span class="va">sexo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Mujer"  "Hombre" "Mujer"  "Hombre" "Mujer"  "Mujer"  "Hombre" "Hombre"</code></pre>
+<pre><code>NA [1] "Mujer"  "Hombre" "Mujer"  "Hombre" "Mujer"  "Mujer"  "Hombre"
+NA [8] "Hombre"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Convertir el vector anterior en un factor.</p>
+</div>
+</li>
+<li>
+<p>Convertir el vector anterior en un factor.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -964,18 +995,20 @@ Solución
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>factor(vector, labels)</code> permite convertir <code>vector</code> en un factor con los niveles o categorías especificados en <code>labels</code>. Si no se indica <code>labels</code>, los niveles se toman de los elementos del vector y se ordenan alfabéticamente.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span>(sexo)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>sexo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sexo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sexo</span><span class="op">)</span></span>
+<span><span class="va">sexo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Mujer  Hombre Mujer  Hombre Mujer  Mujer  Hombre Hombre
-Levels: Hombre Mujer</code></pre>
+<pre><code>NA [1] Mujer  Hombre Mujer  Hombre Mujer  Mujer  Hombre Hombre
+NA Levels: Hombre Mujer</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Mostrar los niveles del factor.</p>
+</div>
+</li>
+<li>
+<p>Mostrar los niveles del factor.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -989,16 +1022,18 @@ Solución
 <div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>levels(factor)</code> permite mostrar los niveles del factor <code>factor</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sexo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">sexo</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Hombre" "Mujer" </code></pre>
+<pre><code>NA [1] "Hombre" "Mujer"</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Reordenar los niveles del factor para que la categoría “Mujer” sea la primera.</p>
+</div>
+</li>
+<li>
+<p>Reordenar los niveles del factor para que la categoría “Mujer” sea la primera.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1011,23 +1046,25 @@ Solución
 </div>
 <div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span>(sexo, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Mujer"</span>, <span class="st">"Hombre"</span>))</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sexo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sexo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sexo</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mujer"</span>, <span class="st">"Hombre"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">sexo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Mujer  Hombre Mujer  Hombre Mujer  Mujer  Hombre Hombre
-Levels: Mujer Hombre</code></pre>
+<pre><code>NA [1] Mujer  Hombre Mujer  Hombre Mujer  Mujer  Hombre Hombre
+NA Levels: Mujer Hombre</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
+</div>
+</li>
 </ol>
 </div>
 <div id="exr-matrices-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 2.3</strong></span> Realizar las siguientes operaciones con matrices.</p>
 <ol type="a">
-<li><p>Crear una matriz de 2 filas y 2 columnas con los números del 1 al 4.</p>
+<li>
+<p>Crear una matriz de 2 filas y 2 columnas con los números del 1 al 4.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1041,19 +1078,21 @@ Solución
 <div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>matrix(vector, nrow, ncol)</code> permite crear una matriz con los datos de <code>vector</code> el número de filas indicado en <code>nrow</code> y el número de columnas indicado en <code>ncol</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">A</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2]
-[1,]    1    3
-[2,]    2    4</code></pre>
+<pre><code>NA      [,1] [,2]
+NA [1,]    1    3
+NA [2,]    2    4</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Añadir a la matriz anterior una nueva columna con los números del 5 y 6.</p>
+</div>
+</li>
+<li>
+<p>Añadir a la matriz anterior una nueva columna con los números del 5 y 6.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1067,19 +1106,21 @@ Solución
 <div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>cbind(matriz, vector)</code> permite añadir una nueva columna a la matriz <code>matriz</code> con los datos de <code>vector</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">cbind</span>(A, <span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">A</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">A</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2] [,3]
-[1,]    1    3    5
-[2,]    2    4    6</code></pre>
+<pre><code>NA      [,1] [,2] [,3]
+NA [1,]    1    3    5
+NA [2,]    2    4    6</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear una matriz de 2 filas y 2 columnas con los números del 1 al 4, rellenando los elementos por filas.</p>
+</div>
+</li>
+<li>
+<p>Crear una matriz de 2 filas y 2 columnas con los números del 1 al 4, rellenando los elementos por filas.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1093,19 +1134,21 @@ Solución
 <div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>matrix</code> rellena los elementos de la matriz por columnas. Para rellenar los elementos por filas, se puede utilizar el parámetro opcional <code>byrow = TRUE</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>B</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">B</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2]
-[1,]    1    2
-[2,]    3    4</code></pre>
+<pre><code>NA      [,1] [,2]
+NA [1,]    1    2
+NA [2,]    3    4</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear otra matriz a partir de la anterior añadiendo una fila con los números 5 y 6.</p>
+</div>
+</li>
+<li>
+<p>Crear otra matriz a partir de la anterior añadiendo una fila con los números 5 y 6.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1118,20 +1161,22 @@ Solución
 </div>
 <div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rbind</span>(B, <span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>B</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">B</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">B</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2]
-[1,]    1    2
-[2,]    3    4
-[3,]    5    6</code></pre>
+<pre><code>NA      [,1] [,2]
+NA [1,]    1    2
+NA [2,]    3    4
+NA [3,]    5    6</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Acceder al elemento de la segunda fila y la primera columna de la matriz anterior.</p>
+</div>
+</li>
+<li>
+<p>Acceder al elemento de la segunda fila y la primera columna de la matriz anterior.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1144,16 +1189,18 @@ Solución
 </div>
 <div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>B[<span class="dv">2</span>, <span class="dv">1</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>NA [1] 3</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Seleccionar la primera fila de la matriz.</p>
+</div>
+</li>
+<li>
+<p>Seleccionar la primera fila de la matriz.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1166,16 +1213,18 @@ Solución
 </div>
 <div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>B[<span class="dv">1</span>, ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 2</code></pre>
+<pre><code>NA [1] 1 2</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Seleccionar la segunda columna de la matriz.</p>
+</div>
+</li>
+<li>
+<p>Seleccionar la segunda columna de la matriz.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1188,16 +1237,18 @@ Solución
 </div>
 <div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>B[, <span class="dv">2</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 4 6</code></pre>
+<pre><code>NA [1] 2 4 6</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Multiplicar la matriz A por la matriz B.</p>
+</div>
+</li>
+<li>
+<p>Multiplicar la matriz A por la matriz B.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1211,18 +1262,20 @@ Solución
 <div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La multiplicación de matrices se realiza con el operador <code>%*%</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>A <span class="sc">%*%</span> B</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2]
-[1,]   35   44
-[2,]   44   56</code></pre>
+<pre><code>NA      [,1] [,2]
+NA [1,]   35   44
+NA [2,]   44   56</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Calcular la transpuesta de la matriz A.</p>
+</div>
+</li>
+<li>
+<p>Calcular la transpuesta de la matriz A.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1236,24 +1289,26 @@ Solución
 <div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>t(matriz)</code> permite calcular la transpuesta de <code>matriz</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(A)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2]
-[1,]    1    2
-[2,]    3    4
-[3,]    5    6</code></pre>
+<pre><code>NA      [,1] [,2]
+NA [1,]    1    2
+NA [2,]    3    4
+NA [3,]    5    6</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
+</div>
+</li>
 </ol>
 </div>
 <div id="exr-listas-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 2.4</strong></span> Realizar las siguientes operaciones con listas.</p>
 <ol type="a">
-<li><p>Crear una lista con los siguientes con los datos del siguiente alumno:</p>
+<li>
+<p>Crear una lista con los siguientes con los datos del siguiente alumno:</p>
 <ul>
 <li>Nombre: Juan.</li>
 <li>Edad: 20 años.</li>
@@ -1271,21 +1326,23 @@ Solución
 <div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Para crear una lista se utiliza la función <code>list(nombre1 = valor1, nombre2 = valor2, ...)</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>alumno <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Nombre =</span> <span class="st">"Juan"</span>, <span class="at">Edad =</span> <span class="dv">20</span>)</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>alumno</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alumno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Nombre <span class="op">=</span> <span class="st">"Juan"</span>, Edad <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="va">alumno</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$Nombre
-[1] "Juan"
-
-$Edad
-[1] 20</code></pre>
+<pre><code>NA $Nombre
+NA [1] "Juan"
+NA 
+NA $Edad
+NA [1] 20</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Obtener la edad del alumno.</p>
+</div>
+</li>
+<li>
+<p>Obtener la edad del alumno.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1299,16 +1356,18 @@ Solución
 <div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Para acceder a los elementos de una lista se utiliza el operador <code>$</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>alumno<span class="sc">$</span>Edad</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alumno</span><span class="op">$</span><span class="va">Edad</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 20</code></pre>
+<pre><code>NA [1] 20</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Crear una lista con las siguientes notas del alumno:</p>
+</div>
+</li>
+<li>
+<p>Crear una lista con las siguientes notas del alumno:</p>
 <ul>
 <li>Matemáticas: 7.</li>
 <li>Química: 8.</li>
@@ -1325,21 +1384,23 @@ Solución
 </div>
 <div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>notas <span class="ot">&lt;-</span> <span class="fu">list</span>(Matemáticas <span class="ot">=</span> <span class="dv">7</span>, Química <span class="ot">=</span> <span class="dv">8</span>)</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>notas</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">notas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Matemáticas <span class="op">=</span> <span class="fl">7</span>, Química <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="va">notas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$Matemáticas
-[1] 7
-
-$Química
-[1] 8</code></pre>
+<pre><code>NA $Matemáticas
+NA [1] 7
+NA 
+NA $Química
+NA [1] 8</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Añadir la lista de notas a la lista del alumno.</p>
+</div>
+</li>
+<li>
+<p>Añadir la lista de notas a la lista del alumno.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1352,28 +1413,30 @@ Solución
 </div>
 <div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>alumno<span class="sc">$</span>Notas <span class="ot">&lt;-</span> notas</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>alumno</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alumno</span><span class="op">$</span><span class="va">Notas</span> <span class="op">&lt;-</span> <span class="va">notas</span></span>
+<span><span class="va">alumno</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$Nombre
-[1] "Juan"
-
-$Edad
-[1] 20
-
-$Notas
-$Notas$Matemáticas
-[1] 7
-
-$Notas$Química
-[1] 8</code></pre>
+<pre><code>NA $Nombre
+NA [1] "Juan"
+NA 
+NA $Edad
+NA [1] 20
+NA 
+NA $Notas
+NA $Notas$Matemáticas
+NA [1] 7
+NA 
+NA $Notas$Química
+NA [1] 8</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Añadir a la lista anterior la nota del examen de Física, que ha sido un 6.</p>
+</div>
+</li>
+<li>
+<p>Añadir a la lista anterior la nota del examen de Física, que ha sido un 6.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1386,45 +1449,181 @@ Solución
 </div>
 <div id="callout-34" class="callout-34-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>alumno<span class="sc">$</span>Notas<span class="sc">$</span>Física <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>alumno</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alumno</span><span class="op">$</span><span class="va">Notas</span><span class="op">$</span><span class="va">Física</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
+<span><span class="va">alumno</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$Nombre
-[1] "Juan"
-
-$Edad
-[1] 20
-
-$Notas
-$Notas$Matemáticas
-[1] 7
-
-$Notas$Química
-[1] 8
-
-$Notas$Física
-[1] 6</code></pre>
+<pre><code>NA $Nombre
+NA [1] "Juan"
+NA 
+NA $Edad
+NA [1] 20
+NA 
+NA $Notas
+NA $Notas$Matemáticas
+NA [1] 7
+NA 
+NA $Notas$Química
+NA [1] 8
+NA 
+NA $Notas$Física
+NA [1] 6</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
+</div>
+</li>
 </ol>
 </div>
 <div id="exr-dataframes-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 2.5</strong></span> La siguiente tabla contiene los ingresos y gastos de una empresa durante el primer trimestre del año.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Mes</th>
 <th style="text-align: right;">Ingresos</th>
 <th style="text-align: right;">Gastos</th>
 <th style="text-align: right;">Impuestos</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Enero</td>
+<td style="text-align: right;">45000</td>
+<td style="text-align: right;">33400</td>
+<td style="text-align: right;">6450</td>
 </tr>
-</thead>
+<tr class="even">
+<td style="text-align: left;">Febrero</td>
+<td style="text-align: right;">41500</td>
+<td style="text-align: right;">35400</td>
+<td style="text-align: right;">6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzo</td>
+<td style="text-align: right;">51200</td>
+<td style="text-align: right;">35600</td>
+<td style="text-align: right;">7100</td>
+</tr>
+</tbody>
+</table>
+<p>Figura:</p>
+</div>
+</div>
+<ol type="a">
+<li>
+<p>Crear un data frame con los datos de la tabla.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para crear un data frame se utiliza la función <code>data.frame(columna1 = vector1, columna2 = vector2, ...)</code>, donde <code>columna1</code>, <code>columna2</code>, … son los nombres de las columnas y <code>vector1</code>, <code>vector2</code>, … son los vectores con los datos de cada columna, que deben tener la misma longitud.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Mes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Enero"</span>, <span class="st">"Febrero"</span>, <span class="st">"Marzo"</span><span class="op">)</span>, Ingresos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">45000</span>,</span>
+<span>    <span class="fl">41500</span>, <span class="fl">51200</span><span class="op">)</span>, Gastos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">33400</span>, <span class="fl">35400</span>, <span class="fl">35600</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Mes</th>
+<th style="text-align: right;">Ingresos</th>
+<th style="text-align: right;">Gastos</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Enero</td>
+<td style="text-align: right;">45000</td>
+<td style="text-align: right;">33400</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Febrero</td>
+<td style="text-align: right;">41500</td>
+<td style="text-align: right;">35400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzo</td>
+<td style="text-align: right;">51200</td>
+<td style="text-align: right;">35600</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Añadir una nueva columna con los siguientes impuestos pagados.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Mes</th>
+<th style="text-align: right;">Impuestos</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Enero</td>
+<td style="text-align: right;">6450</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Febrero</td>
+<td style="text-align: right;">6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzo</td>
+<td style="text-align: right;">7100</td>
+</tr>
+</tbody>
+</table>
+<p>Figura:</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">tidyverse</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>Con las funciones del paquete <code>base</code> de R.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span><span class="op">$</span><span class="va">Impuestos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6450</span>, <span class="fl">6300</span>, <span class="fl">7100</span><span class="op">)</span></span>
+<span><span class="va">df</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Mes</th>
+<th style="text-align: right;">Ingresos</th>
+<th style="text-align: right;">Gastos</th>
+<th style="text-align: right;">Impuestos</th>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Enero</td>
@@ -1447,133 +1646,76 @@ $Notas$Física
 </tbody>
 </table>
 </div>
-</div>
-<ol type="a">
-<li><p>Crear un data frame con los datos de la tabla.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solución
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Para crear un data frame se utiliza la función <code>data.frame(columna1 = vector1, columna2 = vector2, ...)</code>, donde <code>columna1</code>, <code>columna2</code>, … son los nombres de las columnas y <code>vector1</code>, <code>vector2</code>, … son los vectores con los datos de cada columna, que deben tener la misma longitud.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mes =</span> <span class="fu">c</span>(<span class="st">"Enero"</span>, <span class="st">"Febrero"</span>, <span class="st">"Marzo"</span>),</span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ingresos =</span> <span class="fu">c</span>(<span class="dv">45000</span>, <span class="dv">41500</span>, <span class="dv">51200</span>),</span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Gastos =</span> <span class="fu">c</span>(<span class="dv">33400</span>, <span class="dv">35400</span>, <span class="dv">35600</span>)</span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>df </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Mes Ingresos Gastos
-1   Enero    45000  33400
-2 Febrero    41500  35400
-3   Marzo    51200  35600</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div></li>
-<li><p>Añadir una nueva columna con los siguientes impuestos pagados.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Mes</th>
-<th style="text-align: right;">Impuestos</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Enero</td>
-<td style="text-align: right;">6450</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Febrero</td>
-<td style="text-align: right;">6300</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Marzo</td>
-<td style="text-align: right;">7100</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solución
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-36" class="callout-36-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">tidyverse</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<p>Con las funciones del paquete <code>base</code> de R.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Impuestos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6450</span>, <span class="dv">6300</span>, <span class="dv">7100</span>)</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Mes Ingresos Gastos Impuestos
-1   Enero    45000  33400      6450
-2 Febrero    41500  35400      6300
-3   Marzo    51200  35600      7100</code></pre>
+<p>Figura:</p>
 </div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p>Con las funciones del paquete <code>dplyr</code> de <code>tidyverse</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Impuestos =</span> <span class="fu">c</span>(<span class="dv">6450</span>, <span class="dv">6300</span>, <span class="dv">7100</span>))</span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Mes Ingresos Gastos Impuestos
-1   Enero    45000  33400      6450
-2 Febrero    41500  35400      6300
-3   Marzo    51200  35600      7100</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div></li>
-<li><p>Añadir una nueva fila con los siguientes datos de Abril.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Impuestos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6450</span>, <span class="fl">6300</span>, <span class="fl">7100</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
+<div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Mes</th>
 <th style="text-align: right;">Ingresos</th>
 <th style="text-align: right;">Gastos</th>
 <th style="text-align: right;">Impuestos</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">Enero</td>
+<td style="text-align: right;">45000</td>
+<td style="text-align: right;">33400</td>
+<td style="text-align: right;">6450</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Febrero</td>
+<td style="text-align: right;">41500</td>
+<td style="text-align: right;">35400</td>
+<td style="text-align: right;">6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzo</td>
+<td style="text-align: right;">51200</td>
+<td style="text-align: right;">35600</td>
+<td style="text-align: right;">7100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Añadir una nueva fila con los siguientes datos de Abril.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Mes</th>
+<th style="text-align: right;">Ingresos</th>
+<th style="text-align: right;">Gastos</th>
+<th style="text-align: right;">Impuestos</th>
+</tr></thead>
+<tbody><tr class="odd">
 <td style="text-align: left;">Abril</td>
 <td style="text-align: right;">49700</td>
 <td style="text-align: right;">36300</td>
 <td style="text-align: right;">6850</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
+<p>Figura:</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1589,33 +1731,101 @@ Solución
 <div id="callout-37" class="callout-37-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">tidyverse</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">tidyverse</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <p>Con las funciones del paquete <code>base</code> de R.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, <span class="fu">list</span>(<span class="at">Mes =</span> <span class="st">"Abril"</span>, <span class="at">Ingresos =</span> <span class="dv">49700</span>, <span class="at">Gastos =</span> <span class="dv">36300</span>, <span class="at">Impuestos =</span> <span class="dv">6850</span>))</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Mes Ingresos Gastos Impuestos
-1   Enero    45000  33400      6450
-2 Febrero    41500  35400      6300
-3   Marzo    51200  35600      7100
-4   Abril    49700  36300      6850</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Mes <span class="op">=</span> <span class="st">"Abril"</span>, Ingresos <span class="op">=</span> <span class="fl">49700</span>, Gastos <span class="op">=</span> <span class="fl">36300</span>, Impuestos <span class="op">=</span> <span class="fl">6850</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Mes</th>
+<th style="text-align: right;">Ingresos</th>
+<th style="text-align: right;">Gastos</th>
+<th style="text-align: right;">Impuestos</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Enero</td>
+<td style="text-align: right;">45000</td>
+<td style="text-align: right;">33400</td>
+<td style="text-align: right;">6450</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Febrero</td>
+<td style="text-align: right;">41500</td>
+<td style="text-align: right;">35400</td>
+<td style="text-align: right;">6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzo</td>
+<td style="text-align: right;">51200</td>
+<td style="text-align: right;">35600</td>
+<td style="text-align: right;">7100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Abril</td>
+<td style="text-align: right;">49700</td>
+<td style="text-align: right;">36300</td>
+<td style="text-align: right;">6850</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <p>Con las funciones del paquete <code>dplyr</code> de <code>tidyverse</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">add_row</span>(<span class="at">Mes =</span> <span class="st">"Abril"</span>, <span class="at">Ingresos =</span> <span class="dv">49700</span>, <span class="at">Gastos =</span> <span class="dv">36300</span>, <span class="at">Impuestos =</span> <span class="dv">6850</span>)</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Mes Ingresos Gastos Impuestos
-1   Enero    45000  33400      6450
-2 Febrero    41500  35400      6300
-3   Marzo    51200  35600      7100
-4   Abril    49700  36300      6850</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span><span class="op">(</span>Mes <span class="op">=</span> <span class="st">"Abril"</span>, Ingresos <span class="op">=</span> <span class="fl">49700</span>, Gastos <span class="op">=</span> <span class="fl">36300</span>, Impuestos <span class="op">=</span> <span class="fl">6850</span><span class="op">)</span></span>
+<span><span class="va">df</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Mes</th>
+<th style="text-align: right;">Ingresos</th>
+<th style="text-align: right;">Gastos</th>
+<th style="text-align: right;">Impuestos</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Enero</td>
+<td style="text-align: right;">45000</td>
+<td style="text-align: right;">33400</td>
+<td style="text-align: right;">6450</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Febrero</td>
+<td style="text-align: right;">41500</td>
+<td style="text-align: right;">35400</td>
+<td style="text-align: right;">6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzo</td>
+<td style="text-align: right;">51200</td>
+<td style="text-align: right;">35600</td>
+<td style="text-align: right;">7100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Abril</td>
+<td style="text-align: right;">49700</td>
+<td style="text-align: right;">36300</td>
+<td style="text-align: right;">6850</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
@@ -1623,8 +1833,10 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Cambiar los ingresos de Marzo por 50400.</p>
+</div>
+</li>
+<li>
+<p>Cambiar los ingresos de Marzo por 50400.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1637,21 +1849,55 @@ Solución
 </div>
 <div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">3</span>, <span class="st">"Ingresos"</span>] <span class="ot">&lt;-</span> <span class="dv">50400</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Mes Ingresos Gastos Impuestos
-1   Enero    45000  33400      6450
-2 Febrero    41500  35400      6300
-3   Marzo    50400  35600      7100
-4   Abril    49700  36300      6850</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span><span class="op">[</span><span class="fl">3</span>, <span class="st">"Ingresos"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">50400</span></span>
+<span><span class="va">df</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Mes</th>
+<th style="text-align: right;">Ingresos</th>
+<th style="text-align: right;">Gastos</th>
+<th style="text-align: right;">Impuestos</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Enero</td>
+<td style="text-align: right;">45000</td>
+<td style="text-align: right;">33400</td>
+<td style="text-align: right;">6450</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Febrero</td>
+<td style="text-align: right;">41500</td>
+<td style="text-align: right;">35400</td>
+<td style="text-align: right;">6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marzo</td>
+<td style="text-align: right;">50400</td>
+<td style="text-align: right;">35600</td>
+<td style="text-align: right;">7100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Abril</td>
+<td style="text-align: right;">49700</td>
+<td style="text-align: right;">36300</td>
+<td style="text-align: right;">6850</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Guardar el data frame en un fichero csv.</p>
+</div>
+</li>
+<li>
+<p>Guardar el data frame en un fichero csv.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1665,18 +1911,20 @@ Solución
 <div id="callout-39" class="callout-39-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>write.csv(dataframe, "fichero.csv")</code> permite guardar el data frame <code>dataframe</code> en el fichero <code>fichero.csv</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(df, <span class="st">"datos/ingresos_gastos.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"datos/ingresos_gastos.csv"</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</div></li>
+</div>
+</li>
 </ol>
 </div>
 <div id="exr-dataframes-2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 2.6</strong></span> El fichero <a href="datos/colesterol.csv"><code>colesterol.csv</code></a> contiene información de una muestra de pacientes donde se han medido la edad, el sexo, el peso, la altura y el nivel de colesterol, además de su nombre.</p>
 <ol type="a">
-<li><p>Crear un data frame con los datos de todos los pacientes del estudio a partir del fichero <a href="datos/colesterol.csv"><code>colesterol.csv</code></a> y mostrar las primeras filas.</p>
+<li>
+<p>Crear un data frame con los datos de todos los pacientes del estudio a partir del fichero <a href="datos/colesterol.csv"><code>colesterol.csv</code></a> y mostrar las primeras filas.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1690,39 +1938,152 @@ Solución
 <div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">tidyverse</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">tidyverse</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <p>Con las funciones del paquete <code>base</code> de R. La función <code>read.csv("fichero.csv")</code> permite leer un fichero csv y cargar los datos en un data frame. Y la función <code>head(dataframe)</code> permite mostrar las primeras filas del data frame <code>dataframe</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv"</span>)</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                        nombre edad sexo peso altura colesterol
-1 José Luis Martínez Izquierdo   18    H   85   1.79        182
-2               Rosa Díaz Díaz   32    M   65   1.73        232
-3        Javier García Sánchez   24    H   NA   1.81        191
-4          Carmen López Pinzón   35    M   65   1.70        200
-5         Marisa López Collado   46    M   51   1.58        148
-6            Antonio Ruiz Cruz   68    H   66   1.74        249</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">nombre</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">peso</th>
+<th style="text-align: right;">altura</th>
+<th style="text-align: right;">colesterol</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">José Luis Martínez Izquierdo</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">1.79</td>
+<td style="text-align: right;">182</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rosa Díaz Díaz</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.73</td>
+<td style="text-align: right;">232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Javier García Sánchez</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1.81</td>
+<td style="text-align: right;">191</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Carmen López Pinzón</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.70</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marisa López Collado</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">148</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Antonio Ruiz Cruz</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">1.74</td>
+<td style="text-align: right;">249</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <p>Con la función <a href="https://readr.tidyverse.org/reference/read_delim.html"><code>read_csv</code></a> del paquete del paquete <a href="https://readr.tidyverse.org/index.html"><code>readr</code></a> de <code>tidyverse</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv"</span>)</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  nombre                        edad sexo   peso altura colesterol
-  &lt;chr&gt;                        &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1 José Luis Martínez Izquierdo    18 H        85   1.79        182
-2 Rosa Díaz Díaz                  32 M        65   1.73        232
-3 Javier García Sánchez           24 H        NA   1.81        191
-4 Carmen López Pinzón             35 M        65   1.7         200
-5 Marisa López Collado            46 M        51   1.58        148
-6 Antonio Ruiz Cruz               68 H        66   1.74        249</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">nombre</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">peso</th>
+<th style="text-align: right;">altura</th>
+<th style="text-align: right;">colesterol</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">José Luis Martínez Izquierdo</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">1.79</td>
+<td style="text-align: right;">182</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rosa Díaz Díaz</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.73</td>
+<td style="text-align: right;">232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Javier García Sánchez</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1.81</td>
+<td style="text-align: right;">191</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Carmen López Pinzón</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.70</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marisa López Collado</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">148</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Antonio Ruiz Cruz</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">1.74</td>
+<td style="text-align: right;">249</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
@@ -1730,8 +2091,10 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Mostrar las variables del data frame.</p>
+</div>
+</li>
+<li>
+<p>Mostrar las variables del data frame.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1745,31 +2108,34 @@ Solución
 <div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">tidyverse</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">tidyverse</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <p>Con las funciones del paquete <code>base</code> de R.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "nombre"     "edad"       "sexo"       "peso"       "altura"    
-[6] "colesterol"</code></pre>
+<pre><code>NA [1] "nombre"     "edad"       "sexo"       "peso"       "altura"    
+NA [6] "colesterol"</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <p>Con la función <a href="https://dplyr.tidyverse.org/reference/glimpse.html?q=read_csv#undefined"><code>glimpse</code></a> del paquete <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a> de <code>tidyverse</code>. Esta función muestra las columnas del data frame en filas, de manera que permite ver todas las columnas de un data frame cuando este tiene muchas columnas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 14
-Columns: 6
-$ nombre     &lt;chr&gt; "José Luis Martínez Izquierdo", "Rosa Díaz Díaz", "Javier G…
-$ edad       &lt;dbl&gt; 18, 32, 24, 35, 46, 68, 51, 22, 35, 46, 53, 58, 27, 20
-$ sexo       &lt;chr&gt; "H", "M", "H", "M", "M", "H", "H", "M", "H", "H", "M", "H",…
-$ peso       &lt;dbl&gt; 85, 65, NA, 65, 51, 66, 62, 60, 90, 75, 55, 78, 109, 61
-$ altura     &lt;dbl&gt; 1.79, 1.73, 1.81, 1.70, 1.58, 1.74, 1.72, 1.66, 1.94, 1.85,…
-$ colesterol &lt;dbl&gt; 182, 232, 191, 200, 148, 249, 276, NA, 241, 280, 262, 198, …</code></pre>
+<pre><code>NA Rows: 14
+NA Columns: 6
+NA $ nombre     &lt;chr&gt; "José Luis Martínez Izquierdo", "Rosa Díaz Díaz",…
+NA $ edad       &lt;dbl&gt; 18, 32, 24, 35, 46, 68, 51, 22, 35, 46, 53, 58, 2…
+NA $ sexo       &lt;chr&gt; "H", "M", "H", "M", "M", "H", "H", "M", "H", "H",…
+NA $ peso       &lt;dbl&gt; 85, 65, NA, 65, 51, 66, 62, 60, 90, 75, 55, 78, 1…
+NA $ altura     &lt;dbl&gt; 1.79, 1.73, 1.81, 1.70, 1.58, 1.74, 1.72, 1.66, 1…
+NA $ colesterol &lt;dbl&gt; 182, 232, 191, 200, 148, 249, 276, NA, 241, 280, …</code></pre>
 </div>
 </div>
 </div>
@@ -1777,8 +2143,10 @@ $ colesterol &lt;dbl&gt; 182, 232, 191, 200, 148, 249, 276, NA, 241, 280, 262, 1
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Mostrar el número de filas del data frame, que corresponde al número de pacientes.</p>
+</div>
+</li>
+<li>
+<p>Mostrar el número de filas del data frame, que corresponde al número de pacientes.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1792,16 +2160,18 @@ Solución
 <div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>nrow(dataframe)</code> permite mostrar el número de filas del data frame <code>dataframe</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 14</code></pre>
+<pre><code>NA [1] 14</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Mostrar 5 filas aleatorias del data frame.</p>
+</div>
+</li>
+<li>
+<p>Mostrar 5 filas aleatorias del data frame.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1815,37 +2185,135 @@ Solución
 <div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">tidyverse</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">tidyverse</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <p>La función <code>sample(vector, n)</code> permite seleccionar <code>n</code> elementos aleatorios de <code>vector</code>. El muestreo es sin reemplazamiento.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">sample</span>(<span class="fu">nrow</span>(df), <span class="dv">5</span>), ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 6
-  nombre                        edad sexo   peso altura colesterol
-  &lt;chr&gt;                        &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1 Pilar Martín González           22 M        60   1.66         NA
-2 Santiago Reillo Manzano         46 H        75   1.85        280
-3 Javier García Sánchez           24 H        NA   1.81        191
-4 Carolina Rubio Moreno           20 M        61   1.77        194
-5 José Luis Martínez Izquierdo    18 H        85   1.79        182</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span>, <span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">nombre</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">peso</th>
+<th style="text-align: right;">altura</th>
+<th style="text-align: right;">colesterol</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Miguel Angel Cuadrado Gutiérrez</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">210</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Macarena Álvarez Luna</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">1.62</td>
+<td style="text-align: right;">262</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marisa López Collado</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">148</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Santiago Reillo Manzano</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: right;">280</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pilar Martín González</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">1.66</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
 <p>La función <code>sample_n(dataframe, n)</code> del paquete <code>dplyr</code> de <code>tidyverse</code> permite seleccionar <code>n</code> filas aleatorias del data frame <code>dataframe</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 6
-  nombre                        edad sexo   peso altura colesterol
-  &lt;chr&gt;                        &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1 José Luis Martínez Izquierdo    18 H        85   1.79        182
-2 Macarena Álvarez Luna           53 M        55   1.62        262
-3 Javier García Sánchez           24 H        NA   1.81        191
-4 Santiago Reillo Manzano         46 H        75   1.85        280
-5 Antonio Fernández Ocaña         51 H        62   1.72        276</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">nombre</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">peso</th>
+<th style="text-align: right;">altura</th>
+<th style="text-align: right;">colesterol</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Santiago Reillo Manzano</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: right;">280</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pilar Martín González</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">1.66</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Miguel Angel Cuadrado Gutiérrez</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">210</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rosa Díaz Díaz</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.73</td>
+<td style="text-align: right;">232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Carmen López Pinzón</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.70</td>
+<td style="text-align: right;">200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
@@ -1853,8 +2321,10 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Obtener los datos de colesterol de los pacientes.</p>
+</div>
+</li>
+<li>
+<p>Obtener los datos de colesterol de los pacientes.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1868,39 +2338,78 @@ Solución
 <div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">tidyverse</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">tidyverse</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <p>Con las funciones del paquete <code>base</code> de R.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>colesterol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span><span class="op">$</span><span class="va">colesterol</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 182 232 191 200 148 249 276  NA 241 280 262 198 210 194</code></pre>
+<pre><code>NA  [1] 182 232 191 200 148 249 276  NA 241 280 262 198 210 194</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
 <p>Con la función <a href="https://dplyr.tidyverse.org/reference/select.html"><code>select</code></a> del paquete <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a> de <code>tidyverse</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">select</span>(colesterol)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 14 × 1
-   colesterol
-        &lt;dbl&gt;
- 1        182
- 2        232
- 3        191
- 4        200
- 5        148
- 6        249
- 7        276
- 8         NA
- 9        241
-10        280
-11        262
-12        198
-13        210
-14        194</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">colesterol</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: right;">colesterol</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">182</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">191</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">148</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">249</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">276</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">241</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">280</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">262</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">198</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">210</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">194</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
@@ -1908,8 +2417,10 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
-<li><p>Obtener los datos del quinto paciente.</p>
+</div>
+</li>
+<li>
+<p>Obtener los datos del quinto paciente.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1923,29 +2434,67 @@ Solución
 <div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">tidyverse</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">tidyverse</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <p>Con las funciones del paquete <code>base</code> de R.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">5</span>, ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 6
-  nombre                edad sexo   peso altura colesterol
-  &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1 Marisa López Collado    46 M        51   1.58        148</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span><span class="op">[</span><span class="fl">5</span>, <span class="op">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">nombre</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">peso</th>
+<th style="text-align: right;">altura</th>
+<th style="text-align: right;">colesterol</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: left;">Marisa López Collado</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">148</td>
+</tr></tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
 <p>Con la función <a href="https://dplyr.tidyverse.org/reference/slice.html"><code>slice</code></a> del paquete <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a> de <code>tidyverse</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 6
-  nombre                edad sexo   peso altura colesterol
-  &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1 Marisa López Collado    46 M        51   1.58        148</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">nombre</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">peso</th>
+<th style="text-align: right;">altura</th>
+<th style="text-align: right;">colesterol</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: left;">Marisa López Collado</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">148</td>
+</tr></tbody>
+</table>
+</div>
+<p>Figura:</p>
 </div>
 </div>
 </div>
@@ -1953,25 +2502,23 @@ Solución
 </div>
 </div>
 </div>
-</div></li>
+</div>
+</li>
 </ol>
 </div>
-</section>
-<section id="ejercicios-propuestos" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="ejercicios-propuestos"><span class="header-section-number">2.2</span> Ejercicios Propuestos</h2>
+</section><section id="ejercicios-propuestos" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="ejercicios-propuestos">
+<span class="header-section-number">2.2</span> Ejercicios Propuestos</h2>
 <div id="exr-vectores-2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 2.7</strong></span> La siguiente tabla contiene las notas de un grupo de alumnos en dos asignaturas.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Alumno</th>
 <th style="text-align: left;">Grupo</th>
 <th style="text-align: right;">Física</th>
 <th style="text-align: right;">Química</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Juan</td>
@@ -2011,6 +2558,7 @@ Solución
 </tr>
 </tbody>
 </table>
+<p>Figura:</p>
 </div>
 </div>
 <ol type="a">
@@ -2026,10 +2574,7 @@ Solución
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2440,9 +2985,7 @@ Solución
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./01-intro.html" class="pagination-link" aria-label="Introducción a R">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a R</span></span>
       </a>          
@@ -2454,7 +2997,6 @@ Solución
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
