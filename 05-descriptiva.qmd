@@ -3,10 +3,6 @@ title: Estadística Descriptiva
 lang: es
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-```
-
 Esta práctica contiene ejercicios que muestran cómo realizar un análisis descriptivo de un conjunto de datos mediante estadísticos muestrales, como por ejemplo:
 
 - Medidas de tendencia central: media, mediana y moda.
@@ -23,176 +19,467 @@ library(tidyverse)
 # Incluye los siguientes paquetes:
 # - readr: para la lectura de ficheros csv. 
 # - dplyr: para el preprocesamiento y manipulación de datos.
+library(DescTools) # para el cálculo de la moda.
+library(moments) # para el cálculo del coeficiente de asimetría y apuntamiento.
 library(vtable) # para resúmenes estadísticos.
 library(skimr) # para resúmenes estadísticos.
 library(summarytools) # para resúmenes estadísticos.
 library(knitr) # para el formateo de tablas.
 ```
 
-:::{#exr-descriptiva-1}
-En una encuesta a 25 matrimonios sobre el número de hijos que tenían se obtuvieron los siguientes datos:
+:::{#exr-descriptiva-medicamentos}
+Se realizó una encuesta a 40 personas de más de 70 años sobre el número de medicamentos distintos que tomaban habitualmente. El resultado de dicha encuesta fue el siguiente:
 
 | |
 |:-:|
-|1, 2, 4, 2, 2, 2, 3, 2, 1, 1, 0, 2, 2, 0, 2, 2, 1, 2, 2, 3, 1, 2, 2, 1, 2 |
+|3 − 1 − 2 − 2 − 0 − 1 − 4 − 2 − 3 − 5 − 1 − 3 − 2 − 3 − 1 − 4 − 2 − 4 − 3 − 2|
+|3 − 5 − 0 − 1 − 2 − 0 − 2 − 3 − 0 − 1 − 1 − 5 − 3 − 4 − 2 − 3 − 0 − 1 − 2 − 3|
 
-
-a.  Crear un conjunto de datos con la variable `hijos`.
+a.  Crear un conjunto de datos con la variable `medicamentos`.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    ::::{.panel-tabset}
+    ## Base
+
     ```{r}
-    df <- data.frame(hijos = c(1, 2, 4, 2, 2, 2, 3, 2, 1, 1, 0, 2, 2, 0, 2, 2, 1, 2, 2, 3, 1, 2, 2, 1, 2))
+    df <- data.frame(medicamentos = c(3, 1, 2, 2, 0, 1, 4, 2, 3, 5, 1, 3, 2, 3, 1, 4, 2, 4, 3, 2, 3, 5, 0, 1, 2, 0, 2, 3, 0, 1, 1, 5, 3, 4, 2, 3, 0, 1, 2, 3))
     ```
+
+    ## tidyverse
+
+    ```{r}
+    library(tidyverse)
+    df <- tibble(medicamentos = c(3, 1, 2, 2, 0, 1, 4, 2, 3, 5, 1, 3, 2, 3, 1, 4, 2, 4, 3, 2, 3, 5, 0, 1, 2, 0, 2, 3, 0, 1, 1, 5, 3, 4, 2, 3, 0, 1, 2, 3))
+    ```
+    :::
     :::
 
 a.  Calcular el tamaño muestral. 
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+
+    El tamaño muestral generalmente es el número de filas del data frame. Para calcular el número de filas podemos usar la función [`nrow`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/nrow) del paquete base de R.
+    
     ```{r}
     nrow(df)
     ```
-    :::
 
+    ## tidyverse
+
+    El tamaño muestral generalmente es el número de filas del data frame. Para calcular el número de filas podemos usar la función la función [`count`](https://dplyr.tidyverse.org/reference/count.html) del paquete `dplyr` de `tidyverse`.
+
+    ```{r}
+    library(knitr)
+    count(df) |> kable()
+    ```
+    :::
+    :::
+    
 a.  Calcular la media.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+    Podemos calcular la media con la función [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la media.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la media.
+
     ```{r}
-    mean(df$hijos)
+    mean(df$medicamentos)
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la media hay que pasarle como argumento la función [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la media.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la media.
+
+    ```{r}
+    df |> summarise(media = mean(medicamentos)) |> 
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular la mediana.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+    Podemos calcular la mediana con la función [`median`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/median) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la mediana.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la mediana.
+
     ```{r}
-    median(df$hijos)
+    median(df$medicamentos)
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la mediana hay que pasarle como argumento la función [`median`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/median) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la mediana.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la mediana.
+    
+    ```{r}
+    df |> summarise(mediana = median(medicamentos)) |>
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular la moda.
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    El paquete base de R no tiene implementada ninguna función para calcular la moda, así que definiremos nuestra propia función.
-    
-    ```{r}
-    moda <- function(x) {
-    u <- unique(x) # Vector con los valores de la muestra sin repetir (sin ordenar).
-    tab <- tabulate(match(x, u)) # Frecuencias absolutas de los valores en u.
-    u[tab == max(tab)] # Valor con la mayor frecuencia.
-    }
+    :::{.panel-tabset}
+    ## Base
+    Para calcular la moda podemos usar la función [`Mode`](https://www.rdocumentation.org/packages/DescTools/versions/0.99.0/topics/Mode) del paquete `DescTools`.
 
-    moda(df$hijos)
+    Parámetros:
+    - `x`: vector numérico del que calcular la moda.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la moda.
+
+    ```{r}
+    library(DescTools)
+    Mode(df$medicamentos, na.rm = TRUE)
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la moda podemos usar la función [`Mode`](https://www.rdocumentation.org/packages/DescTools/versions/0.99.0/topics/Mode) del paquete `DescTools`.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la moda.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la moda.
+
+    ```{r}
+    library(tidyverse) 
+    df |> summarise(moda = Mode(medicamentos, na.rm = TRUE)) |>
+        kable()
+    ```
+    :::
+
+    Existen dos modas 2 y 3 que son los valores más frecuentes en el conjunto de datos. Por tanto, el conjunto de datos es bimodal.
     :::
 
 a.  Calcular el mínimo.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+    Podemos calcular el mínimo con la función [`min`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/min) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el mínimo.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el mínimo.
+  
     ```{r}
-    min(df$hijos)
+    min(df$medicamentos)
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el mínimo hay que pasarle como argumento la función [`min`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/min) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el mínimo.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el mínimo.
+
+    ```{r}
+    df |> summarise(mínimo = min(medicamentos, na.rm = TRUE))
+    ```
+    :::
     :::
 
 a.  Calcular el máximo.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+    Podemos calcular el máximo con la función [`max`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/max) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el máximo.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el máximo.
+
     ```{r}
-    max(df$hijos)
+    max(df$medicamentos)
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el máximo hay que pasarle como argumento la función [`max`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/max) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el máximo.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el máximo.
+
+    ```{r}
+    df |> summarise(máximo = max(medicamentos))
+    ```
+    :::
     :::
 
 a.  Calcular los cuartiles.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+
+    Podemos calcular los cuartiles con la función [`quantile`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/quantile) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular los cuartiles.
+    - `probs`: vector de probabilidades para calcular los cuartiles. Por defecto es `c(0, 0.25, 0.5, 0.75, 1)`.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular los cuartiles.
+
     ```{r}
-    quantile(df$hijos, prob=c(0.25, 0.5, 0.75))
+    quantile(df$medicamentos, prob = c(0.25, 0.5, 0.75))
     ```
+
+    ## tidyverse
+
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular los cuartiles hay que pasarle como argumento la función [`quantile`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/quantile) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular los cuartiles.
+    - `probs`: vector de probabilidades para calcular los cuartiles. Por defecto es `c(0, 0.25, 0.5, 0.75, 1)`.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular los cuartiles.
+
+    Es necesario usar la función [`unnest`](https://tidyr.tidyverse.org/reference/unnest.html) del paquete `tidyr` para desanidar el resultado de la función `quantile`.
+
+    ```{r}
+    df |> summarise(cuartiles = list(quantile(medicamentos, prob = c(0.25, 0.5, 0.75)))) |>
+        unnest(cuartiles) |> 
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular los percentiles 5 y 95.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+
+    Podemos calcular los percentiles también con la función [`quantile`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/quantile) del paquete base de R, simplemente indicando el vector de probabilidades acumuladas correspondientes a los percentiles que queremos calcular.
+
     ```{r}
-    quantile(df$hijos, prob=c(0.05, 0.95))
+    quantile(df$medicamentos, prob = c(0.05, 0.95))
     ```
+
+    ## tidyverse
+
+    Podemos calcular los percentiles también con la función [`quantile`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/quantile) del paquete base de R, simplemente indicando el vector de probabilidades acumuladas correspondientes a los percentiles que queremos calcular.
+
+    ```{r}
+    df |> summarise(percentiles = list(quantile(medicamentos, prob = c(0.05, 0.95)))) |>
+        unnest(percentiles) |> 
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular el rango. 
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+
     ```{r}
-    max(df$hijos) - min(df$hijos)
+    max(df$medicamentos) - min(df$medicamentos)
     ```
+
+    ## tidyverse
+
+    ```{r}
+    df |> summarise(rango = max(medicamentos) - min(medicamentos)) |>
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular el rango intercuartílico. 
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+    Podemos calcular el rango intercuartílico con la función [`IQR`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/IQR) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el rango intercuartílico.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el rango intercuartílico.
+
     ```{r}
-    IQR(df$hijos)
+    IQR(df$medicamentos)
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el rango intercuartílico hay que pasarle como argumento la función [`IQR`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/IQR) del paquete base de R.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el rango intercuartílico.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el rango intercuartílico.
+  
+    ```{r}
+    df |> summarise(IQR = IQR(medicamentos)) |>
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular la varianza 
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    R dispone de la función `var` para calcular la _cuasivarianza_ o _varianza corregida_ $\sum \frac{(x_i-\bar x)^2}{n-1}$, pero no dispone de una función para calcular la varianza, de manera que para calcularla hay que corregir la cuasivarianza.
-    
+
+    :::{.panel-tabset}
+    ## Base
+    Podemos usar la función [`var`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) del paquete `stats` de R para calcular la _cuasivarianza_ o _varianza corregida_ $\sum \frac{(x_i-\bar x)^2}{n-1}$. Para calcular la varianza hay que corregir la cuasivarianza multiplicando por $\frac{n-1}{n}$, donde $n$ es el tamaño muestral.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la cuasivarianza.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la cuasivarianza.
+
     ```{r}
     n <- nrow(df)
     # Cuasivarianza
-    print(paste("Cuasivarianza:", var(df$hijos)))
+    print(paste("Cuasivarianza:", var(df$medicamentos)))
     # Varianza
-    print(paste("Varianza: ", var(df$hijos)*(n-1)/n))
+    print(paste("Varianza: ", var(df$medicamentos)*(n-1)/n))
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la cuasivarianza hay que pasarle como argumento la función [`var`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) del paquete `stats` de R. Para calcular la varianza hay que corregir la cuasivarianza multiplicando por $\frac{n-1}{n}$, donde $n$ es el tamaño muestral.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la cuasivarianza.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la cuasivarianza.
+    - 
+    ```{r}
+    df |> summarise(cuasivarianza = var(medicamentos), 
+        varianza = var(medicamentos)*(n()-1)/n()) |> 
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular la desviación típica.
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    R dispone de la función `sd` para calcular la _cuasidesviación típica_ o _desviación típica corregida_ $\sqrt{\sum \frac{(x_i-\bar x)^2}{n-1}}$, pero no dispone de una función para calcular la desviación típica, de manera que para calcularla hay que corregir la cuasidesviación típica.
-    
+
+    :::{.panel-tabset}
+    ## Base
+    Podemos usar la función [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete `stats` de R para calcular la _cuasidesviación típica_ o _desviación típica corregida_ $\sqrt{\sum \frac{(x_i-\bar x)^2}{n-1}}$. Para calcular la desviación típica hay que corregir la cuasidesviación típica multiplicando por $\sqrt{\frac{n-1}{n}}$, donde $n$ es el tamaño muestral.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la cuasivarianza.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la cuasivarianza.
+
     ```{r}
     n <- nrow(df)
     # Cuasidesviación típica
-    print(paste("Cuasidesviación típica:", sd(df$hijos)))
+    print(paste("Cuasidesviación típica:", sd(df$medicamentos)))
     # Desviación típica
-    print(paste("Desviación típica: ", sd(df$hijos)*sqrt((n-1)/n)))
+    print(paste("Desviación típica: ", sd(df$medicamentos)*sqrt((n-1)/n)))
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la cuasivarianza hay que pasarle como argumento la función [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete `stats` de R para calcular la _cuasidesviación típica_ o _desviación típica corregida_ $\sqrt{\sum \frac{(x_i-\bar x)^2}{n-1}}$. Para calcular la desviación típica hay que corregir la cuasidesviación típica multiplicando por $\sqrt{\frac{n-1}{n}}$, donde $n$ es el tamaño muestral.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular la cuasivarianza.
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular la cuasivarianza.
+  
+    ```{r}
+    df |> summarise(cuasidesviación = sd(medicamentos), 
+        desviación = sd(medicamentos)*sqrt((n()-1)/n())) |> 
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular el coeficiente de variación.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    No existe una función en R para calcular el coeficiente de variación, pero se puede calcular dividiendo la desviación típica entre el valor absoluto de la media. Se suele expresar como porcentaje multiplicando por 100.
+
+    :::{.panel-tabset}
+    ## Base
+
     ```{r}
-    sd(df$hijos) / abs(mean(df$hijos))
+    sd(df$medicamentos, na.rm = TRUE) / abs(mean(df$medicamentos, na.rm = TRUE)) * 100
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de variación se divide la desviación típica entre el valor absoluto de la media y se multiplica por 100 para expresarlo como porcentaje.
+
+    ```{r}
+    df |> summarise(coef_variacion = sd(medicamentos, na.rm = TRUE) / abs(mean(medicamentos, na.rm = TRUE)) * 100) |> 
+        kable()
+    ```
+    :::
     :::
 
 a.  Calcular el coeficiente de asimetría.
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    Para calcular el coeficiente de asimetría se utiliza el paquete _moments_.
+    :::{.panel-tabset}
+    ## Base
+
+    Para calcular el coeficiente de asimetría podemos usar la función [`skewness`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/skewness) del paquete `moments`.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el coeficiente de asimetría
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el coeficiente de asimetría.
+  
+    ```{r}
+    library(moments)
+    skewness(df$medicamentos, na.rm = TRUE)
+    ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de asimetría podemos usar la función [`skewness`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/skewness) del paquete `moments`.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el coeficiente de asimetría
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el coeficiente de asimetría.
 
     ```{r}
     library(moments)
-    skewness(df$hijos)
-    ```
+    df |> summarise(coef_asimetria = skewness(medicamentos, na.rm = TRUE)) |> 
+        kable()
+    ``` 
+    :::
 
     Como $g_1$ está próxima a $0$, la distribución es casi simétrica.
     :::
@@ -201,27 +488,135 @@ a.  Calcular el coeficiente de apuntamiento.
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    Para calcular el coeficiente de apuntamiento se utiliza el paquete _moments_.
+    :::{.panel-tabset}
+    ## Base
+
+    Para calcular el coeficiente de apuntamiento podemos usar la función [`kurtosis`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/kurtosis) del paquete `moments`.
+
+    Parámetros:
+    - `x`: vector numérico del que calcular el coeficiente de apuntamiento
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el coeficiente de apuntamiento.
 
     ```{r}
-    kurtosis(df$hijos)
+    library(moments)
+    kurtosis(df$medicamentos, na.rm = TRUE)
     ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de apuntamiento podemos usar la función [`kurtosis`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/kurtosis) del paquete `moments`.
+
+    Parámetros:
+
+    - `x`: vector numérico del que calcular el coeficiente de asimetría
+    - `na.rm`: si es `TRUE` se eliminan los valores perdidos antes de calcular el coeficiente de asimetría.
+
+    ```{r}
+    library(moments)
+    df |> summarise(coef_apuntamiento = kurtosis(medicamentos, na.rm = TRUE)) |> 
+        kable()
+    ``` 
+    :::
 
     Como $g_2>0$, la distribución es más apuntada de lo normal (leptocúrtica). Como además $g_2\not\in(-2,2)$ se puede concluir que la muestra es demasiado apuntada para provenir de una población normal.
     :::
 :::
 
-:::{#exr-descriptiva-2}
+:::{#exr-descriptiva-colesterol}
 El fichero [`colesterol.csv`](datos/colesterol.csv) contiene información de una muestra de pacientes donde se han medido la edad, el sexo, el peso, la altura y el nivel de colesterol, además de su nombre.
 
 a.  Crear un data frame con los datos de todos los pacientes del estudio a partir del fichero [`colesterol.csv`](datos/colesterol.csv).
 
     :::{.callout-tip collapse="true"}
-    ## Solución 
+    ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+
     ```{r}
     df <- read.csv("https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv")
-    head(df)
     ```
+
+    ## tidyverse
+
+    ```{r}
+    library(tidyverse)
+    df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv")
+    ```
+    :::
+    :::
+
+a.  Obtener un resumen del data frame que muestre las variables que contiene, su tipo, el número de filas y el número de columnas.
+
+    :::{.callout-tip collapse="true"}
+    ## Solución
+
+    :::{.panel-tabset}
+    ## Base
+    Para obtener las variables de un data frame podemos usar la función [`str`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/str) del paquete base de R.
+
+    Parámetros:
+    - `object`: objeto del que obtener su estructura.
+
+    ```{r}
+    str(df)
+    ```
+
+    ## tidyverse
+    Para obtener las variables y sus tipos de un data frame podemos usar la función [`glimpse`](https://dplyr.tidyverse.org/reference/glimpse.html) del paquete `dplyr` de `tidyverse`.
+
+    Parámetros:
+    - `data`: data frame del que obtener las variables.
+
+    ```{r}
+    glimpse(df)
+    ```
+
+    ## summarytools
+    Para obtener las variables y sus tipos de un data frame podemos usar la función [`dfSummary`](https://www.rdocumentation.org/packages/summarytools/versions/1.1.4/topics/dfSummary) del paquete [`summarytools`](https://www.rdocumentation.org/packages/summarytools).
+
+    Parámetros:
+    - `x`: data frame del que obtener las variables.
+
+    ```{r}
+    library(summarytools)
+    print(dfSummary(df, plain.ascii = FALSE, style = "grid"), method = "render")
+    ```
+    :::
+    :::
+
+a.  Calcular el número de valores perdidos en cada variable.
+
+    :::{.callout-tip collapse="true"}
+    ## Solución
+    :::{.panel-tabset}
+    ## Base
+    Para calcular el número de valores perdidos podemos usar la función [`colSums`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/colSums) del paquete base de R, aplicada a la función [`is.na`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/is.na) que devuelve un vector lógico indicando si cada elemento es `NA` o no.
+
+    Parámetros:
+    - `x`: matriz o data frame del que calcular el número de valores perdidos.
+
+    ```{r}
+    colSums(is.na(df))
+    ```
+
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. Para obtener un resumen de todas las variables del data frame, hay que indicar el argumento `across(everything(), ...)`. En particular, para calcular el número de valores perdidos podemos aplicar la función `sum` al vector que devuelve la función [`is.na`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/is.na) del paquete base de R.
+
+    ```{r}
+    df |> summarise(across(everything(), ~ sum(is.na(.))))
+    ```
+
+    ## skimr
+    Podemos obtener un resumen estadístico con la función [`skim`](https://www.rdocumentation.org/packages/skimr/versions/2.2.1/topics/skim) del paquete [`skimr`](https://www.rdocumentation.org/packages/skimr). El resumen incluye el número de valores perdidos para cada variable además de otros estadísticos.
+
+    Parámetros:
+    - `data`: data frame del que obtener el resumen estadístico.
+
+    ```{r}
+    library(skimr)
+    skim(df)
+    ```
+    :::
     :::
 
 a.  Calcular el tamaño muestral según el sexo.
@@ -231,18 +626,19 @@ a.  Calcular el tamaño muestral según el sexo.
     :::{.panel-tabset}
 
     ## Base
-    Con la función [`table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/table) del paquete base de R.
+    Para calcular la frecuencia absoluta podemos usar la función [`table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/table) del paquete base de R.
 
     ```{r}
     table(df$sexo)
     ```
     
     ## tidyverse
-    Con la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
+    Para calcular la frecuencia absoluta podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
 
     ```{r}
+    library(knitr)
     library(dplyr)
-    count(df, sexo)
+    count(df, sexo) |> kable()
     ```
     :::
     :::
@@ -251,29 +647,52 @@ a.  Calcular la media y la desviación típica del nivel de colesterol sin tener
 
     :::{.callout-tip collapse="true"}
     ## Solución 
+
+    :::{.panel-tabset}
+    ## Base
+    Para calcular la media y la desviación típica podemos usar las funciones [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) y [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete base de R. Es importante indicar el parámetro `na.rm = TRUE` para eliminar los valores perdidos antes de calcular la media y la desviación típica.
+
     ```{r}
     # Media
     mean(df$colesterol, na.rm = TRUE)
     # Desviación típica:
     sd(df$colesterol, na.rm = TRUE)
     ```
-    :::
 
-a.  Realizar un resumen estadístico con la media, el mínimo, los cuartiles y el máximo.
+    ## tidyverse
+    Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la media y la desviación típica hay que pasarle como argumento las funciones [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) y [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete base de R. Es importante indicar el parámetro `na.rm = TRUE` para eliminar los valores perdidos antes de calcular la media y la desviación típica.
+
+    ```{r}
+    library(dplyr)
+    df |> summarise(media = mean(colesterol, na.rm = TRUE), 
+                    desviación_típica = sd(colesterol, na.rm = TRUE)) |> 
+        kable()
+    ```
+    :::
+    :::
+    
+a.  Realizar un resumen estadístico de todas las variables que incluya la media, el mínimo, los cuartiles, el máximo y la desviación típica para las variables cuantitativas y la frecuencia absoluta para las variables cualitativas.
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
-    Con la función [`summary`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/summary) del paquete `base` de R.
+    Para obtener un resumen estadístico del conjunto de datos podemos usar la función [`summary`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/summary) del paquete `base` de R.
+
+    Parámetros:
+
+    - `object`: objeto del que obtener el resumen estadístico. Suele ser un data frame o un vector.
 
     ```{r}
     summary(df)
     ```
     
     ## vtable
-    Con la función `st` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
+    Para obtener un resumen estadístico del conjunto de datos podemos usar la función `st` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
+
+    Parámetros:
+    - `data`: data frame del que obtener el resumen estadístico.
     
     ```{r}
     library(vtable)
@@ -281,22 +700,24 @@ a.  Realizar un resumen estadístico con la media, el mínimo, los cuartiles y e
     ```
     
     ## skimr
-    Con la función `skim` del paquete [`skimr`](https://cran.r-project.org/web/packages/skimr/vignettes/skimr.html).
+    Para obtener un resumen estadístico del conjunto de datos podemos usar la función [`skim`](https://www.rdocumentation.org/packages/skimr/versions/2.2.1/topics/skim) del paquete [`skimr`](https://www.rdocumentation.org/packages/skimr).
+
+    Parámetros:
+    - `data`: data frame del que obtener el resumen estadístico.
     
     ```{r}
-    library(skimr)
     skim(df)
     ```
     
     ## summarytools
-    Con las funciones `descr` y `dfSummary` del paquete [`summarytools`](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html).
+    Para obtener un resumen estadístico del conjunto de datos podemos usar las funciones [`descr`](https://www.rdocumentation.org/packages/summarytools/versions/1.1.4/topics/descr) del paquete [`summarytools`](https://www.rdocumentation.org/packages/summarytools).
+
+    Parámetros:
+    - `x`: vector o data frame del que obtener el resumen estadístico. Por defecto calcula la media, la desviación típica, los cuartiles, el mínimo, el máximo, el rango intercuartílico, el coeficiente de variación, y los coeficientes de asimetría y apuntamiento.
     
     ```{r}
-    library(summarytools)
     descr(df) |>
     kable()
-
-    print(dfSummary(df, plain.ascii = FALSE, style = "grid"), method = "render")
     ```
     :::
     :::
@@ -308,33 +729,52 @@ a.  ¿En qué variable es más representativa la media?
     :::{.panel-tabset}
 
     ## vtable
-    Con la función (https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html) del paquete `vtable`.
+    Para obtener un resumen estadístico del conjunto de datos podemos usar la función `st` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
+
+    Parámetros:
+    - `data`: data frame del que obtener el resumen estadístico.
+    - `vars`: vector de nombres de las variables a incluir en el resumen estadístico.
+    - `group`: nombre de la variable por la que agrupar los datos.
+    - `summ`: vector de funciones a aplicar a las variables seleccionadas.
+    - `summ.names`: vector de nombres para las funciones aplicadas.
 
     ```{r}
-    sumtable(df, summ = c('mean(x)', 'sd(x)', 'sd(x)/mean(x)'),
+    st(df, summ = c('mean(x, na.rm = TRUE)', 'sd(x, na.rm = TRUE)', 'sd(x, na.rm = TRUE)/mean(x, na.rm = TRUE)*100'),
     summ.names = c("Media", "Desviación Típica", "Coef. Variación"))
     ```
     
     ## tidyverse
-    Con las funciones [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) y [`across`](https://dplyr.tidyverse.org/reference/across.html) del paquete `dplyr` de `tidyverse`.
+    Para obtener un resumen estadístico del conjunto de datos podemos usar las funciones [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) y [`across`](https://dplyr.tidyverse.org/reference/across.html) del paquete `dplyr` de `tidyverse`.
+
+    Parámetros:
+    - `.cols`: Indica las columnas de las que se obtendrá el resúmen estadístico. Para seleccionar solo las variables numéricas hay que pasarel el argumento `where(is.numeric)`.
+    - `.fns`: Indica el nombre y la función a aplicar. En este caso utilizaremos la media `mean`, desviación típica `sd` y el coeficiente de variación `sd / abs(mean) * 100`.
 
     ```{r}
-    library(tidyverse)
-    summarise(df, across(.cols = where(is.numeric), .fns = list(Media = ~ mean(.x, na.rm = T), `Desviación Típica` = ~ sd(.x, na.rm = T), `Coef. Variación` = ~ sd(.x, na.rm=T) / mean(.x, na.rm=T)))) |>
-    kable()
+    df |> summarise(across(.cols = where(is.numeric), .fns = list(Media = ~ mean(.x, na.rm = TRUE), `Desviación Típica` = ~ sd(.x, na.rm = TRUE), `Coef. Variación` = ~ sd(.x, na.rm=TRUE) / mean(.x, na.rm=TRUE) * 100))) |>
+        kable()
     ```
 
     ## tidyverse 2
-    Pivotando el datra frame con  [`pivot_longer`](https://tidyr.tidyverse.org/reference/pivot_longer.html) y agrupando con [`group_by`](https://dplyr.tidyverse.org/reference/group_by.html).
+    Para obtener un resumen estadístico de todas las variables del conjunto de datos tenemos que encadenar las siguientes operaciones:
+    
+    1. Seleccionar las variables numéricas con la función `select` del paquete `dplyr` de `tidyverse`, pasándoloe el argumento `where(is.numeric)`. 
+    2. Pivotar el data frame con la función [`pivot_longer`](https://tidyr.tidyverse.org/reference/pivot_longer.html) del paquete `tidyr` de `tidyverse` para pasarlo a formato largo.
+    3. Dividir el data frame por grupos con la función [`group_by`](https://dplyr.tidyverse.org/reference/group_by.html) del paquete `dplyr` de `tidyverse`.
+    4. Calcular el resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`, aplicando las funciones `mean`, `sd` y la fórmula del coeficiente de variación.
 
     ```{r}
-    library(tidyverse)
-    df |> select(where(is.numeric)) |> 
+    # Seleccionamos las variables numéricas.
+    df |> select(where(is.numeric)) |>
+        # Pivotamos el data frame a formato largo.
         pivot_longer(everything(), names_to = "Variable", values_to = "Valor") |>
+        # Agrupamos por variable.
         group_by(Variable) |>
-        summarise("Media" = mean(Valor, na.rm = T), 
-        "Desviación Típica" = sd(Valor, na.rm = T),
-        "Coef. Variación" = sd(Valor, na.rm = T) / mean(Valor, na.rm = T)) |>
+        # Calculamos la media, desviación típica y coeficiente de variación.
+        summarise("Media" = mean(Valor, na.rm = TRUE), 
+        "Desviación Típica" = sd(Valor, na.rm = TRUE),
+        "Coef. Variación" = sd(Valor, na.rm = T) / mean(Valor, na.rm = T) * 100) |>
+        # Mostramos el resultado en una tabla.
         kable()
     ```
 
@@ -350,22 +790,36 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
     :::{.panel-tabset}
 
     ## vtable
-    Con la función `sumtable` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
+    Para obtener un resumen estadístico del conjunto de datos podemos usar la función `st` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
+
+    Parámetros:
+    - `data`: data frame del que obtener el resumen estadístico.
+      - `vars`: vector de nombres de las variables a incluir en el resumen estadístico.
+      - `group`: nombre de la variable por la que agrupar los datos.
+      - `summ`: vector de funciones a aplicar a las variables seleccionadas.
+      - `summ.names`: vector de nombres para las funciones aplicadas.
 
     ```{r}
     library(vtable)
-    sumtable(df, vars = c("peso", "altura"), group = "sexo", summ = c('skewness(x)', 'kurtosis(x)'),
+    st(df, vars = c("peso", "altura"), group = "sexo", summ = c('skewness(x, na.rm = TRUE)', 'kurtosis(x, na.rm = TRUE)'),
     summ.names = c("Coef. Asimetría", "Coef. Apuntamiento"))
     ```
     
     ## tidyverse
-    Con las funciones [`group_by`](https://dplyr.tidyverse.org/reference/group_by.html), [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) y [`across`](https://dplyr.tidyverse.org/reference/across.html) del paquete `dplyr` de `tidyverse`.
+    Para obtener un resumen estadístico con el coeficiente de asimetría y el coeficiente de apuntamiento del peso y la estatura según el sexo tenemos que encadenar las siguientes operaciones:
     
+    1. Seleccionar las variables deseadas con la función `select` del paquete `dplyr` de `tidyverse`. 
+    2. Dividir el data frame por grupos según el sexo con la función [`group_by`](https://dplyr.tidyverse.org/reference/group_by.html) del paquete `dplyr` de `tidyverse`.
+    3. Calcular el resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`, aplicando las funciones `skewness` y `kurtosis` del paquete `moments`.
+
     ```{r}
-    library(dplyr)
+    library(moments)
+    # Seleccionamos las variables peso y altura.
     df |> select(sexo, peso, altura) |>
+    # Agrupamos por sexo.
     group_by(sexo) |>
-    summarise(across(.cols = everything(), .fns = list("Coef. Asimetría" = ~ skewness(.x, na.rm = T), "Coef. Apuntamiento" = ~ kurtosis(.x, na.rm = T)))) |>
+    # Calculamos los coeficientes de asimetria y apuntamiento para cada grupo.
+    summarise(across(.cols = everything(), .fns = list("Coef. Asimetría" = ~ skewness(.x, na.rm = TRUE), "Coef. Apuntamiento" = ~ kurtosis(.x, na.rm = TRUE)))) |>
     kable()
     ```
     :::
@@ -376,27 +830,66 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
 
 ## Ejercicios propuestos
 
-:::{#exr-descriptiva-3}
-El fichero [`renta-media-comunidades-autonomas.csv`](datos/renta-media-comunidades-autonomas.csv) contiene información sobre la renta neta media por persona de las comunidades autónomas desde 2008 a 2021. 
+:::{#exr-descriptiva-tension}
+En un estudio se ha medido la tensión arterial de 25 individuos. Además se les ha preguntado si fuman y beben:
 
-a.  Crear un data frame con los datos de las rentas medias por persona de las comunidades a partir del fichero [`renta-media-comunidades-autonomas.csv`](datos/renta-media-comunidades-autonomas.csv).
+$$
+\begin{array}{lccccccccccccc}
+\hline
+\mbox{Fumador}  & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} \\
+\mbox{Bebedor} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{sí} \\
+\mbox{Tensión arterial} & 80 & 92 & 75 & 56 & 89 & 93 & 101 & 67 & 89 & 63 & 98 & 58 & 91 \\
+\hline
+\\
+\hline
+\mbox{Fumador}  & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} \\
+\mbox{Bebedor} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} \\
+\mbox{Tensión arterial} & 71 & 52 & 98 & 104 & 57 & 89 & 70 & 93 & 69 & 82 & 70 & 49 \\
+\hline
+\end{array}
+$$
 
-a.  Realizar un resumen estadístico con la media y la desviación típica, mínimo, cuartiles y máximo de todas las rentas medias.
+a. Calcular la media aritmética, desviación típica, coeficiente de asimetría y curtosis de la tensión arterial de los fumadores y de los no fumadores. ¿Se puede considerar que las muestras provienen de una distribución normal?
 
-a.  Realizar un resumen estadístico con la media y la desviación típica de las rentas medias de cada año.
+a. Calcular la media aritmética, desviación típica, coeficiente de asimetría y curtosis de la tensión arterial de los bebedores y de los no bebedores. ¿Se puede considerar que las muestras provienen de una distribución normal?
 
-a.  ¿Qué año presenta una menor variabilidad relativa?
+a. Calcular la media aritmética, desviación típica, coeficiente de asimetría y curtosis de la tensión arterial de los grupos que se obtienen según el consumo de alcohol y tabaco. ¿Se puede considerar que las muestras provienen de una distribución normal?
+:::
 
-a.  ¿En qué comunidad autónoma hay menos dispersión relativa con respecto a la media?
+:::{#exr-descriptiva-neonatos}
+El conjunto de datos [neonatos](datos/neonatos.csv) contiene información sobre una muestra de 320 recién nacidos en un hospital durante un año que cumplieron el tiempo normal de gestación.
 
-a.  ¿En qué comunidad autónoma es más representativa la media de las rentas?
+a. Calcular la media y la mediana muestral del peso de los nacidos e interpretarlos.
 
-a.  ¿Qué comunidad autónoma presenta una distribución de las rentas más normal a lo largo de los años?
+a. Calcular el peso medio de los recién nacidos de la muestra según si la madre ha fumado o no durante el embarazo. Calcular también el peso medio de los recién nacidos de madres que no han fumado durante el embarazo, según si la madre
+fumaba o no antes del embarazo. ¿Qué conclusiones se pueden sacar?
 
-a.  ¿Qué comunidades autónomas tienen una renta media por debajo del percentil 10? ¿Y cuáles tienen una renta media por encima del percentil 90?
+a. ¿Cuál es la puntuación Apgar al minuto de nacer más frecuente?
 
-a.  Crear la variable `riqueza` que clasifique las comunidades según la media de sus rentas en `baja` (por debajo del primer cuartil), `media` (entre el primer y el tercer cuartil) y `alta` (por encima del tercer cuartil).
+a. Calcular la media de la diferencia entre las puntuaciones Apgar a los 5 minutos y al minuto de nacer. ¿Cómo evolucionan los recién nacidos?
 
-a.  Hacer un resumen estadístico con la media, cuartiles, desviación típica, coeficiente de variación, coeficiente de asimetría y coeficiente de curtosis de las rentas medias según la riqueza.
+a. Calcular los cuartiles muestrales del peso de los recién nacidos e interpretarlos.
+
+a. Comparar los cuartiles muestrales del peso de los recién nacidos según el sexo. 
+
+a. ¿Por encima de qué peso estarán el 10% de los niños con mayor peso?
+
+a. Si se considera que un niño es atípico por bajo peso si se encuentra entre el 5% de los pesos más bajos, ¿por debajo de qué peso tiene que estar?
+
+a. Calcular el recorrido y el rango intercuartílico muestrales del peso de los recién nacidos e interpretarlos.
+
+a. Calcular la varianza y la desviación típica del peso de los recién nacidos e interpretarlos.
+
+a. ¿En qué grupo hay más variabilidad del peso de los recién nacidos, en las madres fumadoras o en las madres no fumadoras durante el embarazo? ¿En qué grupo será más representativo el peso medio?
+
+a. ¿Qué variable presenta más variabilidad relativa, el peso de los recién nacidos o el Apgar al minuto de nacer?
+
+a. Calcular el coeficiente de asimetría y de apuntamiento muestrales del peso de los recién nacidos e interpretarlos.
+
+a. ¿Qué distribución es más asimétrica, la de los pesos de recién nacidos en madres mayores de 20 años o en madres menores de 20 años?
+
+a. ¿Qué distribución es más apuntada, la del peso de los recién nacidos en hombres o en mujeres?
+
+a. De acuerdo a la forma de la distribución, ¿puede considerarse la puntuación Apgar al minuto de nacer como una variable normal? ¿Y el número de cigarros fumados al día durante el embarazo?
 :::
 

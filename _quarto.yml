@@ -57,6 +57,7 @@ book:
     - 02-tipos-datos.qmd
     - 03-preprocesamiento-datos.qmd
     - 04-frecuencias-graficos.qmd
+    - 05-descriptiva.qmd
     
 #bibliography: references.bib
 
