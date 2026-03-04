@@ -577,10 +577,12 @@ a.  Obtener un resumen del data frame que muestre las variables que contiene, su
     Parámetros:
     - `x`: data frame del que obtener las variables.
 
+    
     ```{r}
     library(summarytools)
     print(dfSummary(df, plain.ascii = FALSE, style = "grid"), method = "render")
     ```
+   
     :::
     :::
 

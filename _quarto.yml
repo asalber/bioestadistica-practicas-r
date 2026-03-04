@@ -74,6 +74,7 @@ format:
  
   pdf:
     latex-engine: xelatex
+    #latex-auto-install: false
     documentclass: scrreport
     papersize: a4
     template-partials:
