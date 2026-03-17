@@ -24,6 +24,8 @@ library(tidyverse)
 library(knitr) # para el formateo de tablas.
 ```
 
+{{< include _contexto-copilot.qmd >}}
+
 :::{#exr-frecuencias-graficos-hijos}
 En una encuesta a 25 matrimonios sobre el número de hijos que tenían se obtuvieron los siguientes datos:
 
@@ -43,11 +45,16 @@ a.  Crear un conjunto de datos con la variable `hijos`.
     df <- data.frame(hijos = c(1, 2, 4, 2, 2, 2, 3, 2, 1, 1, 0, 2, 2, 0, 2, 2, 1, 2, 2, 3, 1, 2, 2, 1, 2))
     ```
 
-    ## tidyverse
+    ## Tidyverse
     ```{r}
     library(tidyverse)
     df <- tibble(hijos = c(1, 2, 4, 2, 2, 2, 3, 2, 1, 1, 0, 2, 2, 0, 2, 2, 1, 2, 2, 3, 1, 2, 2, 1, 2))
     ```
+
+    ## Copilot 
+
+    Crear un data frame df con una columna llamada hijos que contenga los siguientes datos: 1, 2, 4, 2, 2, 2, 3, 2, 1, 1, 0, 2, 2, 0, 2, 2, 1, 2, 2, 3, 1, 2, 2, 1 y 2.
+
     :::
     :::
 
@@ -58,6 +65,7 @@ a.  Construir la tabla de frecuencias.
     :::{.panel-tabset}
 
     ## Base
+    
     Para obtener las frecuencias absolutas se puede usar la función [`table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/table), y para las frecuencias relativas la función  [`prop.table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/prop.table) ambas del paquete `base` de R.
     
     Posteriormente, para obtener las frecuencias acumuladas se puede usar la función [`cumsum`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cumsum) aplicada a las frecuencias absolutas y relativas.
@@ -77,19 +85,45 @@ a.  Construir la tabla de frecuencias.
     kable(tabla_frec)
     ```
 
-    ## tidyverse
-    Para obtener la tabla de frecuencias podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
+    ## Tidyverse
+    
+    Para obtener la tabla de frecuencias podemos usar la función [`count(df, columna)`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse` para contar las frecuencias absolutas de cada valor de la columna especificada.
 
-    Posteriormente podemos añadir nuevas columnas a la tabla de frecuencias mediante la función `mutate` y fórmulas para calcular las frecuencias relativas (`n/sum(n)`), frecuencias absolutas acumuladas (`cumsum(n)`) y frecuencias relativas acumuladas (`cumsum(n)/sum(n)`).
+    Posteriormente podemos añadir nuevas columnas a la tabla de frecuencias mediante la función [`mutate(df, variable = formula)`](https://dplyr.tidyverse.org/reference/mutate.html) usando las fórmulas para calcular las frecuencias relativas (`n/sum(n)`), frecuencias absolutas acumuladas (`cumsum(n)`) y frecuencias relativas acumuladas (`cumsum(n)/sum(n)`).
 
     ```{r}
     library(knitr)
     # Calculamos la tabla de frecuencias absolutas.
-    df |> count(hijos) |>
+    df |> count(hijos, name = "ni") |>
         # Añadimos nuevas columnas con las frecuencias relativas, acumuladas y relativas acumuladas.
-        mutate(fi = n/sum(n), Ni = cumsum(n), Fi = cumsum(n)/sum(n)) |>
+        mutate(fi = ni/sum(ni), Ni = cumsum(ni), Fi = cumsum(ni)/sum(ni)) |>
         kable()
     ```
+
+    También podemos obtener la tabla de frecuencias agrupando el data frame según la columna `hijos` con la función [`group_by(df, columna)`](https://dplyr.tidyverse.org/reference/group_by.html) y después usando la función  [`summarise`(df, variable = formula)]`(https://dplyr.tidyverse.org/reference/summarise.html) usando las fórmulas para calcular las frecuencias absolutas (`n()`), frecuencias relativas (`n()/nrow(df)`), frecuencias absolutas acumuladas (`cumsum(n())`) y frecuencias relativas acumuladas (`cumsum(n())/ nrow(df)`).
+
+    ```{r}
+    df |>
+        # Agrupamos el data frame por la columna hijos.
+        group_by(hijos) |>
+        # Hacemos un resumen de cada grupo.
+        summarise(
+            # Frecuencias absolutas.
+            ni = n(),
+            # Frecuencias relativas.
+            fi = n() / nrow(df),
+            # Frecuencias absolutas acumuladas.
+            Ni = cumsum(n()),
+            # Frecuencias relativas acumuladas.
+            Fi = cumsum(n()) / nrow(df)
+        ) |> 
+        kable()
+    ```
+
+    ## Copilot
+    
+    Crear una tabla de frecuencias con las frecuencias absolutas (ni), relativas  (fi), acumuladas (Ni) y relativas acumuladas (Fi) del número de hijos.
+    
     :::
     :::
 
@@ -100,6 +134,7 @@ a.  Dibujar el diagrama de barras de las frecuencias absolutas, relativas, absol
     :::{.panel-tabset}
 
     ## Base
+    
     Para dibujar un diagrama de barras podemos usar la función [`barplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/barplot) del paquete `graphics`.
 
     Parámetros:
@@ -121,8 +156,9 @@ a.  Dibujar el diagrama de barras de las frecuencias absolutas, relativas, absol
     barplot(Fi, col = "steelblue", main = "Distribución acumulada del número de hijos", xlab = "Hijos", ylab = "Frecuencia relativa acumulada")
     ```
     
-    ## tidyverse
-    Para dibujar un diagrama de barras podemos usar la función [`geom_bar`](https://aprendeconalf.es/manual-r/07-graficos.html#diagramas-de-barras) del paquete `ggplot2` de `tidyverse`. Esta función calcula automaticamente las frecuencias absolutas de la columna indicada en la dimensión `x` para barras horizontles o `y` para barras verticales.
+    ## Tidyverse
+    
+    Para dibujar un diagrama de barras podemos usar la función [`geom_bar`](https://aprendeconalf.es/manual-r/07-graficos.html#diagramas-de-barras) del paquete `ggplot2` de `tidyverse`. Esta función calcula automáticamente las frecuencias absolutas de la columna indicada en la dimensión `x` para barras horizontales o `y` para barras verticales.
 
     Parámetros:
 
@@ -170,6 +206,14 @@ a.  Dibujar el diagrama de barras de las frecuencias absolutas, relativas, absol
         # Añadimos el título y las etiquetas de los ejes.
         labs(title = "Distribución acumulada del número de hijos", y = "Frecuencia relativa acumulada")
     ```
+
+    ## Copilot
+
+    Dibujar un diagrama de barras con las frecuencias absolutas del número de hijos del data frame df.
+    Dibujar un diagrama de barras con las frecuencias relativas del número de hijos del data frame df.
+    Dibujar un diagrama de barras con las frecuencias absolutas acumuladas del número de hijos del data frame df.
+    Dibujar un diagrama de barras con las frecuencias relativas acumuladas del número de hijos del data frame df.
+
     :::
     :::
 
@@ -180,6 +224,7 @@ a.  Dibujar el polígono de frecuencias relativas.
     :::{.panel-tabset}
 
     ## Base
+
     Para dibujar el polígono de frecuencias podemos usar la función [`plot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot) del paquete `graphics`.
 
     Parámetros:
@@ -196,7 +241,8 @@ a.  Dibujar el polígono de frecuencias relativas.
     plot(fi, type = "l", col = "steelblue", main = "Distribución del número de hijos", xlab = "Hijos", ylab = "Frecuencia relativa")
     ```
     
-    ## tidyverse
+    ## Tidyverse
+
     Par dibujar el polígono de frecuencias podemos usar la función [`geom_line`](https://aprendeconalf.es/manual-r/07-graficos.html#diagramas-de-lineas) del paquete `ggplot2` de `tidyverse`, que conecta con segmentos los puntos con coordenadas pasadas en las dimensiones `x` e `y`.
 
     Parámetros:
@@ -206,9 +252,9 @@ a.  Dibujar el polígono de frecuencias relativas.
 
     ```{r}
     # Calculamos las frecuencias absolutas.
-    df |> count(hijos) |> 
+    df |> count(hijos, name = "ni") |> 
         # Añadimos una nueva columna con las frecuencias relativas.
-        mutate(fi = n/sum(n)) |>
+        mutate(fi = ni/sum(ni)) |>
         # Añadimos los hijos a la dimensión x y las frecuencias relativas a la dimensión y.
         ggplot(aes(x = hijos, y = fi)) +
         # Añadimos la geometría de líneas.
@@ -216,6 +262,17 @@ a.  Dibujar el polígono de frecuencias relativas.
         # Añadimos el título y las etiquetas de los ejes.
         labs(title = "Distribución del número de hijos", y = "Frecuencia relativa")
     ```
+
+    ## Copilot
+
+    Dibujar un diagrama de líneas con las frecuencias absolutas del número de hijos del data frame df.
+
+    Dibujar un diagrama de líneas con las frecuencias relativas del número de hijos del data frame df.
+    
+    Dibujar un diagrama de líneas con las frecuencias absolutas acumuladas del número de hijos del data frame df.
+    
+    Dibujar un diagrama de líneas con las frecuencias relativas acumuladas del número de hijos del data frame df.
+
     :::
     :::
 :::
@@ -242,12 +299,17 @@ a.  Crear un conjunto de datos con la variable `urgencias`.
     df <- data.frame(urgencias = c(15, 23, 12, 10, 28, 50, 12, 17, 20, 21, 18, 13, 11, 12, 26, 30, 6, 16, 19, 22, 14, 17, 21, 28, 9, 16, 13, 11, 16, 20))
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     ```{r}
     library(tidyverse)
     df <- tibble(urgencias = c(15, 23, 12, 10, 28, 50, 12, 17, 20, 21, 18, 13, 11, 12, 26, 30, 6, 16, 19, 22, 14, 17, 21, 28, 9, 16, 13, 11, 16, 20))
     ```
+
+    ## Copilot
+
+    Crear un data frame df con una columna urgencias con los siguientes datos del número diario de personas atendidas en urgencias durante el mes de noviembre: 15, 23, 12, 10, 28, 50, 12, 17, 20, 21, 18, 13, 11, 12, 26, 30, 6, 16, 19, 22, 14, 17, 21, 28, 9, 16, 13, 11, 16 y 20.
+
     :::
     :::
 
@@ -258,6 +320,7 @@ a.  Dibujar el diagrama de cajas. ¿Existe algún dato atípico? En el caso de q
     :::{.panel-tabset}
 
     ## Base
+
     Para dibujar un diagrama de caja y bigotes podemos usar la función [`boxplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/boxplot) del paquete `graphics`.
 
     Parámetros:
@@ -275,7 +338,8 @@ a.  Dibujar el diagrama de cajas. ¿Existe algún dato atípico? En el caso de q
     boxplot(df$urgencias, col = "steelblue",  horizontal = T, main = "Distribución del número de urgencias", xlab = "Número de urgencias")
     ```
     
-    ## tidyverse
+    ## Tidyverse
+
     Para dibujar un diagrama de caja y bigotes podemos usar la función [`geom_boxplot`](https://aprendeconalf.es/manual-r/07-graficos.html#diagramas-de-cajas) del paquete `ggplot2` de `tidyverse`.
 
     Parámetros:
@@ -294,6 +358,11 @@ a.  Dibujar el diagrama de cajas. ¿Existe algún dato atípico? En el caso de q
         # Añadimos el título y las etiquetas.
         labs(title = "Distribución del número de urgencias", x = "Número de urgencias")
     ```
+
+    ## Copilot
+
+    Dibujar un diagrama de cajas con la columna urgencias del data frame df.
+
     :::
 
     Hay un día con 50 urgencias, que es un valor atípico en comparación con el resto de días.
@@ -301,6 +370,7 @@ a.  Dibujar el diagrama de cajas. ¿Existe algún dato atípico? En el caso de q
     :::{.panel-tabset}
 
     ## Base
+
     Con las funciones del paquete `base` de R.
 
     ```{r}
@@ -308,13 +378,19 @@ a.  Dibujar el diagrama de cajas. ¿Existe algún dato atípico? En el caso de q
     df <- df[df$urgencias != 50, , drop = F]
     ```
 
-    ## tidyverse
+    ## Tidyverse
+
     Con la función `filter` del paquete `dplyr` de `tidyverse`.
 
     ```{r}
     # Eliminamos el dato atípico.
     df <- filter(df, urgencias != 50)
     ```
+
+    ## Copilot
+
+    Eliminar el dato atípico de la columna urgencias del data frame df.
+
     :::
     :::
 
@@ -325,6 +401,7 @@ a.  Construir la tabla de frecuencias agrupando en 5 clases.
     :::{.panel-tabset}
 
     ## Base
+
     Para agrupar los datos en intervalos se puede utilizar la función [`cut`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cut) del paquete base de R.
     
     Parámetros:
@@ -350,7 +427,8 @@ a.  Construir la tabla de frecuencias agrupando en 5 clases.
     kable(tabla_frec)
     ```
  
-    ## tidyverse
+    ## Tidyverse
+
     Para agrupar los datos en intervalos se puede utilizar la función [`cut`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cut) del paquete base de R y añadir una nueva columna al data frame con la clase a la que pertenece cada individuo con la función `mutate`.
 
     Después, podemos obtener la tabla de frecuencias podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
@@ -362,11 +440,16 @@ a.  Construir la tabla de frecuencias agrupando en 5 clases.
     # Añadimos una nueva columna al data frame con la clase a la que pertenece cada individuo.
     df |> mutate(urgencias_int = cut(urgencias, breaks = seq(5, 30, 5))) |> 
         # Calculamos la tabla de frecuencias absolutas.
-        count(urgencias_int) |>
+        count(urgencias_int, name = "ni") |>
         # Añadimos nuevas columnas con la frecuencia relativa, acumulada y relativa acumulada.
-        mutate(fi = n/sum(n), Ni = cumsum(n), Fi = cumsum(n)/sum(n)) |>
+        mutate(fi = ni/sum(ni), Ni = cumsum(ni), Fi = cumsum(ni)/sum(ni)) |>
         kable()
     ```
+
+    ## Copilot
+
+    Crear una tabla de frecuencias con las frecuencias absolutas (ni), relativas  (fi), acumuladas (Ni) y relativas acumuladas (Fi) del número de urgencias agrupando en 5 clases desde 5 hasta 30 mediante la función cut.
+
     :::
     :::
     
@@ -377,6 +460,7 @@ a.  Dibujar el histograma de frecuencias absolutas, relativas, absolutas acumula
     :::{.panel-tabset}
 
     ## Base
+
     Para dibujar un histograma de frecuencias absolutas podemos usar la función [`hist`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/hist) del paquete `graphics`.
 
     Parámetros:
@@ -410,7 +494,8 @@ a.  Dibujar el histograma de frecuencias absolutas, relativas, absolutas acumula
     plot(histo, col = "steelblue", main = "Distribución acumulada del número de urgencias", xlab = "urgencias", ylab = "Frecuencia relativa acumulada", )
     ```
 
-    ## tidyverse
+    ## Tidyverse
+    
     Para dibujar un histograma podemos usar la función[`geom_histogram`](https://aprendeconalf.es/manual-r/07-graficos.html#histogramas) del paquete `ggplot2` de `tidyverse`.
 
     Parámetros:
@@ -458,6 +543,17 @@ a.  Dibujar el histograma de frecuencias absolutas, relativas, absolutas acumula
         
         labs(title = "Distribución acumulada del número de urgencias", x = "Número de urgencias", y = "Frecuencia relativa acumulada")
     ```
+
+    ## Copilot
+
+    Dibujar un histograma con las frecuencias absolutas de la columna urgencias del data frame df agrupando en 5 clases desde 5 hasta 30.
+
+    Dibujar un histograma con las frecuencias relativas de la columna urgencias del data frame df agrupando en 5 clases desde 5 hasta 30.
+    
+    Dibujar un histograma con las frecuencias absolutas acumuladas de la columna urgencias del data frame df agrupando en 5 clases desde 5 hasta 30.
+    
+    Dibujar un histograma con las frecuencias relativas acumuladas de la columna urgencias del data frame df agrupando en 5 clases desde 5 hasta 30.
+
     :::
     :::
 
@@ -468,6 +564,7 @@ a.  Dibujar el polígono de frecuencias relativas acumuladas (ojiva).
     :::{.panel-tabset}
 
     ## Base
+
     Para dibujar el polígono de frecuencias relativas acumuladas podemos usar la función [`plot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot) del paquete `graphics`.
 
     Parámetros:
@@ -492,7 +589,8 @@ a.  Dibujar el polígono de frecuencias relativas acumuladas (ojiva).
     plot(cortes, Fi, type = "l", col = "steelblue", main = "Distribución acumulada del número de urgencias", xlab = "Número de urgencias", ylab = "Frecuencia relativa acumulada")
     ```
     
-    ## tidyverse
+    ## Tidyverse
+
     Para dibujar el polígono de frecuencias relativas acumuladas podemos usar la función [`geom_line`](https://aprendeconalf.es/manual-r/07-graficos.html#histogramas) del paquete `ggplot2` de `tidyverse`.
 
     ```{r}
@@ -502,9 +600,9 @@ a.  Dibujar el polígono de frecuencias relativas acumuladas (ojiva).
     # Añadimos una nueva columna al data frame con la clase a la que pertenece cada individuo, tomando 5 intervalos desde 5 hasta 30.
     tabla_frec <- df |> mutate(urgencias_int = cut(df$urgencias, breaks = cortes)) |> 
         # Calculamos las frecuencias absolutas de cada clase.
-        count(urgencias_int) |>
+        count(urgencias_int, name = "ni") |>
         # Añadimos una nueva columna con las frecuencias relativas acumuladas.
-        mutate(cortes = cortes[-1], Fi = cumsum(n)/sum(n)) |>
+        mutate(cortes = cortes[-1], Fi = cumsum(ni)/sum(ni)) |>
         # Seleccionamos las columnas que nos interesan.
         select(cortes, Fi) 
     # Añadimos una fila con el primer punto de corte y frecuencia relativa acumulada 0.
@@ -517,6 +615,10 @@ a.  Dibujar el polígono de frecuencias relativas acumuladas (ojiva).
         # Añadimos el título y las etiquetas de los ejes.
         labs(title = "Distribución del número de urgencias", x = "Número de urgencias", y = "Frecuencia relativa acumulada")
     ```
+
+    ## Copilot
+
+    Dibujar un diagrama de líneas con las frecuencias relativas acumuladas (ojiva) de la columna urgencias del data frame df agrupando en 5 clases desde 5 hasta 30.
     :::
     :::
 :::
@@ -542,12 +644,17 @@ a.  Crear un conjunto de datos con la variable `grupo_sanguíneo`.
     df <- data.frame(grupo_sanguineo = c("A", "B", "B", "A", "AB", "0", "0", "A", "B", "B", "A", "A", "A", "A", "AB", "A", "A", "A", "B", "0", "B", "B", "B", "A", "A", "A", "0", "A", "AB", "0"))
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     ```{r}
     library(tidyverse)
     df <- tibble(grupo_sanguineo = c("A", "B", "B", "A", "AB", "0", "0", "A", "B", "B", "A", "A", "A", "A", "AB", "A", "A", "A", "B", "0", "B", "B", "B", "A", "A", "A", "0", "A", "AB", "0"))
     ```
+
+    ## Copilot
+
+    Crear un data frame df con una columna grupo_sanguineo con los siguientes datos de grupos sanguíneos de una muestra de 30 personas: A, B, B, A, AB, 0, 0, A, B, B, A, A, A, A, AB, A, A, A, B, 0, B, B, B, A, A, A, 0, A, AB y 0.
+
     :::
     :::
 
@@ -558,6 +665,7 @@ a.  Construir la tabla de frecuencias.
     :::{.panel-tabset}
 
     ## Base
+
     Para obtener las frecuencias absolutas se puede usar la función [`table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/table), y para las frecuencias relativas la función  [`prop.table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/prop.table) ambas del paquete base de R.
 
 
@@ -571,7 +679,7 @@ a.  Construir la tabla de frecuencias.
     kable(tabla_frec)
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     Para obtener la tabla de frecuencias absolutas podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
 
@@ -580,11 +688,16 @@ a.  Construir la tabla de frecuencias.
     ```{r}
     library(knitr)
     # Calculamos la tabla de frecuencias absolutas.
-    df |> count(grupo_sanguineo) |> 
+    df |> count(grupo_sanguineo, name = "ni") |> 
         # Añadimos una nueva columna con las frecuencias relativas.
-        mutate(fi = n/sum(n)) |>
+        mutate(fi = ni/sum(ni)) |>
         kable()
     ```
+
+    ## Copilot
+
+    Crear una tabla de frecuencias con las frecuencias absolutas (ni) y relativas (fi) de la columna grupo_sanguineo del data frame df.
+
     :::
     :::
 
@@ -595,6 +708,7 @@ a.  Dibujar el diagrama de sectores.
     :::{.panel-tabset}
 
     ## Base
+
     Para dibujar el diagrama de sectores podemos usar la función [`pie`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/pie) del paquete `graphics`.
 
     Parámetros:
@@ -607,7 +721,8 @@ a.  Dibujar el diagrama de sectores.
     pie(ni, col = 1:length(ni), main = "Distribución de los grupos sanguíneos")
     ```
 
-    ## tidyverse
+    ## Tidyverse
+
     Para dibujar el diagrama de sectores podemos usar la función [`geom_bar`](https://aprendeconalf.es/manual-r/07-graficos.html#diagrama-de-sectores) y después la función `coor_polar` del paquete `ggplot2` de `tidyverse`.
 
     Parámetros:
@@ -626,6 +741,11 @@ a.  Dibujar el diagrama de sectores.
         # Eliminamos los ejes y el fondo del gráfico.
         theme_void() 
     ```
+
+    ## Copilot
+
+    Dibujar un diagrama de sectores con la columna grupo_sanguineo del data frame df.
+
     :::
     :::
 :::
@@ -655,13 +775,18 @@ a.  Crear un conjunto de datos con la variables `estado_civil` y `edad`.
         estado_civil = rep(c("Soltero", "Casado", "Viudo", "Divorciado"), c(9, 6, 7, 5)))
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     ```{r}
     df <- tibble(
         edad = c(31, 45, 35, 65, 21, 38, 62, 22, 31, 62, 39, 62, 59, 21, 62, 80, 68, 65, 40, 78, 69, 75, 31, 65, 59, 49, 65), 
         estado_civil = rep(c("Soltero", "Casado", "Viudo", "Divorciado"), c(9, 6, 7, 5)))
     ```
+
+    ## Copilot
+
+    Crear un data frame df con dos columnas edad y estado_civil. La columna edad con los siguientes datos: 31, 45, 35, 65, 21, 38, 62, 22, 31, 62, 39, 62, 59, 21, 62, 80, 68, 65, 40, 78, 69, 75, 31, 65, 59, 49 y 65. Y la columna estado_civil con los siguientes datos de estado civil: Soltero para las primeras 9 personas, Casado para las siguientes 6 personas, Viudo para las siguientes 7 personas y Divorciado para las últimas 5 personas.
+    
     :::
     :::
 
@@ -672,6 +797,7 @@ a.  Calcular las frecuencias absolutas del `estado_civil`.
     :::{.panel-tabset}
 
     ## Base
+
     Para obtener las frecuencias absolutas se puede usar la función [`table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/table) del paquete base de R.
 
     ```{r}
@@ -679,7 +805,8 @@ a.  Calcular las frecuencias absolutas del `estado_civil`.
     table(df$estado_civil) |> kable()
     ```
 
-    ## tidyverse
+    ## Tidyverse
+
     Para obtener la tabla de frecuencias absolutas podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
 
     ```{r}
@@ -687,6 +814,11 @@ a.  Calcular las frecuencias absolutas del `estado_civil`.
     # Calculamos las frecuencias absolutas del estado civil.
     df |> count(estado_civil)
     ```
+
+    ## Copilot
+
+    Calcular las frecuencias absolutas de la columna estado_civil del data frame df.
+
     :::
     :::
 
@@ -694,6 +826,10 @@ a.  Construir la tabla de frecuencias de la variable `edad` para cada categoría
 
     :::{.callout-tip collapse="true"}
     ## Solución
+    :::{.panel-tabset}
+
+    ## Tidyverse
+
     Para dividir el data frame en grupos podemos usar la función [`group-by`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#res%C3%BAmenes-por-grupos) del paquete `dplyr` de `tidyverse` indicando la variable de agrupación.
 
     Después podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse` para obtener la tabla de frecuencias absolutas.
@@ -704,11 +840,17 @@ a.  Construir la tabla de frecuencias de la variable `edad` para cada categoría
         # Agrupamos por estado civil.
         group_by(estado_civil) |>
         # Calculamos las frecuencias absolutas.
-        count(edad_int) |> 
+        count(edad_int, name = "ni") |> 
         # Añadimos nuevas columnas con las frecuencias relativas, acumuladas y relativas acumuladas.
-        mutate(fi = n/sum(n), Ni = cumsum(n), Fi = cumsum(n)/sum(n)) |>
+        mutate(fi = ni/sum(ni), Ni = cumsum(ni), Fi = cumsum(ni)/sum(ni)) |>
         kable()
     ```
+
+    ## Copilot
+
+    Construir una tabla de frecuencias con las frecuencias absolutas (ni), relativas  (fi), acumuladas (Ni) y relativas acumuladas (Fi) de la columna edad agrupando en intervalos de amplitud 10 desde 20 hasta 80 para cada categoría de la columna estado_civil del data frame df.
+
+    :::
     :::
 
 a.  Dibujar los diagramas de cajas de la edad según el estado civil. ¿Existen datos atípicos? ¿En qué grupo hay mayor
@@ -719,6 +861,7 @@ dispersión?
     :::{.panel-tabset}
 
     ## Base
+
     Para dibujar un diagrama de caja y bigotes podemos usar la función [`boxplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/boxplot) del paquete `graphics`.
 
     Parámetros:
@@ -735,7 +878,7 @@ dispersión?
     boxplot(edad ~ estado_civil, data = df, horizontal = T, col = "steelblue", main = "Distribución de la edad según el estado civil", xlab = "Edad", ylab = "Estado civil")
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     Para dibujar un diagrama de caja y bigotes podemos usar la función [`geom_boxplot`](https://aprendeconalf.es/manual-r/07-graficos.html#diagramas-de-cajas) del paquete `ggplot2` de `tidyverse`.
 
@@ -755,13 +898,21 @@ dispersión?
         # Añadimos el título y las etiquetas de los ejes y leyenda.
         labs(title = "Distribución de la edad según el estado civil", x = "Edad", fill = "Estado civil") 
     ```
+
+    ## Copilot
+
+    Dibujar un diagrama de cajas de la columna edad según las categorías de la columna estado_civil del data frame df. Usar un color diferente para cada categoría de la columna estado_civil.
+
     :::
     :::
 
-a.  Dibujar los histogramas de la edad según el estado civil.
+a.  Dibujar los histogramas de la edad según el estado civil tomando clases de amplitud 10 desde 20 hasta 80.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+    :::{.panel-tabset}
+
+    ## Tidyverse
 
     Para dibujar un histograma podemos usar la función[`geom_histogram`](https://aprendeconalf.es/manual-r/07-graficos.html#histogramas) del paquete `ggplot2` de `tidyverse`.
 
@@ -794,6 +945,12 @@ a.  Dibujar los histogramas de la edad según el estado civil.
         # Añadimos el título y las etiquetas de los ejes.
         labs(title = "Distribución de la edad según el estado civil", x = "Edad", y = "Frecuencia", fill = "Estado civil") 
     ```
+
+    ## Copilot
+
+    Dibujar un histograma de la columna edad para cada categoría de la columna estado_civil del data frame df tomando intervalos de amplitud 10 desde 20 hasta 80. Usar facetas y colores de relleno diferentes para cada categoría de la columna estado_civil.
+
+    :::
     :::
 :::
 

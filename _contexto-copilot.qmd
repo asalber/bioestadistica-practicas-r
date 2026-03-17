@@ -1,0 +1,20 @@
+::: {.callout-tip}
+## Contexto para Copilot
+Si se va a usar `Copilot` para resolver los ejercicios se recomienda añadir el siguiente contexto al comienzo del script o al fichero `.github/copilot-instructions.md`.
+
+```md
+## Reglas de programación para R
+
+- Usar tidyverse para todas las tareas de preprocesamiento (dplyr/tidyr/readr/stringr/lubridate/forcats/purrr).
+- Preferir tuberías con |> (o %>% si se usa en el archivo).
+- Evitar la manipulación de datos en base R (merge, aggregate, subset) a menos que se solicite explícitamente.
+- Mantener el código legible y usar verbos explícitos: select, mutate, summarise, group_by, pivot_longer/wider.
+- Cuando no haya ambigüedad no antepongas el nombre del paquete a la función.
+- En los nombres de variables y valores respetar el uso de mayúsculas y minúsculas (camelCase o snake_case) y ser consistente en todo el código.
+- No generar nuevos data frames, ni modificar los asistentes, salvo cuando se indique explícitamente.
+- Utiliza el prefijo `df_` para los nombres de los data frames.
+- Organizar las salidas con la función tidy del paquete broom y mostrar solo las columnas relevantes (estimate, std.error, statistic, p.value).
+- Mostrar los data frames o las tablas con la función kable del paquete knitr.
+- Para gráficos usar ggplot2 y mantener un estilo limpio y profesional.
+```
+:::

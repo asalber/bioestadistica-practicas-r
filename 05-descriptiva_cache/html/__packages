@@ -9,9 +9,9 @@ stringr
 forcats
 lubridate
 knitr
+DescTools
 moments
+summarytools
+skimr
 kableExtra
 vtable
-skimr
-summarytools
-DescTools

@@ -58,6 +58,7 @@ book:
     - 03-preprocesamiento-datos.qmd
     - 04-frecuencias-graficos.qmd
     - 05-descriptiva.qmd
+    #- 06-regresion.qmd
     
 #bibliography: references.bib
 

@@ -47,7 +47,7 @@ a.  Crear un conjunto de datos con la variable `medicamentos`.
     df <- data.frame(medicamentos = c(3, 1, 2, 2, 0, 1, 4, 2, 3, 5, 1, 3, 2, 3, 1, 4, 2, 4, 3, 2, 3, 5, 0, 1, 2, 0, 2, 3, 0, 1, 1, 5, 3, 4, 2, 3, 0, 1, 2, 3))
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     ```{r}
     library(tidyverse)
@@ -70,7 +70,7 @@ a.  Calcular el tamaño muestral.
     nrow(df)
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     El tamaño muestral generalmente es el número de filas del data frame. Para calcular el número de filas podemos usar la función la función [`count`](https://dplyr.tidyverse.org/reference/count.html) del paquete `dplyr` de `tidyverse`.
 
@@ -98,7 +98,7 @@ a.  Calcular la media.
     mean(df$medicamentos)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la media hay que pasarle como argumento la función [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) del paquete base de R.
 
     Parámetros:
@@ -129,7 +129,7 @@ a.  Calcular la mediana.
     median(df$medicamentos)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la mediana hay que pasarle como argumento la función [`median`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/median) del paquete base de R.
 
     Parámetros:
@@ -160,7 +160,7 @@ a.  Calcular la moda.
     Mode(df$medicamentos, na.rm = TRUE)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la moda podemos usar la función [`Mode`](https://www.rdocumentation.org/packages/DescTools/versions/0.99.0/topics/Mode) del paquete `DescTools`.
 
     Parámetros:
@@ -194,7 +194,7 @@ a.  Calcular el mínimo.
     min(df$medicamentos)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el mínimo hay que pasarle como argumento la función [`min`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/min) del paquete base de R.
 
     Parámetros:
@@ -224,7 +224,7 @@ a.  Calcular el máximo.
     max(df$medicamentos)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el máximo hay que pasarle como argumento la función [`max`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/max) del paquete base de R.
 
     Parámetros:
@@ -256,7 +256,7 @@ a.  Calcular los cuartiles.
     quantile(df$medicamentos, prob = c(0.25, 0.5, 0.75))
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular los cuartiles hay que pasarle como argumento la función [`quantile`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/quantile) del paquete base de R.
 
@@ -289,7 +289,7 @@ a.  Calcular los percentiles 5 y 95.
     quantile(df$medicamentos, prob = c(0.05, 0.95))
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     Podemos calcular los percentiles también con la función [`quantile`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/quantile) del paquete base de R, simplemente indicando el vector de probabilidades acumuladas correspondientes a los percentiles que queremos calcular.
 
@@ -313,7 +313,7 @@ a.  Calcular el rango.
     max(df$medicamentos) - min(df$medicamentos)
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     ```{r}
     df |> summarise(rango = max(medicamentos) - min(medicamentos)) |>
@@ -339,7 +339,7 @@ a.  Calcular el rango intercuartílico.
     IQR(df$medicamentos)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el rango intercuartílico hay que pasarle como argumento la función [`IQR`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/IQR) del paquete base de R.
 
     Parámetros:
@@ -374,7 +374,7 @@ a.  Calcular la varianza
     print(paste("Varianza: ", var(df$medicamentos)*(n-1)/n))
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la cuasivarianza hay que pasarle como argumento la función [`var`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) del paquete `stats` de R. Para calcular la varianza hay que corregir la cuasivarianza multiplicando por $\frac{n-1}{n}$, donde $n$ es el tamaño muestral.
 
     Parámetros:
@@ -410,7 +410,7 @@ a.  Calcular la desviación típica.
     print(paste("Desviación típica: ", sd(df$medicamentos)*sqrt((n-1)/n)))
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la cuasivarianza hay que pasarle como argumento la función [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete `stats` de R para calcular la _cuasidesviación típica_ o _desviación típica corregida_ $\sqrt{\sum \frac{(x_i-\bar x)^2}{n-1}}$. Para calcular la desviación típica hay que corregir la cuasidesviación típica multiplicando por $\sqrt{\frac{n-1}{n}}$, donde $n$ es el tamaño muestral.
 
     Parámetros:
@@ -439,7 +439,7 @@ a.  Calcular el coeficiente de variación.
     sd(df$medicamentos, na.rm = TRUE) / abs(mean(df$medicamentos, na.rm = TRUE)) * 100
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de variación se divide la desviación típica entre el valor absoluto de la media y se multiplica por 100 para expresarlo como porcentaje.
 
     ```{r}
@@ -467,7 +467,7 @@ a.  Calcular el coeficiente de asimetría.
     skewness(df$medicamentos, na.rm = TRUE)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de asimetría podemos usar la función [`skewness`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/skewness) del paquete `moments`.
 
     Parámetros:
@@ -502,7 +502,7 @@ a.  Calcular el coeficiente de apuntamiento.
     kurtosis(df$medicamentos, na.rm = TRUE)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de apuntamiento podemos usar la función [`kurtosis`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/kurtosis) del paquete `moments`.
 
     Parámetros:
@@ -536,7 +536,7 @@ a.  Crear un data frame con los datos de todos los pacientes del estudio a parti
     df <- read.csv("https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv")
     ```
 
-    ## tidyverse
+    ## Tidyverse
 
     ```{r}
     library(tidyverse)
@@ -561,7 +561,7 @@ a.  Obtener un resumen del data frame que muestre las variables que contiene, su
     str(df)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Para obtener las variables y sus tipos de un data frame podemos usar la función [`glimpse`](https://dplyr.tidyverse.org/reference/glimpse.html) del paquete `dplyr` de `tidyverse`.
 
     Parámetros:
@@ -601,7 +601,7 @@ a.  Calcular el número de valores perdidos en cada variable.
     colSums(is.na(df))
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. Para obtener un resumen de todas las variables del data frame, hay que indicar el argumento `across(everything(), ...)`. En particular, para calcular el número de valores perdidos podemos aplicar la función `sum` al vector que devuelve la función [`is.na`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/is.na) del paquete base de R.
 
     ```{r}
@@ -634,7 +634,7 @@ a.  Calcular el tamaño muestral según el sexo.
     table(df$sexo)
     ```
     
-    ## tidyverse
+    ## Tidyverse
     Para calcular la frecuencia absoluta podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
 
     ```{r}
@@ -661,7 +661,7 @@ a.  Calcular la media y la desviación típica del nivel de colesterol sin tener
     sd(df$colesterol, na.rm = TRUE)
     ```
 
-    ## tidyverse
+    ## Tidyverse
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la media y la desviación típica hay que pasarle como argumento las funciones [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) y [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete base de R. Es importante indicar el parámetro `na.rm = TRUE` para eliminar los valores perdidos antes de calcular la media y la desviación típica.
 
     ```{r}
@@ -745,7 +745,7 @@ a.  ¿En qué variable es más representativa la media?
     summ.names = c("Media", "Desviación Típica", "Coef. Variación"))
     ```
     
-    ## tidyverse
+    ## Tidyverse
     Para obtener un resumen estadístico del conjunto de datos podemos usar las funciones [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) y [`across`](https://dplyr.tidyverse.org/reference/across.html) del paquete `dplyr` de `tidyverse`.
 
     Parámetros:
@@ -757,7 +757,7 @@ a.  ¿En qué variable es más representativa la media?
         kable()
     ```
 
-    ## tidyverse 2
+    ## Tidyverse 2
     Para obtener un resumen estadístico de todas las variables del conjunto de datos tenemos que encadenar las siguientes operaciones:
     
     1. Seleccionar las variables numéricas con la función `select` del paquete `dplyr` de `tidyverse`, pasándoloe el argumento `where(is.numeric)`. 
@@ -807,7 +807,7 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
     summ.names = c("Coef. Asimetría", "Coef. Apuntamiento"))
     ```
     
-    ## tidyverse
+    ## Tidyverse
     Para obtener un resumen estadístico con el coeficiente de asimetría y el coeficiente de apuntamiento del peso y la estatura según el sexo tenemos que encadenar las siguientes operaciones:
     
     1. Seleccionar las variables deseadas con la función `select` del paquete `dplyr` de `tidyverse`. 
