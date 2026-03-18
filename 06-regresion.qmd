@@ -3,10 +3,6 @@ title: Regresión
 lang: es
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-```
-
 Esta práctica contiene ejercicios que muestran como construir modelos de regresión simple que describen la relación entre dos variables cuantitativas. En particular se muestra cómo construir los siguientes modelos:
 
 | Modelo                  |      Ecuación general      |
@@ -34,6 +30,8 @@ library(tidyverse)
 library(broom) # para convertir las listas con los resúmenes de los modelos de regresión a formato organizado.
 library(knitr) # para el formateo de tablas.
 ```
+
+{{< include _contexto-copilot.qmd >}}
 
 ::: {#exr-regresion-1}
 Se han medido dos variables $X$ e $Y$ en 10 individuos obteniendo los siguientes resultados:
@@ -547,6 +545,7 @@ a.  Calcular los coeficientes de determinación lineal, cuadrático, exponencial
     ## Solución
 
     ```{r}
+    library(knitr)
     library(broom)
     # Construimos un data frame con el ajuste de los modelos.
     modelos <- tibble(
@@ -596,6 +595,7 @@ a.  ¿Qué tipo de modelo explica mejor la relación entre el peso perdido y los
     ## Solución
 
     ```{r}
+    library(kableExtra)
     modelos <- df  |> 
         # Anidamos por la columna ejercicio.
         nest_by(ejercicio)  |> 
@@ -621,7 +621,7 @@ a.  ¿Qué tipo de modelo explica mejor la relación entre el peso perdido y los
     modelos |> 
         select(ejercicio, Tipo_Modelo, r.squared)  |> 
         kable(col.names = c("Ejercicio", "Tipo de Modelo", "R²")) |>
-        pack_rows(index = table(modelos$ejercicio))
+        group_rows(index = table(modelos$ejercicio))
     ```
 
     El mejor modelo en el grupo de los que hacen ejercicio es el inverso y en el grupo de los que no el sigmoidal. Los modelos han mejorado bastante con respecto al modelo anterior, sobre todo el del grupo de personas que hace ejercicio.

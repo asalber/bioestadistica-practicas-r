@@ -1,11 +1,17 @@
 ---
 title: Intervalos de confianza
-knitr: 
-    opts_chunk: 
-      R.options:
-        warning: false
 lang: es
 ---
+
+Esta práctica contiene ejercicios que muestran cómo realizar estimaciones de parámetros poblacionales a partir de datos muestrales, utilizando intervalos de confianza. En particular, se muestra cómo calcular los intervalos de confianza para los siguientes parámetros poblacionales:
+
+- La media de una población.
+- La proporción de una población.
+- La diferencia entre las medias de dos poblaciones pareadas.
+- La diferencia entre las medias de dos poblaciones independientes.
+- La diferencia entre las proporciones de dos poblaciones.
+
+También se muestra cómo calcular el tamaño muestral necesario para obtener una estimación de un parámetro poblacional con un margen de error y un nivel de confianza determinados.
 
 ## Ejercicios Resueltos
 
@@ -23,21 +29,41 @@ library(samplingbook) # para el cálculo de tamaños muestrales.
 library(knitr) # para el formateo de tablas.
 ```
 
+{{< include _contexto-copilot.qmd >}}
+
 :::{#exr-intervalo-media-principio-activo}
+
 Se sabe que para que un fármaco sea efectivo, la concentración de su principio activo debe ser de al menos $16$ mg/mm$^3$. Una farmacia va a comprar un lote de este medicamento, pero antes quiere asegurarse de que los medicamentos del lote son efectivos y para ello analiza la concentración de principio activo en una muestra aleatoria de $10$ envases tomados del lote, obteniendo los siguientes resultados en mg/mm$^{3}$:
 
-$$
-17.6 \quad 19.2 \quad 21.3 \quad 15.1 \quad 17.6 \quad 18.9 \quad 16.2 \quad 18.3 \quad 19.0 \quad 16.4
-$$
+| |
+|:-:|
+| 17.6 − 19.2 − 21.3 − 15.1 − 17.6 − 18.9 − 16.2 − 18.3 − 19.0 − 16.4 |
+
 
 a.  Crear un conjunto de datos con los datos de la muestra.
 
     :::{.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+    ## Base
+
     ```{r}
     df <- data.frame(concentracion = c(17.6, 19.2, 21.3, 15.1, 17.6, 18.9, 16.2, 18.3, 19.0, 16.4 ))
     ```
+
+    ## Tidyverse
+
+    ```{r}
+    library(tidyverse)
+    df <- tibble(concentracion = c(17.6, 19.2, 21.3, 15.1, 17.6, 18.9, 16.2, 18.3, 19.0, 16.4 ))
+    ```
+
+    ## Copilot
+    El contenido de principio activo de una muestra de medicamentos de un lote es el siguiente: 17.6, 19.2, 21.3, 15.1, 17.6, 18.9, 16.2, 18.3, 19.0, 16.4.
+    Crear un data frame de nombre df con una columna de nombre medicamentos que contenga los datos de esta muestra.
+
+    :::
     :::
 
 a.  Calcular la concentración media de principio activo de la muestra. ¿Puede afirmarse que los medicamentos del lote son efectivos?

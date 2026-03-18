@@ -27,7 +27,10 @@ library(summarytools) # para resúmenes estadísticos.
 library(knitr) # para el formateo de tablas.
 ```
 
+{{< include _contexto-copilot.qmd >}}
+
 :::{#exr-descriptiva-medicamentos}
+
 Se realizó una encuesta a 40 personas de más de 70 años sobre el número de medicamentos distintos que tomaban habitualmente. El resultado de dicha encuesta fue el siguiente:
 
 | |
@@ -53,6 +56,13 @@ a.  Crear un conjunto de datos con la variable `medicamentos`.
     library(tidyverse)
     df <- tibble(medicamentos = c(3, 1, 2, 2, 0, 1, 4, 2, 3, 5, 1, 3, 2, 3, 1, 4, 2, 4, 3, 2, 3, 5, 0, 1, 2, 0, 2, 3, 0, 1, 1, 5, 3, 4, 2, 3, 0, 1, 2, 3))
     ```
+
+    ## Copilot
+
+    Se realizó una encuesta a 40 personas de más de 70 años sobre el número de medicamentos distintos que tomaban habitualmente.
+    
+    Crear un data frame de nombre df con una columna llamada medicamentos que contenga los siguientes valores: 3, 1, 2, 2, 0, 1, 4, 2, 3, 5, 1, 3, 2, 3, 1, 4, 2, 4, 3, 2, 3, 5, 0, 1, 2, 0, 2, 3, 0, 1, 1, 5, 3, 4, 2, 3, 0, 1, 2 y 3.
+
     :::
     :::
 
@@ -78,16 +88,22 @@ a.  Calcular el tamaño muestral.
     library(knitr)
     count(df) |> kable()
     ```
+
+    ## Copilot
+    
+    Calcular el número de filas del data frame df.
+    
     :::
     :::
     
-a.  Calcular la media.
+a.  Calcular el número medio de medicamentos que toman las personas de la muestra e interpretarlo.
 
     :::{.callout-tip collapse="true"}
     ## Solución
 
     :::{.panel-tabset}
     ## Base
+
     Podemos calcular la media con la función [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) del paquete base de R.
 
     Parámetros:
@@ -99,6 +115,7 @@ a.  Calcular la media.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la media hay que pasarle como argumento la función [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) del paquete base de R.
 
     Parámetros:
@@ -109,6 +126,13 @@ a.  Calcular la media.
     df |> summarise(media = mean(medicamentos)) |> 
         kable()
     ```
+
+    ## Copilot
+
+    Calcular la media de la columna medicamentos del data frame df.
+
+    Interpretar el resultado obtenido.
+
     :::
     :::
 
@@ -119,6 +143,7 @@ a.  Calcular la mediana.
 
     :::{.panel-tabset}
     ## Base
+
     Podemos calcular la mediana con la función [`median`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/median) del paquete base de R.
 
     Parámetros:
@@ -130,6 +155,7 @@ a.  Calcular la mediana.
     ```
 
     ## Tidyverse
+    
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la mediana hay que pasarle como argumento la función [`median`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/median) del paquete base de R.
 
     Parámetros:
@@ -140,6 +166,13 @@ a.  Calcular la mediana.
     df |> summarise(mediana = median(medicamentos)) |>
         kable()
     ```
+    
+    ## Copilot    
+
+    Calcular la mediana de la columna medicamentos del data frame df.
+
+    Interpretar el resultado obtenido.
+
     :::
     :::
 
@@ -147,8 +180,10 @@ a.  Calcular la moda.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+    
     :::{.panel-tabset}
     ## Base
+
     Para calcular la moda podemos usar la función [`Mode`](https://www.rdocumentation.org/packages/DescTools/versions/0.99.0/topics/Mode) del paquete `DescTools`.
 
     Parámetros:
@@ -173,6 +208,8 @@ a.  Calcular la moda.
         kable()
     ```
     :::
+
+
 
     Existen dos modas 2 y 3 que son los valores más frecuentes en el conjunto de datos. Por tanto, el conjunto de datos es bimodal.
     :::

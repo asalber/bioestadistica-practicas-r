@@ -1,11 +1,13 @@
 ---
 title: Análisis de la Varianza (ANOVA)
-knitr: 
-    opts_chunk: 
-      R.options:
-        warning: false
 lang: es
 ---
+
+En esta práctica se muestra cómo realizar un contraste de análisis de la varianza (ANOVA) para comparar las medias de una variable cuantitativa entre tres o más grupos de comparación, y también cómo realizar un contraste de ANOVA de medidas repetidas para comparar las medias de una variable cuantitativa entre tres o más momentos o condiciones experimentales. En particular, se verán los siguientes contrastes de hipótesis:
+
+- ANOVA de un factor
+- ANOVA de medidas repetidas
+- ANOVA de dos factores, con y sin interacción.
 
 ## Ejercicios Resueltos
 
@@ -21,6 +23,8 @@ library(rstatix) # para realizar ANOVAs de medidas repetidas y mixtos.
 library(lme4) # para construir modelos lineales mixtos.
 library(knitr) # para el formateo de tablas.
 ```
+
+{{< include _contexto-copilot.qmd >}}
 
 ::: {#exr-anova-un-factor-contaminacion}
 Se quiere comparar la contaminación por dióxido de nitrógeno (NO2) en tres lugares distintos de una ciudad $A$, $B$ y $C$ y para ello se han medido las concentraciones de NO2 en cada lugar en una muestra aleatoria de días, obteniendo los resultados de la siguiente tabla.

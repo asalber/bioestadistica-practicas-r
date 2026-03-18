@@ -58,7 +58,10 @@ book:
     - 03-preprocesamiento-datos.qmd
     - 04-frecuencias-graficos.qmd
     - 05-descriptiva.qmd
-    #- 06-regresion.qmd
+    - 06-regresion.qmd
+    - 08-intervalos-confianza.qmd
+    - 09-contrastes-hipotesis-parametricos.qmd
+    - 10-anova.qmd
     
 #bibliography: references.bib
 

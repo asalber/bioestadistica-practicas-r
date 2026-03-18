@@ -1,8 +1,14 @@
-::: {.callout-tip}
+::: {.callout-tip collapse="true"}
 ## Contexto para Copilot
-Si se va a usar `Copilot` para resolver los ejercicios se recomienda añadir el siguiente contexto al comienzo del script o al fichero `.github/copilot-instructions.md`.
+
+Si se va a usar `Copilot` para resolver los ejercicios se recomienda añadir el siguiente contexto al comienzo del script o al fichero `r.instructions.md`.
 
 ```md
+---
+name: "Reglas de programación para R"
+applyTo: "**/*.[rR], **/*.qmd"
+---
+
 ## Reglas de programación para R
 
 - Usar tidyverse para todas las tareas de preprocesamiento (dplyr/tidyr/readr/stringr/lubridate/forcats/purrr).

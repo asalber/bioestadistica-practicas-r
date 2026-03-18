@@ -1,11 +1,18 @@
 ---
 title: Contrastes de hipótesis paramétricos de una y dos poblaciones
-knitr: 
-    opts_chunk: 
-      R.options:
-        warning: false
 lang: es
 ---
+
+En esta práctica se muestra cómo realizar los principales constrastes de hipótesis parámetricos de una y dos poblaciones. En particular se muestran los siguientes contrastes:
+
+- Contraste de hipótesis para la media de una población.
+- Contraste de hipótesis para la proporción de una población.
+- Contraste de hipótesis para la diferencia de medias de dos poblaciones pareadas.
+- Contraste de hipótesis para el cociente de varianzas de dos poblaciones independientes.
+- Contraste de hipótesis para la diferencia de medias de dos poblaciones independientes.
+- Contraste de hipótesis para la diferencia de proporciones de dos poblaciones.
+
+También se muestra cómo calcular el tamaño muestral requerido para realizar un contraste de hipótesis con un nivel de significación y una potencia determinados.
 
 ## Ejercicios Resueltos
 
@@ -21,6 +28,8 @@ library(tidymodels) # para realizar contrastes de hipótesis en formato tidy.
 library(pwr) # para el cálculo de tamaños muestrales.
 library(knitr) # para el formateo de tablas.
 ```
+
+{{< include _contexto-copilot.qmd >}}
 
 :::{#exr-contraste-hipotesis-proporcion-hombres}
 Para averiguar si en una determinada población existen menos hombres que mujeres se plantea el siguiente contraste de hipótesis sobre la proporción de hombres que hay en la población: 
