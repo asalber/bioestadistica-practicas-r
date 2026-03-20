@@ -131,12 +131,12 @@ a.  Calcular el número medio de medicamentos que toman las personas de la muest
 
     Calcular la media de la columna medicamentos del data frame df.
 
-    Interpretar el resultado obtenido.
+    Interpreta el resultado obtenido.
 
     :::
     :::
 
-a.  Calcular la mediana.
+a.  Calcular la mediana e interpretarla.
 
     :::{.callout-tip collapse="true"}
     ## Solución
@@ -171,12 +171,12 @@ a.  Calcular la mediana.
 
     Calcular la mediana de la columna medicamentos del data frame df.
 
-    Interpretar el resultado obtenido.
+    Interpreta el resultado obtenido.
 
     :::
     :::
 
-a.  Calcular la moda.
+a.  Calcular la moda e interpretarla.
 
     :::{.callout-tip collapse="true"}
     ## Solución
@@ -196,6 +196,7 @@ a.  Calcular la moda.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la moda podemos usar la función [`Mode`](https://www.rdocumentation.org/packages/DescTools/versions/0.99.0/topics/Mode) del paquete `DescTools`.
 
     Parámetros:
@@ -207,9 +208,13 @@ a.  Calcular la moda.
     df |> summarise(moda = Mode(medicamentos, na.rm = TRUE)) |>
         kable()
     ```
+
+    ## Copilot
+
+    Calcular la moda de la columna medicamentos del data frame df. Usa la función Mode del paquete DescTools.
+
+    Interpretar el resultado obtenido.
     :::
-
-
 
     Existen dos modas 2 y 3 que son los valores más frecuentes en el conjunto de datos. Por tanto, el conjunto de datos es bimodal.
     :::
@@ -221,6 +226,7 @@ a.  Calcular el mínimo.
 
     :::{.panel-tabset}
     ## Base
+
     Podemos calcular el mínimo con la función [`min`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/min) del paquete base de R.
 
     Parámetros:
@@ -232,6 +238,7 @@ a.  Calcular el mínimo.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el mínimo hay que pasarle como argumento la función [`min`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/min) del paquete base de R.
 
     Parámetros:
@@ -241,6 +248,11 @@ a.  Calcular el mínimo.
     ```{r}
     df |> summarise(mínimo = min(medicamentos, na.rm = TRUE))
     ```
+
+    ## Copilot
+
+    Calcular el mínimo de la columna medicamentos del data frame df.
+
     :::
     :::
 
@@ -251,6 +263,7 @@ a.  Calcular el máximo.
 
     :::{.panel-tabset}
     ## Base
+
     Podemos calcular el máximo con la función [`max`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/max) del paquete base de R.
 
     Parámetros:
@@ -262,6 +275,7 @@ a.  Calcular el máximo.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el máximo hay que pasarle como argumento la función [`max`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/max) del paquete base de R.
 
     Parámetros:
@@ -271,10 +285,15 @@ a.  Calcular el máximo.
     ```{r}
     df |> summarise(máximo = max(medicamentos))
     ```
+
+    ## Copilot
+
+    Calcular el máximo de la columna medicamentos del data frame df.
+
     :::
     :::
 
-a.  Calcular los cuartiles.
+a.  Calcular los cuartiles e interpretarlos.
 
     :::{.callout-tip collapse="true"}
     ## Solución
@@ -309,10 +328,16 @@ a.  Calcular los cuartiles.
         unnest(cuartiles) |> 
         kable()
     ```
+
+    ## Copilot
+
+    Calcular los cuartiles de la columna medicamentos del data frame df.
+
+    Interpreta el resultado obtenido.
     :::
     :::
 
-a.  Calcular los percentiles 5 y 95.
+a.  Calcular los percentiles 5 y 95 e interpretarlos.
 
     :::{.callout-tip collapse="true"}
     ## Solución
@@ -335,6 +360,13 @@ a.  Calcular los percentiles 5 y 95.
         unnest(percentiles) |> 
         kable()
     ```
+
+    ## Copilot
+
+    Calcular los percentiles 5 y 95 de la columna medicamentos del data frame df.
+
+    Interpreta el resultado obtenido.
+
     :::
     :::
 
@@ -356,6 +388,11 @@ a.  Calcular el rango.
     df |> summarise(rango = max(medicamentos) - min(medicamentos)) |>
         kable()
     ```
+
+    ## Copilot
+
+    Calcular el rango de la columna medicamentos del data frame df.
+
     :::
     :::
 
@@ -366,6 +403,7 @@ a.  Calcular el rango intercuartílico.
 
     :::{.panel-tabset}
     ## Base
+
     Podemos calcular el rango intercuartílico con la función [`IQR`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/IQR) del paquete base de R.
 
     Parámetros:
@@ -377,6 +415,7 @@ a.  Calcular el rango intercuartílico.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el rango intercuartílico hay que pasarle como argumento la función [`IQR`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/IQR) del paquete base de R.
 
     Parámetros:
@@ -387,6 +426,13 @@ a.  Calcular el rango intercuartílico.
     df |> summarise(IQR = IQR(medicamentos)) |>
         kable()
     ```
+
+    ## Copilot
+
+    Calcular el rango intercuartílico de la columna medicamentos del data frame df.
+
+    Interpreta el resultado obtenido.
+
     :::
     :::
 
@@ -397,6 +443,7 @@ a.  Calcular la varianza
 
     :::{.panel-tabset}
     ## Base
+
     Podemos usar la función [`var`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) del paquete `stats` de R para calcular la _cuasivarianza_ o _varianza corregida_ $\sum \frac{(x_i-\bar x)^2}{n-1}$. Para calcular la varianza hay que corregir la cuasivarianza multiplicando por $\frac{n-1}{n}$, donde $n$ es el tamaño muestral.
 
     Parámetros:
@@ -412,6 +459,7 @@ a.  Calcular la varianza
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la cuasivarianza hay que pasarle como argumento la función [`var`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) del paquete `stats` de R. Para calcular la varianza hay que corregir la cuasivarianza multiplicando por $\frac{n-1}{n}$, donde $n$ es el tamaño muestral.
 
     Parámetros:
@@ -423,6 +471,11 @@ a.  Calcular la varianza
         varianza = var(medicamentos)*(n()-1)/n()) |> 
         kable()
     ```
+
+    ## Copilot
+
+    Calcular la varianza de la columna medicamentos del data frame df. Para ello, primero calcula la cuasivarianza y luego corrige la cuasivarianza multiplicando por (n-1)/n, donde n es el tamaño muestral.
+
     :::
     :::
 
@@ -433,6 +486,7 @@ a.  Calcular la desviación típica.
 
     :::{.panel-tabset}
     ## Base
+
     Podemos usar la función [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete `stats` de R para calcular la _cuasidesviación típica_ o _desviación típica corregida_ $\sqrt{\sum \frac{(x_i-\bar x)^2}{n-1}}$. Para calcular la desviación típica hay que corregir la cuasidesviación típica multiplicando por $\sqrt{\frac{n-1}{n}}$, donde $n$ es el tamaño muestral.
 
     Parámetros:
@@ -448,6 +502,7 @@ a.  Calcular la desviación típica.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la cuasivarianza hay que pasarle como argumento la función [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete `stats` de R para calcular la _cuasidesviación típica_ o _desviación típica corregida_ $\sqrt{\sum \frac{(x_i-\bar x)^2}{n-1}}$. Para calcular la desviación típica hay que corregir la cuasidesviación típica multiplicando por $\sqrt{\frac{n-1}{n}}$, donde $n$ es el tamaño muestral.
 
     Parámetros:
@@ -459,6 +514,13 @@ a.  Calcular la desviación típica.
         desviación = sd(medicamentos)*sqrt((n()-1)/n())) |> 
         kable()
     ```
+
+    ## Copilot
+
+    Calcular la desviación típica de la columna medicamentos del data frame df. Para ello, primero calcula la cuasidesviación típica y luego corrige la cuasidesviación típica multiplicando por la raíz cuadrada de (n-1)/n, donde n es el tamaño muestral.
+
+    Interpreta el resultado obtenido.
+
     :::
     :::
 
@@ -477,12 +539,20 @@ a.  Calcular el coeficiente de variación.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de variación se divide la desviación típica entre el valor absoluto de la media y se multiplica por 100 para expresarlo como porcentaje.
 
     ```{r}
     df |> summarise(coef_variacion = sd(medicamentos, na.rm = TRUE) / abs(mean(medicamentos, na.rm = TRUE)) * 100) |> 
         kable()
     ```
+
+    ## Copilot
+
+    Calcular el coeficiente de variación de la columna medicamentos del data frame df. Exprésarlo como un porcentaje.
+
+    Interpreta el resultado obtenido.
+
     :::
     :::
 
@@ -505,6 +575,7 @@ a.  Calcular el coeficiente de asimetría.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de asimetría podemos usar la función [`skewness`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/skewness) del paquete `moments`.
 
     Parámetros:
@@ -516,6 +587,11 @@ a.  Calcular el coeficiente de asimetría.
     df |> summarise(coef_asimetria = skewness(medicamentos, na.rm = TRUE)) |> 
         kable()
     ``` 
+
+    ## Copilot
+    Calcular el coeficiente de asimetría de la columna medicamentos del data frame df. Utiliza la función skewness del paquete moments.
+
+    Interpreta el resultado obtenido.
     :::
 
     Como $g_1$ está próxima a $0$, la distribución es casi simétrica.
@@ -540,6 +616,7 @@ a.  Calcular el coeficiente de apuntamiento.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular el coeficiente de apuntamiento podemos usar la función [`kurtosis`](https://www.rdocumentation.org/packages/moments/versions/0.14/topics/kurtosis) del paquete `moments`.
 
     Parámetros:
@@ -552,6 +629,11 @@ a.  Calcular el coeficiente de apuntamiento.
     df |> summarise(coef_apuntamiento = kurtosis(medicamentos, na.rm = TRUE)) |> 
         kable()
     ``` 
+
+    ## Copilot
+    Calcular el coeficiente de apuntamiento de la columna medicamentos del data frame df. Utiliza la función kurtosis del paquete moments.
+
+    Interpreta el resultado obtenido.
     :::
 
     Como $g_2>0$, la distribución es más apuntada de lo normal (leptocúrtica). Como además $g_2\not\in(-2,2)$ se puede concluir que la muestra es demasiado apuntada para provenir de una población normal.
@@ -579,6 +661,11 @@ a.  Crear un data frame con los datos de todos los pacientes del estudio a parti
     library(tidyverse)
     df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv")
     ```
+
+    ## Copilot
+
+    Crear un data frame de nombre df con los datos de todos los pacientes del estudio a partir del fichero https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv.
+
     :::
     :::
 
@@ -589,6 +676,7 @@ a.  Obtener un resumen del data frame que muestre las variables que contiene, su
 
     :::{.panel-tabset}
     ## Base
+
     Para obtener las variables de un data frame podemos usar la función [`str`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/str) del paquete base de R.
 
     Parámetros:
@@ -599,6 +687,7 @@ a.  Obtener un resumen del data frame que muestre las variables que contiene, su
     ```
 
     ## Tidyverse
+
     Para obtener las variables y sus tipos de un data frame podemos usar la función [`glimpse`](https://dplyr.tidyverse.org/reference/glimpse.html) del paquete `dplyr` de `tidyverse`.
 
     Parámetros:
@@ -619,6 +708,10 @@ a.  Obtener un resumen del data frame que muestre las variables que contiene, su
     library(summarytools)
     print(dfSummary(df, plain.ascii = FALSE, style = "grid"), method = "render")
     ```
+
+    ## Copilot
+
+    Obtener un resumen del data frame df que muestre las columnas que contiene, su tipo, el número de filas y el número de columnas.
    
     :::
     :::
@@ -627,8 +720,10 @@ a.  Calcular el número de valores perdidos en cada variable.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+    
     :::{.panel-tabset}
     ## Base
+
     Para calcular el número de valores perdidos podemos usar la función [`colSums`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/colSums) del paquete base de R, aplicada a la función [`is.na`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/is.na) que devuelve un vector lógico indicando si cada elemento es `NA` o no.
 
     Parámetros:
@@ -639,6 +734,7 @@ a.  Calcular el número de valores perdidos en cada variable.
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. Para obtener un resumen de todas las variables del data frame, hay que indicar el argumento `across(everything(), ...)`. En particular, para calcular el número de valores perdidos podemos aplicar la función `sum` al vector que devuelve la función [`is.na`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/is.na) del paquete base de R.
 
     ```{r}
@@ -646,6 +742,7 @@ a.  Calcular el número de valores perdidos en cada variable.
     ```
 
     ## skimr
+
     Podemos obtener un resumen estadístico con la función [`skim`](https://www.rdocumentation.org/packages/skimr/versions/2.2.1/topics/skim) del paquete [`skimr`](https://www.rdocumentation.org/packages/skimr). El resumen incluye el número de valores perdidos para cada variable además de otros estadísticos.
 
     Parámetros:
@@ -655,6 +752,11 @@ a.  Calcular el número de valores perdidos en cada variable.
     library(skimr)
     skim(df)
     ```
+
+    ## Copilot
+
+    Calcular el número de valores perdidos en cada columna del data frame df.
+    
     :::
     :::
 
@@ -662,9 +764,10 @@ a.  Calcular el tamaño muestral según el sexo.
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    :::{.panel-tabset}
 
+    :::{.panel-tabset}
     ## Base
+
     Para calcular la frecuencia absoluta podemos usar la función [`table`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/table) del paquete base de R.
 
     ```{r}
@@ -672,6 +775,7 @@ a.  Calcular el tamaño muestral según el sexo.
     ```
     
     ## Tidyverse
+
     Para calcular la frecuencia absoluta podemos usar la función [`count`](https://aprendeconalf.es/manual-r/06-preprocesamiento.html#conteo-del-n%C3%BAmero-de-observaciones) del paquete `dplyr` de `tidyverse`.
 
     ```{r}
@@ -679,6 +783,11 @@ a.  Calcular el tamaño muestral según el sexo.
     library(dplyr)
     count(df, sexo) |> kable()
     ```
+
+    ## Copilot
+
+    Calcular el tamaño muestral según el sexo de los pacientes del data frame df.
+
     :::
     :::
 
@@ -689,6 +798,7 @@ a.  Calcular la media y la desviación típica del nivel de colesterol sin tener
 
     :::{.panel-tabset}
     ## Base
+
     Para calcular la media y la desviación típica podemos usar las funciones [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) y [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete base de R. Es importante indicar el parámetro `na.rm = TRUE` para eliminar los valores perdidos antes de calcular la media y la desviación típica.
 
     ```{r}
@@ -699,6 +809,7 @@ a.  Calcular la media y la desviación típica del nivel de colesterol sin tener
     ```
 
     ## Tidyverse
+
     Podemos obtener un resumen estadístico con la función [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) del paquete `dplyr` de `tidyverse`. En particular, para calcular la media y la desviación típica hay que pasarle como argumento las funciones [`mean`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean) y [`sd`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd) del paquete base de R. Es importante indicar el parámetro `na.rm = TRUE` para eliminar los valores perdidos antes de calcular la media y la desviación típica.
 
     ```{r}
@@ -707,6 +818,10 @@ a.  Calcular la media y la desviación típica del nivel de colesterol sin tener
                     desviación_típica = sd(colesterol, na.rm = TRUE)) |> 
         kable()
     ```
+
+    ## Copilot
+
+    Calcular la media y la desviación típica de la columna colesterol de los pacientes del data frame df sin tener en cuenta los datos perdidos.
     :::
     :::
     
@@ -717,6 +832,7 @@ a.  Realizar un resumen estadístico de todas las variables que incluya la media
     :::{.panel-tabset}
 
     ## Base
+
     Para obtener un resumen estadístico del conjunto de datos podemos usar la función [`summary`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/summary) del paquete `base` de R.
 
     Parámetros:
@@ -728,6 +844,7 @@ a.  Realizar un resumen estadístico de todas las variables que incluya la media
     ```
     
     ## vtable
+
     Para obtener un resumen estadístico del conjunto de datos podemos usar la función `st` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
 
     Parámetros:
@@ -739,6 +856,7 @@ a.  Realizar un resumen estadístico de todas las variables que incluya la media
     ```
     
     ## skimr
+
     Para obtener un resumen estadístico del conjunto de datos podemos usar la función [`skim`](https://www.rdocumentation.org/packages/skimr/versions/2.2.1/topics/skim) del paquete [`skimr`](https://www.rdocumentation.org/packages/skimr).
 
     Parámetros:
@@ -749,6 +867,7 @@ a.  Realizar un resumen estadístico de todas las variables que incluya la media
     ```
     
     ## summarytools
+
     Para obtener un resumen estadístico del conjunto de datos podemos usar las funciones [`descr`](https://www.rdocumentation.org/packages/summarytools/versions/1.1.4/topics/descr) del paquete [`summarytools`](https://www.rdocumentation.org/packages/summarytools).
 
     Parámetros:
@@ -758,6 +877,11 @@ a.  Realizar un resumen estadístico de todas las variables que incluya la media
     descr(df) |>
     kable()
     ```
+
+    ## Copilot
+
+    Realizar un resumen estadístico de todas las columnas del data frame df que incluya la media, el mínimo, los cuartiles, el máximo y la desviación típica para las variables cuantitativas y la frecuencia absoluta para las variables cualitativas.
+
     :::
     :::
 
@@ -765,9 +889,10 @@ a.  ¿En qué variable es más representativa la media?
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    :::{.panel-tabset}
 
+    :::{.panel-tabset}
     ## vtable
+
     Para obtener un resumen estadístico del conjunto de datos podemos usar la función `st` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
 
     Parámetros:
@@ -783,6 +908,7 @@ a.  ¿En qué variable es más representativa la media?
     ```
     
     ## Tidyverse
+
     Para obtener un resumen estadístico del conjunto de datos podemos usar las funciones [`summarise`](https://dplyr.tidyverse.org/reference/summarise.html) y [`across`](https://dplyr.tidyverse.org/reference/across.html) del paquete `dplyr` de `tidyverse`.
 
     Parámetros:
@@ -817,6 +943,12 @@ a.  ¿En qué variable es más representativa la media?
         kable()
     ```
 
+    ## Copilot
+
+    Calcular la media, la desviación típica y el coeficiente de variación de las columnas numéricas del data frame df.
+
+    Interpreta el resultado obtenido para determinar en qué variable es más representativa la media.
+
     :::
 
     La variable con el coeficiente de variación más pequeño es la altura, por lo que es la que tiene la media más representativa.
@@ -826,9 +958,10 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
 
     :::{.callout-tip collapse="true"}
     ## Solución
-    :::{.panel-tabset}
 
+    :::{.panel-tabset}
     ## vtable
+
     Para obtener un resumen estadístico del conjunto de datos podemos usar la función `st` del paquete [`vtable`](https://cran.r-project.org/web/packages/vtable/vignettes/sumtable.html).
 
     Parámetros:
@@ -845,6 +978,7 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
     ```
     
     ## Tidyverse
+
     Para obtener un resumen estadístico con el coeficiente de asimetría y el coeficiente de apuntamiento del peso y la estatura según el sexo tenemos que encadenar las siguientes operaciones:
     
     1. Seleccionar las variables deseadas con la función `select` del paquete `dplyr` de `tidyverse`. 
@@ -861,6 +995,13 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
     summarise(across(.cols = everything(), .fns = list("Coef. Asimetría" = ~ skewness(.x, na.rm = TRUE), "Coef. Apuntamiento" = ~ kurtosis(.x, na.rm = TRUE)))) |>
     kable()
     ```
+
+    ## Copilot
+
+    Realizar un resumen estadístico con el coeficiente de asimetría y el coeficiente de apuntamiento de las columnas peso y estatura según el sexo de los pacientes del data frame df. Utiliza las funciones skewness y kurtosis del paquete moments.
+
+    Interpreta el resultado obtenido para determinar qué grupo tiene un peso más normal y qué grupo tiene una estatura más normal.
+    
     :::
 
     Las mujeres tienen un peso más normal ya que tanto el coeficiente de asimetría como el de apuntamiento están más próximos a 0. Lo mismo ocurre con la altura.
