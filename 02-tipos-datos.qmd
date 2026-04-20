@@ -23,6 +23,13 @@ library(tidyverse)
 library(knitr) # Para el formateo de tablas.
 ```
 
+```{r}
+#| echo: false
+packages <- c("readr", "dplyr", "knitr")
+```
+
+{{< include _versiones-paquetes.qmd >}}
+
 :::{#exr-vectores-1}
 Realizar las siguientes operaciones con vectores.
 

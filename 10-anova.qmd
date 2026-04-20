@@ -56,7 +56,6 @@ a.  Dibujar el diagrama de cajas con los puntos correspondientes a las medicione
     ## Solución
 
     ```{r}
-    #| message: false
     library(tidyverse)
     media <- mean(df$nitrogeno)
     df |> 
@@ -227,7 +226,6 @@ a.  Crear conjunto de datos con los datos de la muestra a partir del fichero [`t
     ## Solución
 
     ```{r}
-    #| message: false
     library(tidyverse)
     df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/trigo.csv") |> 
         mutate(semilla = factor(semilla), abono = factor(abono))

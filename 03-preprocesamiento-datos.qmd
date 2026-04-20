@@ -27,6 +27,12 @@ library(tidyverse)
 library(knitr) # Para el formateo de tablas.
 ```
 
+```{r}
+#| echo: false
+packages <- c("readr", "dplyr", "lubridate", "knitr")
+```
+{{< include _versiones-paquetes.qmd >}}
+
 {{< include _contexto-copilot.qmd >}}
 
 :::{#exr-preprocesamiento-1}
@@ -48,6 +54,7 @@ a.  Crear un data frame con los datos de la tabla.
 
     :::{.callout-tip collapse="true"}
     ## Solución
+
     ```{r}
     df <- data.frame(
         Mes = c("Enero", "Febrero", "Marzo", "Abril"),
@@ -61,28 +68,26 @@ a.  Crear un data frame con los datos de la tabla.
 
 a.  Crear una nueva columna con los beneficios de cada mes (ingresos - gastos - impuestos).
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar la sintaxis `df$variable <- fórmula` para crear una nueva columna en el data frame `df` con nombre `variable`. Para asignar los valores de la nueva columna se usa la `fórmula` indicada. Una fórmula puede  hacer referencia a otras columnas existentes y contener operadores aritméticos, lógicos o funciones.
-
-    ## Tidyverse
-    Usar función [`mutate(variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html) del paquete `dplyr` de `tidyverse`. Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`. La fórmula puede referencia a las columnas existentes y contener operadores aritméticos, lógicos o funciones.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
+
     :::{.panel-tabset}
 
     ## Base
+
+    Para añadir una nueva columna a partir de una fórmula podemos usar la sintaxis `df$variable <- fórmula` para crear una nueva columna en el data frame `df` con nombre `variable`. Para asignar los valores de la nueva columna se usa la `fórmula` indicada. Una fórmula puede  hacer referencia a otras columnas existentes y contener operadores aritméticos, lógicos o funciones.
+
     ```{r}
     df$Beneficios <- df$Ingresos - df$Gastos - df$Impuestos
     df
     ```
 
     ## Tidyverse
+
+    Para añadir una nueva columna a un data frame podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+    
+    - [`mutate(variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html). Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`. Una fórmula puede  hacer referencia a otras columnas existentes y contener operadores aritméticos, lógicos o funciones.
+
     ```{r}
     library(tidyverse)
     df <- df |>
@@ -91,44 +96,49 @@ a.  Crear una nueva columna con los beneficios de cada mes (ingresos - gastos - 
     ```
 
     ## Copilot
+
+    ```sh
     Añadir al data frame df una nueva columna de nombre Beneficios con los beneficios de cada mes.
+    ```
     :::
     :::
 
 a.  Crear una nueva columna con el factor `Balance` con dos posibles categorías: `positivo` si ha habido beneficios y `negativo` si ha habido pérdidas.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar las siguientes funciones:
-    
-    - [`ifelse(condicion, código_true, código_false)`](https://rdrr.io/r/base/ifelse.html) del paquete `base` de R. Evalúa la `condición` y ejecuta el `código_true` si la condición es verdadera y `código_false` si la condición es falsa.
-
-    - [`factor(variable, levels = niveles, labels = etiquetas)`](https://rdrr.io/r/base/factor.html) del paquete `base` de R. Convierte la `variable` en un factor. Se pueden especificar los niveles del factor con el argumento `levels` y las etiquetas de los niveles con el argumento `labels`. Si no se especifican los niveles se asignan en orden alfabético. Si no se especifican las etiquetas se asignan los mismos valores que los niveles.
-
-    ## Tidyverse
-    Usar las siguientes funciones del paquete `dplyr` de `tidyverse`:
-    - [`mutate(variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html). Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`.
-    - [`if_else(condición, código_true, código_false)`](https://dplyr.tidyverse.org/reference/if_else.html) del paquete `dplyr` de `tidyverse`. Evalúa la `condición` y ejecuta el `código_true` si la condición es verdadera y `código_false` si la condición es falsa.
-
-    Usar la siguiente función del paquete `base` de R:
-
-    - [`factor(variable, levels = niveles, labels = etiquetas)`](https://rdrr.io/r/base/factor.html). Se pueden especificar los niveles del factor con el argumento `levels` y las etiquetas de los niveles con el argumento `labels`. Si no se especifican los niveles se asignan en orden alfabético. Si no se especifican las etiquetas se asignan los mismos valores que los niveles.
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para asignar un valor a una nueva columna a partir de una condición podemos usar la siguiente función del paquete `base` de R:
+    
+    - [`ifelse(condicion, código_true, código_false)`](https://rdrr.io/r/base/ifelse.html) del paquete `base` de R. Evalúa la `condición` y ejecuta el `código_true` si la condición es verdadera y `código_false` si la condición es falsa.
+
+    Y para convertir la nueva columna en un factor con dos niveles se puede usar la siguiente función del paquete `base` de R:
+
+    - [`factor(variable, levels = niveles, labels = etiquetas)`](https://rdrr.io/r/base/factor.html) del paquete `base` de R. Convierte la `variable` en un factor. Se pueden especificar los niveles del factor con el argumento `levels` y las etiquetas de los niveles con el argumento `labels`. Si no se especifican los niveles se asignan en orden alfabético. Si no se especifican las etiquetas se asignan los mismos valores que los niveles.
+
     ```{r}
     df$Balance <- factor(ifelse(df$Beneficios > 0, "positivo", "negativo"), levels = c("positivo", "negativo"))
     df
     ```
     
     ## Tidyverse
+
+    Para añadir una nueva columna a un data frame podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+    
+    - [`mutate(variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html). Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`.
+    
+    Para asignar un valor a una nueva columna a partir de una condición podemos usar la siguiente función del paquete `base` de R:
+    
+    - [`ifelse(condicion, código_true, código_false)`](https://rdrr.io/r/base/ifelse.html). Evalúa la `condición` y ejecuta el `código_true` si la condición es verdadera y `código_false` si la condición es falsa.
+
+    Y para convertir la nueva columna en un factor con dos niveles se puede usar la siguiente función del paquete `base` de R:
+
+    - [`factor(variable, levels = niveles, labels = etiquetas)`](https://rdrr.io/r/base/factor.html). Convierte la `variable` en un factor. Se pueden especificar los niveles del factor con el argumento `levels` y las etiquetas de los niveles con el argumento `labels`. Si no se especifican los niveles se asignan en orden alfabético. Si no se especifican las etiquetas se asignan los mismos valores que los niveles.
+    
+
     ```{r}
     df <- df |>
         mutate(Balance = factor(if_else(Beneficios > 0, "positivo", "negativo"),
@@ -137,36 +147,36 @@ a.  Crear una nueva columna con el factor `Balance` con dos posibles categorías
     ```
 
     ## Copilot
+    
+    ```sh
     Añadir una nueva columna con el factor Balance con dos posibles niveles: positivo si la columna Beneficios es mayor o igual que 0 y negativo si la columna Beneficios es menor que 0. Los niveles deben estar enb el orden siguiente: positivo, negativo.
+    ```
     :::
     :::
 
 a.  Filtrar el conjunto de datos para quedarse con los nombres de los meses y los beneficios de los meses con balance positivo. 
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar la sintaxis `df[condición, columnas]` para obtener un data frame con las filas que cumplan la `condición` y las columnas indicadas en `columnas`. La condición se puede construir usando operadores lógicos y de comparación sobre las columnas del data frame. Para indicar las columnas se pueden usar los nombres de las columnas entre comillas o los índices de las columnas.
-
-    ## Tidyverse
-    Usar las siguientes funciones del paquete `dplyr` de `tidyverse`:
-
-    - [`filter(df, condición)`](https://dplyr.tidyverse.org/reference/filter.html) devuelve un data frame con las filas del data frame `df` que cumplen la `condición`. La condición se puede construir usando operadores lógicos y de comparación sobre las columnas del data frame.
-    - [`select(columnas)`](https://dplyr.tidyverse.org/reference/select.html) devuelve un data frame con las columnas del data frame `df` indicadas en `columnas`.
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para filtrar un data frame podemos usar la siguiente sintaxis 
+    
+    - `df[condición, columnas]`. Devuelve un data frame con las filas que cumplan la `condición` y las columnas indicadas en `columnas`. La condición se puede construir usando operadores lógicos y de comparación sobre las columnas del data frame. Para indicar las columnas se pueden usar los nombres de las columnas entre comillas o los índices de las columnas.
+
     ```{r}
     df[df$Balance == "positivo", c("Mes", "Beneficios")]
     ```
     
     ## Tidyverse
+
+    Para filtrar un data frame podemos usar las siguientes funciones del paquete `dplyr` de `tidyverse`:
+
+    - [`filter(df, condición)`](https://dplyr.tidyverse.org/reference/filter.html). Devuelve un data frame con las filas del data frame `df` que cumplen la `condición`. La condición se puede construir usando operadores lógicos y de comparación sobre las columnas del data frame.
+    - [`select(columnas)`](https://dplyr.tidyverse.org/reference/select.html). Devuelve un data frame con las columnas del data frame `df` indicadas en `columnas`.
+
     ```{r}
     df |>
         filter(Balance == "positivo") |> 
@@ -174,7 +184,10 @@ a.  Filtrar el conjunto de datos para quedarse con los nombres de los meses y lo
     ```
 
     ## Copilot
+
+    ```sh
     Filtrar el conjunto de datos para quedarse con la columna Mes y la columna Beneficios de los meses en los que la columna Balance contenga el valor positivo.
+    ```
     :::
     :::
 :::
@@ -184,35 +197,37 @@ El fichero [`colesterol.csv`](datos/colesterol.csv) contiene información de una
 
 a.  Crear un data frame con los datos de todos los pacientes del estudio a partir del fichero [`colesterol.csv`](datos/colesterol.csv).
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar la función [`read.csv(fichero/url)`](https://rdrr.io/r/base/read.csv.html) del paquete `base` de R para leer un fichero csv y crear un data frame con los datos del fichero. Se puede usar la ruta local del fichero o la url si el fichero está en internet.
-
-    ## Tidyverse
-    Usar la función función [`read_csv(fichero/url)`](https://readr.tidyverse.org/reference/read_delim.html) del paquete del paquete [`readr`](https://readr.tidyverse.org/index.html) de `tidyverse`. Se puede usar la ruta local del fichero o la url si el fichero está en internet.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para crear un data frame a partir de un fichero csv podemos usar siguiente función del paquete `base` de R:
+    
+    - [`read.csv(fichero/url)`](https://rdrr.io/r/base/read.csv.html). Lee el fichero csv desde la ruta dada por `fichero` o la url dada por `url` y devuelve un data frame con los datos del fichero. Se puede usar la ruta local del fichero o la url si el fichero está en internet.
+
     ```{r}
     df <- read.csv("https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv")
     head(df)
     ```
     
     ## Tidyverse
+
+    Para crear un data frame a partir de un fichero csv podemos usar la siguiente función del paquete `readr` de `tidyverse`:
+    
+    - [`read_csv(fichero/url)`](https://readr.tidyverse.org/reference/read_delim.html). Lee el fichero csv desde la ruta dada por `fichero` o la url dada por `url` y devuelve un data frame con los datos del fichero. Se puede usar la ruta local del fichero o la url si el fichero está en internet.
+
     ```{r}
     df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv")
     head(df)
     ```
 
     ## Copilot
+
+    ```sh
     Crear un data frame con los datos del fichero https://aprendeconalf.es/bioestadistica-practicas-r/datos/colesterol.csv.
+    ```
     :::
     :::
 
@@ -221,14 +236,6 @@ a.  Crear una nueva columna con el índice de masa corporal, usando la siguiente
     $$
     \mbox{IMC} = \frac{\mbox{Peso (kg)}}{\mbox{Altura (cm)}^2}
     $$
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Tidyverse
-    Usar la función [`mutate(df, variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html) del paquete `dplyr` de `tidyverse`. Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`.
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
@@ -240,14 +247,22 @@ a.  Crear una nueva columna con el índice de masa corporal, usando la siguiente
     head(df)
     ```
 
-    ## Tidyverse  
+    ## Tidyverse
+
+    Para añadir una nueva columna a un data frame podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+    
+    - [`mutate(df, variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html). Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`.
+  
     ```{r}
     df <- df |> mutate(imc = round(peso/altura^2))
     head(df)
     ```
 
     ## Copilot
+
+    ```sh
     Crear una nueva columna de nombre IMC con el índice de masa corporal de los pacientes usando la fórmula IMC = peso / altura^2. Redondear el resultado a números enteros.
+    ```
     :::
     :::
 
@@ -260,31 +275,31 @@ a.  Crear una nueva columna con la variable `obesidad` recodificando la columna 
     |De 24.5 a 30 | Sobrepeso |
     |Mayor de 30 | Obeso |
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar la función `[cut(vector, breaks, labels)](https://rdrr.io/r/base/cut.html)` del paquete `base` de R. Divide el vector `vector` en intervalos delimitados por los elementos del vector `breaks` y crea un factor asignando a cada intervalo una etiqueta del vector `labels`.
-
-    ## Tidyverse
-    Usar las siguientes funciones:
-    - [`mutate(df, variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html) del paquete `dplyr` de `tidyverse`. Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`.
-
-    - En la fórmula usar la función [`cut(vector, breaks, labels)`](https://rdrr.io/r/base/cut.html) del paquete `base` de R. Divide el vector `vector` en intervalos delimitados por los elementos del vector `breaks` y crea un factor asignando a cada intervalo una etiqueta del vector `labels`.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para categorizar la columna `imc` en las diferentes categorías de obesidad, podemos usar la siguiente función del paquete `base` de R:
+    
+    - `[cut(vector, breaks, labels)](https://rdrr.io/r/base/cut.html)`. Divide el vector `vector` en intervalos delimitados por los elementos del vector `breaks` y crea un factor asignando a cada intervalo una etiqueta del vector `labels`.
+
     ```{r}
     df$Obesidad <- cut(df$imc, breaks = c(0, 18.5, 24.5, 30, Inf), labels = c("Bajo peso", "Saludable", "Sobrepeso", "Obeso"))
     head(df)
     ```
 
     ## Tidyverse
+
+    Para añadir una nueva columna a un data frame podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+    
+    - [`mutate(df, variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html). Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`.
+
+    Para categorizar la columna `imc` en las diferentes categorías de obesidad, en la fórmula podemos la siguiente función del paquete `base` de R:
+    
+    - [`cut(vector, breaks, labels)`](https://rdrr.io/r/base/cut.html) del paquete `base` de R. Divide el vector `vector` en intervalos delimitados por los elementos del vector `breaks` y crea un factor asignando a cada intervalo una etiqueta del vector `labels`.
+
     ```{r}
     df <- df |>
         mutate(Obesidad = cut(imc, breaks = c(0, 18.5, 24.5, 30, Inf), labels = c("Bajo peso", "Saludable", "Sobrepeso", "Obeso")))
@@ -292,55 +307,52 @@ a.  Crear una nueva columna con la variable `obesidad` recodificando la columna 
     ```
 
     ## Copilot
+
+    ```sh
     Usar la función cut para crear una nueva columna de nombre Obesidad con la clasificación de obesidad de los pacientes según su IMC. La clasificación se realiza según los siguientes intervalos:
     - Bajo peso: IMC menor de 18.5
     - Saludable: IMC de 18.5 a 24.5
     - Sobrepeso: IMC de 24.5 a 30
     - Obeso: IMC mayor de 30.
+    ```
     :::
     :::
 
 a.  Seleccionar las columnas `nombre`, `sexo` y `edad`.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Tidyverse
-    Usar la función [`select(df, columnas)`](https://dplyr.tidyverse.org/reference/select.html) del paquete `dplyr` de `tidyverse`. Devuelve un data frame con las columnas del data frame `df` indicadas en `columnas`.
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
     ```{r}
     df[, c("nombre", "sexo", "edad")]
     ```
 
     ## Tidyverse
+
+    Para seleccionar columnas de un data frame podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+
+    - [`select(df, columnas)`](https://dplyr.tidyverse.org/reference/select.html). Devuelve un data frame con las columnas del data frame `df` indicadas en `columnas`.
+
     ```{r}
     df |> select(nombre, sexo, edad)
     ```
 
     ## Copilot
+
+    ```sh
     Seleccionar las columnas nombre, sexo y edad del data frame df.
+    ```
     :::
     :::
 
 a.  Anonimizar los datos eliminando la columna `nombre`.
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Tidyverse
-    Usar la función [`select(df, -columnas)`](https://dplyr.tidyverse.org/reference/select.html) del paquete `dplyr` de `tidyverse`. Devuelve un data frame con las columnas del data frame `df` menos las columnas indicadas en `columnas`.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
+
     :::{.panel-tabset}
 
     ## Base
@@ -351,186 +363,199 @@ a.  Anonimizar los datos eliminando la columna `nombre`.
 
     ## Tidyverse
 
+    Para eliminar columnas de un data frame podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+
+    - [`select(df, -columnas)`](https://dplyr.tidyverse.org/reference/select.html). Devuelve un data frame con las columnas del data frame `df` menos las columnas indicadas en `columnas`.
+  
     ```{r}
     df |> select(-nombre)
     ```
 
     ## Copilot
+
+    ```sh
     Eliminar la columna nombre del data frame.
+    ```
     :::
     :::
 
 a.  Reordenar las columnas poniendo la columna `sexo` antes que la columna `edad`.
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar la sintaxis `df[, columnas]` para obtener un data frame con las columnas del data frame `df` indicadas en `columnas`. Indicar las columnas en el orden deseado usando los nombres de las columnas entre comillas o los índices de las columnas.
-
-    ## Tidyverse
-    Usar la función [`select(df, columnas)`](https://dplyr.tidyverse.org/reference/select.html) del paquete `dplyr` de `tidyverse`. Indicar las columnas en el orden deseado usando los nombres de las columnas entre comillas o los índices de las columnas.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para reordenar las columnas del data frame en el orden deseado, podemos usar la siguiente sintaxis:
+    
+    - `df[, columnas]`. Devuelve un data frame con las columnas del data frame `df` indicadas en `columnas`. Indicar las columnas en el orden deseado usando los nombres de las columnas entre comillas o los índices de las columnas.
+  
     ```{r}
     df[, c(1, 3, 2, 4, 5, 6)]
     ```
 
     ## Tidyverse
+
+    Para reordenar las columnas del data frame en el orden deseado, podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+
+    - [`select(df, columnas)`](https://dplyr.tidyverse.org/reference/select.html). Devuelve un data frame con las columnas del data frame `df` indicadas en `columnas`. Indicar las columnas en el orden deseado usando los nombres de las columnas entre comillas o los índices de las columnas.
+
     ```{r}
     df |> select(nombre, sexo, edad, everything())
     ```
 
     ## Copilot
+    ```sh
     Reordenar las columnas del data frame poniendo la columna sexo antes que la columna edad.
+    ```
     :::
     :::
 
 a.  Filtrar el data frame para quedarse con las mujeres.
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar la sintaxis `df[condición, ]` para obtener un data frame con las filas del data frame `df` que satisfacen la condición indicada. La condición se puede construir usando operadores lógicos y de comparación sobre las columnas del data frame.
-
-    ## Tidyverse
-    Usar la función [`filter(df, condición)`](https://dplyr.tidyverse.org/reference/filter.html) del paquete `dplyr` de `tidyverse`. Devuelve un data frame con las filas del data frame `df` que satisfacen la condición indicada. Indicar la condición usando operadores lógicos y de comparación sobre las columnas del data frame.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para filtrar un data frame podemos usar la siguiente sintaxis:
+
+    - `df[condición, ]`. Devuelve un data frame con las filas del data frame `df` que satisfacen la `condición` indicada. La condición se puede construir usando operadores lógicos y de comparación sobre las columnas del data frame.
+  
     ```{r}
     df[df$sexo == "M", ]
     ```
 
     ## Tidyverse
+
+    Para filtrar un data frame podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+
+    - [`filter(df, condición)`](https://dplyr.tidyverse.org/reference/filter.html). Devuelve un data frame con las filas del data frame `df` que satisfacen la `condición` indicada. Indicar la condición usando operadores lógicos y de comparación sobre las columnas del data frame.
+
     ```{r}
     df |> filter(sexo == "M")
     ```
 
     ## Copilot
+
+    ```sh
     Filtrar el data frame para quedarse con las filas en las que la columna sexo contenga el valor M.
+    ```
     :::
     :::
 
 a.  Filtrar el data frame para quedarse con los hombres mayores de 30 años.
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    Combinar condiciones usando operadores lógicos. Para que se cumplan varias condiciones a la vez se tiene que usar el operador lógico `&` entre las condiciones. Para que se cumpla al menos una de varias condiciones se tiene que usar el operador lógico `|` entre las condiciones.
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    
+
     ```{r}
     df[df$sexo == "H" & df$edad > 30, ]    
     ```
 
     ## Tidyverse
+
+    Podemos combinar condiciones usando operadores lógicos. Para que se cumplan varias condiciones a la vez se tiene que usar el operador lógico `&` entre las condiciones. Para que se cumpla al menos una de varias condiciones se tiene que usar el operador lógico `|` entre las condiciones.
+
     ```{r}
     df |> filter( sexo == "H" & edad > 30)
     ```
 
     ## Copilot
+
+    ```sh
     Filtrar el data frame para quedarse con las filas en las que la columna sexo contenga el valor H y la columna edad contenga un valor mayor que 30.
+    ```
     :::
     :::
 
 a.  Filtrar el data frame para quedarse con las filas sin valores perdidos.
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-    ## Base
-    Usar la función [`na.omit(df)`](https://rdrr.io/r/stats/na.fail.html) del paquete `base` de R para eliminar las filas con valores perdidos del data frame `df`.
-
-    ## Tidyverse
-    Usar la función [`drop_na(df)`](https://tidyr.tidyverse.org/reference/drop_na.html) del paquete `tidyr` de `tidyverse` para eliminar las filas con valores perdidos del data frame `df`.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para eliminar las filas que contienen valores perdidos podemos usar la siguiente función del paquete `base` de R:
+    
+    - [`na.omit(df)`](https://rdrr.io/r/stats/na.fail.html). Devuelve el data frame que resulta de eliminar las filas con valores perdidos del data frame `df`.
+
     ```{r}
     na.omit(df)
     ```
 
     ## Tidyverse
+
+    Para eliminar las filas que contienen valores perdidos podemos usar la siguiente función del paquete `tidyr` de `tidyverse`:
+    
+    - [`drop_na(df)`](https://tidyr.tidyverse.org/reference/drop_na.html). Devuelve el data frame que resulta de eliminar las filas con valores perdidos del data frame `df`.
+
     ```{r}
     drop_na(df)
     ```
 
     ## Copilot
+
+    ```sh
     Filtrar el data frame para eliminar las filas con datos perdidos en alguna columna.
+    ```
     :::
     :::
 
 a.  Filtrar el data frame para eliminar las filas con datos perdidos en la columna `colesterol`.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-
-    Usar la función [`is.na`](https://rdrr.io/r/base/NA.html) en la condición de filtrado. Devuelve `TRUE` cuando se aplica a un valor perdido `NA`. Cuando se aplica a un vector devuelve un vector lógico con `TRUE` en las posiciones con valores perdidos y `FALSE` en las posiciones con valores no perdidos. 
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para eliminar las filas de un data frame que contienen valores perdidos en una determinada columna podemos filtrar el data frame usando en la condición del filtro la siguiente función del paquete `base`  de R: 
+    
+    - [`is.na`](https://rdrr.io/r/base/NA.html). Devuelve `TRUE` cuando se aplica a un valor perdido `NA`. Cuando se aplica a un vector devuelve un vector lógico con `TRUE` en las posiciones con valores perdidos y `FALSE` en las posiciones con valores no perdidos. 
+
     ```{r}
     df[!is.na(df$colesterol), ]
     ```
 
     ## Tidyverse
+
+    Para eliminar las filas de un data frame que contienen valores perdidos en una determinada columna podemos filtrar el data frame usando en la condición del filtro la siguiente función del paquete `base`  de R: 
+    
+    - [`is.na`](https://rdrr.io/r/base/NA.html). Devuelve `TRUE` cuando se aplica a un valor perdido `NA`. Cuando se aplica a un vector devuelve un vector lógico con `TRUE` en las posiciones con valores perdidos y `FALSE` en las posiciones con valores no perdidos.
+  
     ```{r}
     df |> filter(!is.na(colesterol))
+    ```
+
+    ## Copilot
+
+    ```sh
+    Filtrar el data frame para eliminar las filas con datos perdidos en la columna colesterol.
     ```
     :::
     :::
 
 a.  Imputar los valores perdidos en la columna `colesterol` con la media de los valores no perdidos.
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-
-    ## Base
-    Filtrar el data frame para quedarse con las filas que contienen un valor perdido en la columna indicada y asignarle la media de los valores de la columna.  Usar la función [`mean(vector, na.rm = TRUE)`](https://rdrr.io/r/base/mean.html) del paquete `base` de R para calcular la media de un `vector` sin tener en cuenta los valores perdidos. 
-
-    ## Tidyverse
-    Usar las siguientes funciones del paquete `dplyr` de `tidyverse`:
-
-    - [`mutate(df, variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html). Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`. Indicar el nombre de una columna existente para modificar los valores de la columna.
-    
-    - En la fórmula usar [`if_else(condición, código_true, código_false)`](https://dplyr.tidyverse.org/reference/if_else.html) . Evalúa la `condición` y ejecuta el `código_true` si la condición es verdadera y `código_false` si la condición es falsa. Usar la función [`is.na`](https://rdrr.io/r/base/NA.html) en la condición.
-    
-    Usar la función [`mean(vector, na.rm = TRUE)`](https://rdrr.io/r/base/mean.html) del paquete `base` de R para calcular la media de un `vector` sin tener en cuenta los valores perdidos.
-    :::
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para imputar valores perdidos en una columna con la media de los valores no perdidos de la misma columna, primero debemos filtrar el data frame para quedarnos con las filas que contienen un valor perdido en la columna indicada. Después podemos asignarle la media de los valores de la columna. Para calcular la media de una columna de un data frame podemos usar la siguiente función del paquete `base` de R: 
+    
+    - [`mean(vector, na.rm = TRUE)`](https://rdrr.io/r/base/mean.html). Calcula la media de un `vector` sin tener en cuenta los valores perdidos.
+
     ```{r}
     media_colesterol <- mean(df$colesterol, na.rm = TRUE)
     df$colesterol[is.na(df$colesterol)] <- media_colesterol
@@ -538,6 +563,17 @@ a.  Imputar los valores perdidos en la columna `colesterol` con la media de los 
     ```
 
     ## Tidyverse
+
+    Para modificar una columna de un data frame a partir de una fórmula podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+
+    - [`mutate(df, variable = fórmula)`](https://dplyr.tidyverse.org/reference/mutate.html). Añade al data frame `df` una nueva columna con nombre `variable` y valores generados mediante la fórmula `fórmula`. Indicar el nombre de una columna existente para modificar los valores de la columna.
+    
+    Para imputar los valores perdidos de una columna con la media de los valores no perdidos de la misma columna, en la fórmula podemos usar las siguientes funciones del paquete `base` de R:
+
+    - [`if_else(condición, código_true, código_false)`](https://dplyr.tidyverse.org/reference/if_else.html) . Evalúa la `condición` y ejecuta el `código_true` si la condición es verdadera y `código_false` si la condición es falsa. Usar la función [`is.na`](https://rdrr.io/r/base/NA.html) en la condición.
+    
+    - [`mean(vector, na.rm = TRUE)`](https://rdrr.io/r/base/mean.html). Calcula la media de un `vector` sin tener en cuenta los valores perdidos.
+
     ```{r}
     df <- df |>
         mutate(colesterol = if_else(is.na(colesterol), mean(colesterol, na.rm = TRUE), colesterol))
@@ -545,40 +581,44 @@ a.  Imputar los valores perdidos en la columna `colesterol` con la media de los 
     ```
 
     ## Copilot
+
+    ```sh
     Imputar los valores perdidos de la columna colesterol con la media de los valores no perdidos de la misma columna.
+    ```
     :::
     :::
 
 a.  Ordenar el data frame según la columna `nombre`.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-
-    ## Base
-    Usar la función [`order(columna)`](https://rdrr.io/r/base/order.html) del paquete `base` de R para obtener un vector con los índices de las filas ordenadas de menor a mayor. Anteponer un `-` a la columna para ordenar de mayor a menor. Usar el vector de índices para reordenar las filas del data frame.
-
-    ## Tidyverse
-    Usar la función [`arrange(df, columnas)`](https://dplyr.tidyverse.org/reference/arrange.html) del paquete `dplyr` de `tidyverse` para ordenar el data frame `df` según las columnas indicadas en `columnas`. Indicar las columnas en el orden de prioridad para la ordenación. Usar la función [`desc(columna)`](https://dplyr.tidyverse.org/reference/desc.html) para ordenar de mayor a menor según una columna.
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para ordenar las filas de un data frame según el valor de una columna, podemos usar la siguiente función del paquete `base` de R: 
+    
+    - [`order(columna)`](https://rdrr.io/r/base/order.html). Devuleve un vector con los índices de las filas ordenadas de menor a mayor. Anteponer un `-` a la columna para ordenar de mayor a menor. Usar el vector de índices para reordenar las filas del data frame.
+
     ```{r}
     df[order(df$nombre), ]
     ```
 
     ## Tidyverse
+
+    Para ordenar las filas de un data frame según el valor de una columna, podemos usar la siguiente función del paquete `dplyr` de `tidyverse`: 
+    
+    - [`arrange(df, columnas)`](https://dplyr.tidyverse.org/reference/arrange.html). Ordena las filas del data frame `df` según las columnas indicadas en `columnas`. Indicar las columnas en el orden de prioridad para la ordenación. Usar la función [`desc(columna)`](https://dplyr.tidyverse.org/reference/desc.html) para ordenar de mayor a menor según una columna.
+  
     ```{r}
     df |> arrange(nombre)
     ```
 
     ## Copilot
+
+    ```sh
     Ordenar el data frame según la columna nombre de menor a mayor.
+    ```
     :::
     :::
 
@@ -600,7 +640,10 @@ a.  Ordenar el data frame ascendentemente por la columna `sexo` y descendentemen
     ```
 
     ## Copilot
+
+    ```sh
     Ordenar el data frame según la columna sexo de menor a mayor. Si hay filas con el mismo valor en la columna sexo, ordenarlas según la columna edad de mayor a menor.
+    ```
     :::
     :::
 :::
@@ -615,35 +658,42 @@ a.  Crear un data frame con los datos del curso a partir del fichero [`notas-cur
     :::{.panel-tabset}
 
     ## Tidyverse
+
     ```{r}
     df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/notas-curso2.csv")
     df
     ```
 
     ## Copilot
+
+    ```sh
     Crear un data frame con los datos del fichero https://aprendeconalf.es/bioestadistica-practicas-r/datos/notas-curso2.csv.
+    ```
     :::
     :::
 
 a.  Convertir el data frame a formato largo. 
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    Usar la función [`pivot_longer(df, columnas, names_to = columna_nombres, values_to = columna_valores)`](https://tidyr.tidyverse.org/reference/pivot_longer.html) del paquete `tidyr` de `tidyverse` para convertir el data frame `df` a formato largo. Indicar las columnas que contienen las notas de las asignaturas en `columnas`. Indicar el nombre de la nueva columna que contendrá los nombres de las asignaturas en `columna_nombres` y el nombre de la nueva columna que contendrá las notas en `columna_valores`.
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Tidyverse
+
+    Para convertir un data frame a formato largo podemos usar la siguiente función del paquete `tidyr` de `tidyverse`:
+    
+    - [`pivot_longer(df, columnas, names_to = columna_nombres, values_to = columna_valores)`](https://tidyr.tidyverse.org/reference/pivot_longer.html). Devuelve un data frame con los datos de la columna indicada en `columnas` en formato largo. Indicar las columnas que contienen las notas de las asignaturas en `columnas`. Indicar el nombre de la nueva columna que contendrá los nombres de las asignaturas en `columna_nombres` y el nombre de la nueva columna que contendrá las notas en `columna_valores`.
+
     ```{r}
     df_largo <- df |> pivot_longer(notaA:notaE, names_to = "Asignatura", values_to = "Nota")
     df_largo
     ```
 
     ## Copilot
+
+    ```sh
     Convertir el data frame a formato largo usando la función pivot_longer. Pivotar las columnas cuyo nombre comienza por nota y llamar Asignatura a la columna con los nombres de las columnas pivotadas, y Nota a la columna con sus valores.
+    ```
     :::
     :::
 
@@ -654,6 +704,7 @@ a.  Crear una nueva columna con la variable `calificación` que contenga las cal
     :::{.panel-tabset}
 
     ## Tidyverse
+
     ```{r}
     df_largo <- df_largo |>
         mutate(Califiación = cut(Nota, breaks = c(0, 4.99, 6.99, 8.99, 10), labels = c("SS", "AP", "NT", "SB")))
@@ -661,11 +712,14 @@ a.  Crear una nueva columna con la variable `calificación` que contenga las cal
     ```
 
     ## Copilot
+
+    ```sh
     Usar la función cut para crear una nueva columna de nombre Calificación que categorice las notas según los siguientes intervalos:
     - SS: Nota menor de 5
     - AP: Nota de 5 a 6.9
     - NT: Nota de 7 a 8.9
     - SB: Nota de 9 a 10
+    ```
     :::
     :::
 
@@ -676,6 +730,7 @@ a.  Filtrar el conjunto de datos para obtener las asignaturas y las notas de las
     :::{.panel-tabset}
 
     ## Tidyverse
+
     ```{r}
     df_largo |>
         filter(sexo == "Mujer", grupo == "A") |>
@@ -684,7 +739,10 @@ a.  Filtrar el conjunto de datos para obtener las asignaturas y las notas de las
     ```
 
     ## Copilot
+
+    ```sh
     Filtrar el data frame para quedarse con las filas en las que la columna sexo contenga el valor Mujer y la columna grupo contenga el valor A. Seleccionar las columnas Asignatura y Nota y ordenar el resultado de mayor a menor según la columna Nota.
+    ```
     :::
     :::
 :::
@@ -715,16 +773,16 @@ El archivo de claves de aleatorización contiene sólo dos variables.
 
 a.  Crear un data frame con los datos de los pacientes del hospital A del fichero de Excel [datos-hospital-a.xls](datos/hipertension/datos-hospital-a.xls).
 
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    Usar la función [`read_excel(fichero)`](https://readxl.tidyverse.org/reference/read_excel.html) del paquete `readxl` de `tidyverse` para leer un fichero de Excel y crear un data frame con los datos del fichero. Se puede usar la ruta local del fichero o la url si el fichero está en internet.
-    :::
-
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Tidyverse
+
+    Para crear un data frame a partir de un fichero de Excel podemos usar la siguiente función del paquete `readxl` de `tidyverse`:
+      
+    - [`read_excel(fichero/url)`](https://readxl.tidyverse.org/reference/read_excel.html). Lee un fichero de Excel y crea un data frame con los datos del fichero. Se puede usar la ruta local del fichero o la url si el fichero está en internet.
+
     ```{r}
     library(readxl)
     df_A <- read_excel("datos/hipertension/datos-hospital-a.xls")
@@ -732,7 +790,10 @@ a.  Crear un data frame con los datos de los pacientes del hospital A del ficher
     ```
 
     ## Copilot
+
+    ```sh
     Crear un data frame df_A con los datos del fichero https://aprendeconalf.es/bioestadistica-practicas-r/datos/hipertension/datos-hospital-a.xls.
+    ``` 
     :::
     :::
 
@@ -743,35 +804,31 @@ a.  Crear un data frame con los datos de los pacientes del hospital B del ficher
     :::{.panel-tabset}
 
     ## Tidyverse
+
     ```{r}
     df_B <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/hipertension/datos-hospital-b.csv")
     head(df_B)
     ```
 
     ## Copilot
+
+    ```sh
     Crear un data frame df_B con los datos del fichero https://aprendeconalf.es/bioestadistica-practicas-r/datos/hipertension/datos-hospital-b.csv.
+    ```
     :::
     :::
 
 a.  Fusionar los datos de los dos hospitales en un nuevo data frame.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-
-    ## Base
-    Usar la función [`rbind(df1, df2)`](https://rdrr.io/r/base/cbind.html) del paquete `base` de R para fusionar dos data frames con las mismas columnas. Devuelve un data frame con las filas de los data frames `df1` y `df2`. 
-    
-    ## Tidyverse
-    Usar la función [`bind_rows(df1, df2)`](https://dplyr.tidyverse.org/reference/bind.html) del paquete `dplyr` de `tidyverse` para fusionar dos data frames con las mismas columnas. Devuelve un data frame con las filas de los data frames `df1` y `df2`.
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Base
+
+    Para fusionar los datos de dos data frames podemos usar la siguiente función del paquete `base` de R:
+
+    - [`rbind(df1, df2)`](https://rdrr.io/r/base/cbind.html). Devuelve el data frame que resulta de fusionar las filas los data frames `df1` y `df2`. Los dos data frames deben tener las mismas columnas.
 
     ```{r}
     df <- rbind(df_A, df_B)
@@ -780,6 +837,10 @@ a.  Fusionar los datos de los dos hospitales en un nuevo data frame.
 
     ## Tidyverse
 
+    Para fusionar los datos de dos data frames podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+
+    - [`bind_rows(df1, df2)`](https://dplyr.tidyverse.org/reference/bind.html). Devuelve el data frame que resulta de fusionar las filas de los data frames `df1` y `df2`. Los dos data frames deben tener las mismas columnas.
+
     ```{r}
     df <- df_A |> bind_rows(df_B)
     head(df)
@@ -787,7 +848,9 @@ a.  Fusionar los datos de los dos hospitales en un nuevo data frame.
 
     ## Copilot
 
+    ```sh
     Fusionar las filas de los data frames df_A y df_B en un nuevo data frame df.
+    ```
     :::
     :::
 
@@ -805,22 +868,24 @@ a.  Crear un data frame con los datos de las claves de aleatorización del fiche
     ```
 
     ## Copilot
+
+    ```sh
     Crear un data frame claves con los datos del fichero https://aprendeconalf.es/bioestadistica-practicas-r/datos/hipertension/claves-aleatorizacion.csv.
+    ```
     :::
     :::
 
 a.  Fusionar el data frame con los datos clínicos y el data frame con claves de aleatorización en un nuevo data frame.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    Usar la función [`left_join(df1, df2, by = clave)`](https://dtplyr.tidyverse.org/reference/left_join.dtplyr_step.html) del paquete `dplyr` de `tidyverse` para fusionar las columnas de dos data frames según una clave común. Devuelve un data frame con las filas de `df1` y las columnas de `df1` y `df2`. Si hay filas en `df1` que no tienen una fila correspondiente en `df2` según la clave, se rellenan con valores perdidos `NA`. Indicar la clave común entre los dos data frames en el argumento `by`.
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
     :::{.panel-tabset}
 
     ## Tidyverse
+
+    Para fusionar las columnas de dos data frames según una clave común, podemos usar la siguiente función del paquete `dplyr` de `tidyverse`:
+
+    - [`left_join(df1, df2, by = clave)`](https://dtplyr.tidyverse.org/reference/left_join.dtplyr_step.html). Devuelve un data frame con las filas de `df1` y las columnas de `df1` y `df2`. Si hay filas en `df1` que no tienen una fila correspondiente en `df2` según la clave, se rellenan con valores perdidos `NA`. Indicar la clave común entre los dos data frames en el argumento `by`.
     
     ```{r}
     df <- df |> left_join(claves, by = "CLAVE")
@@ -828,7 +893,10 @@ a.  Fusionar el data frame con los datos clínicos y el data frame con claves de
     ```
 
     ## Copilot
+
+    ```sh
     Fusionar las columnas de los data frames df y claves usando como clave común la columna CLAVE. Actualizar el data frame df con el resultado de la fusión.
+    ```
     :::
     :::
 
@@ -857,29 +925,14 @@ a.  Convertir la columna del sexo en un factor con dos niveles: `Hombre` y `Muje
     ```
 
     ## Copilot
+
+    ```sh
     Convertir la columna SEXO del data frame df en un factor con dos niveles: Hombre para el valor 0 y Mujer para el valor 1.
+    ```
     :::
     :::
 
 a.  Crear una nueva columna con la edad de los pacientes en el momento de inclusión en el estudio.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-
-    ## Base
-
-    Usar la función [`difftime(fecha1, fecha2, units = unidades)`](https://rdrr.io/r/base/difftime.html) del paquete `base` de R para calcular la diferencia entre dos fechas en la unidad de tiempo unidades ("days", "hours", "minutes", "seconds"). Dividir el resultado entre 365 para obtener la edad en años.
-
-    ## Tidyverse
-
-    Usar las siguientes funciones del paquete [`lubridate`](https://lubridate.tidyverse.org/) de `tidyverse:
-
-    - [`interval(fecha1, fecha2)`](https://lubridate.tidyverse.org/reference/interval.html) para crear un intervalo de tiempo entre dos fechas.
-    
-    - [`time_length(interval, unit = unidades)`](https://lubridate.tidyverse.org/reference/time_length.html) para calcular la longitud de un intervalo en la unidad de tiempo unidades ("year", "week", "day", "hour", "minute", "second").
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
@@ -887,12 +940,22 @@ a.  Crear una nueva columna con la edad de los pacientes en el momento de inclus
 
     ## Base
 
+    Para calcular la edad de los pacientes en el momento de inclusión en el estudio, podemos usar la siguiente función del paquete `base` de R:
+
+    - [`difftime(fecha1, fecha2, units = unidades)`](https://rdrr.io/r/base/difftime.html). Devuelve la diferencia entre dos fechas en la unidad de tiempo unidades ("days", "hours", "minutes", "seconds"). Dividir el resultado entre 365 para obtener la edad en años.
+
     ```{r}
     df$EDAD <- as.numeric(difftime(df$F_INCLUS, df$F_NACIM, units = "days")/365)
     head(df[, c("F_NACIM", "F_INCLUS", "EDAD")])
     ```
 
     ## Tidyverse
+
+    Para calcular la edad de los pacientes en el momento de inclusión en el estudio, podemos usar las siguientes funciones del paquete `lubridate` de `tidyverse`:
+
+    - [`interval(fecha1, fecha2)`](https://lubridate.tidyverse.org/reference/interval.html). Devuelve un intervalo de tiempo entre dos fechas.
+    
+    - [`time_length(interval, unit = unidades)`](https://lubridate.tidyverse.org/reference/time_length.html). Devuelve la longitud de un intervalo en la unidad de tiempo unidades ("year", "week", "day", "hour", "minute", "second").
     
     ```{r}
     df <- df |> mutate(AGE = time_length(interval(F_NACIM, F_INCLUS), "years"))
@@ -900,7 +963,10 @@ a.  Crear una nueva columna con la edad de los pacientes en el momento de inclus
     ```
 
     ## Copilot
+
+    ```sh
     Crear una nueva columna de nombre EDAD con la edad de los pacientes en el momento de inclusión en el estudio. Calcular la edad como la diferencia entre la fecha de inclusión (F_INCLUS) y la fecha de nacimiento (F_NACIM) en años.
+    ```
     :::
     :::
 
@@ -925,7 +991,9 @@ a.  Crear una nueva columna con el índice de masa corporal (IMC) de los pacient
 
     ## Copilot
 
+    ```sh
     Crear una nueva columna de nombre IMC con el índice de masa corporal de los pacientes calculado como el peso en kg dividido por la altura en metros al cuadrado.
+    ```
     :::
     :::
 
@@ -952,25 +1020,13 @@ a.  Crear una nueva columna para la evolución de la presión arterial diastóli
 
     ## Copilot
 
+    ```sh
     Crear una nueva columna de nombre EVOL_PAD con la evolución de la presión arterial diastólica calculada como la presión diastólica final (PAD_FIN) menos la presión diastólica inicial (PAD_INI). Crear una nueva columna de nombre EVOL_PAS con la evolución de la presión arterial sistólica calculada como la presión sistólica final (PAS_FIN) menos la presión sistólica inicial (PAS_INI).
+    ```
     :::
     :::
 
 a.  Guardar el data frame en un fichero csv.
-
-    :::{.callout-note collapse="true"}
-    ## Ayuda
-    :::{.panel-tabset}
-
-    ## Base
-
-    Usar la función [`write.csv(df, fichero)`](https://rdrr.io/rforge/tldutils/man/write_csv.html) del paquete `base` de R para guardar un data frame en un fichero csv. Indicar la ruta del fichero donde se quiere guardar el data frame.
-
-    ## Tidyverse
-
-    Usar la función [`write_csv(df, fichero)`](https://readr.tidyverse.org/reference/write_csv.html) del paquete `readr` de `tidyverse` para guardar un data frame en un fichero csv. Indicar la ruta del fichero donde se quiere guardar el data frame.
-    :::
-    :::
 
     :::{.callout-tip collapse="true"}
     ## Solución
@@ -978,12 +1034,19 @@ a.  Guardar el data frame en un fichero csv.
 
     ## Base
 
+    Para guardar un data frame en un fichero csv podemos usar la siguiente función del paquete `base` de R:
+
+    - [`write.csv(df, fichero)`](https://rdrr.io/rforge/tldutils/man/write_csv.html). Guardar un data frame en un fichero csv con la ruta indicada en `fichero`.
+
     ```{r}
     write.csv(df, "datos/hipertension/datos-ensayo-clinico.csv")
     ```
 
     ## Tidyverse
-    Con la función `write_csv` del paquete `readr` de `tidyverse`.
+
+    Para guardar un data frame en un fichero csv podemos usar la siguiente función del paquete `readr` de `tidyverse`:
+    
+    - [`write_csv(df, fichero)`](https://readr.tidyverse.org/reference/write_csv.html). Guardar un data frame en un fichero csv con la ruta indicada en `fichero`.
 
     ```{r}
     df  |> write_csv("datos/hipertension/datos-ensayo-clinico.csv")
@@ -991,7 +1054,9 @@ a.  Guardar el data frame en un fichero csv.
 
     ## Copilot
 
+    ```sh
     Guardar el data frame df en un fichero csv con la ruta datos/hipertension/datos-ensayo-clinico.csv.
+    ```
     :::
     :::
 :::

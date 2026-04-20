@@ -27,6 +27,12 @@ library(summarytools) # para resúmenes estadísticos.
 library(knitr) # para el formateo de tablas.
 ```
 
+```{r}
+#| echo: false
+packages <- c("readr", "dplyr", "DescTools", "moments", "vtable", "skimr", "summarytools", "knitr")
+```
+{{< include _versiones-paquetes.qmd >}}
+
 {{< include _contexto-copilot.qmd >}}
 
 :::{#exr-descriptiva-medicamentos}
@@ -58,11 +64,11 @@ a.  Crear un conjunto de datos con la variable `medicamentos`.
     ```
 
     ## Copilot
-
+    ```sh
     Se realizó una encuesta a 40 personas de más de 70 años sobre el número de medicamentos distintos que tomaban habitualmente.
     
     Crear un data frame de nombre df con una columna llamada medicamentos que contenga los siguientes valores: 3, 1, 2, 2, 0, 1, 4, 2, 3, 5, 1, 3, 2, 3, 1, 4, 2, 4, 3, 2, 3, 5, 0, 1, 2, 0, 2, 3, 0, 1, 1, 5, 3, 4, 2, 3, 0, 1, 2 y 3.
-
+    ```
     :::
     :::
 
@@ -74,7 +80,10 @@ a.  Calcular el tamaño muestral.
     :::{.panel-tabset}
     ## Base
 
-    El tamaño muestral generalmente es el número de filas del data frame. Para calcular el número de filas podemos usar la función [`nrow`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/nrow) del paquete base de R.
+    El tamaño muestral generalmente es el número de filas del data frame. Para calcular el número de filas podemos usar la función [`nrow`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/nrow) del paquete `base` de `R`.
+
+    Parámetros:
+    - `df`: data frame del que calcular el número de filas.
     
     ```{r}
     nrow(df)
@@ -83,6 +92,9 @@ a.  Calcular el tamaño muestral.
     ## Tidyverse
 
     El tamaño muestral generalmente es el número de filas del data frame. Para calcular el número de filas podemos usar la función la función [`count`](https://dplyr.tidyverse.org/reference/count.html) del paquete `dplyr` de `tidyverse`.
+    
+    Parámetros:
+    - `df`: data frame del que calcular el número de filas.
 
     ```{r}
     library(knitr)
@@ -90,9 +102,9 @@ a.  Calcular el tamaño muestral.
     ```
 
     ## Copilot
-    
+    ```sh
     Calcular el número de filas del data frame df.
-    
+    ```
     :::
     :::
     
@@ -129,10 +141,11 @@ a.  Calcular el número medio de medicamentos que toman las personas de la muest
 
     ## Copilot
 
+    ```sh
     Calcular la media de la columna medicamentos del data frame df.
 
     Interpreta el resultado obtenido.
-
+    ```
     :::
     :::
 
@@ -169,10 +182,11 @@ a.  Calcular la mediana e interpretarla.
     
     ## Copilot    
 
+    ```sh
     Calcular la mediana de la columna medicamentos del data frame df.
 
     Interpreta el resultado obtenido.
-
+    ```
     :::
     :::
 
@@ -211,9 +225,11 @@ a.  Calcular la moda e interpretarla.
 
     ## Copilot
 
+    ```sh
     Calcular la moda de la columna medicamentos del data frame df. Usa la función Mode del paquete DescTools.
 
     Interpretar el resultado obtenido.
+    ```
     :::
 
     Existen dos modas 2 y 3 que son los valores más frecuentes en el conjunto de datos. Por tanto, el conjunto de datos es bimodal.
@@ -251,8 +267,9 @@ a.  Calcular el mínimo.
 
     ## Copilot
 
+    ```sh
     Calcular el mínimo de la columna medicamentos del data frame df.
-
+    ```
     :::
     :::
 
@@ -288,8 +305,9 @@ a.  Calcular el máximo.
 
     ## Copilot
 
+    ```sh
     Calcular el máximo de la columna medicamentos del data frame df.
-
+    ```
     :::
     :::
 
@@ -331,9 +349,11 @@ a.  Calcular los cuartiles e interpretarlos.
 
     ## Copilot
 
+    ```sh
     Calcular los cuartiles de la columna medicamentos del data frame df.
 
     Interpreta el resultado obtenido.
+    ```
     :::
     :::
 
@@ -363,10 +383,11 @@ a.  Calcular los percentiles 5 y 95 e interpretarlos.
 
     ## Copilot
 
+    ```sh
     Calcular los percentiles 5 y 95 de la columna medicamentos del data frame df.
 
     Interpreta el resultado obtenido.
-
+    ```
     :::
     :::
 
@@ -391,8 +412,9 @@ a.  Calcular el rango.
 
     ## Copilot
 
+    ```sh
     Calcular el rango de la columna medicamentos del data frame df.
-
+    ```
     :::
     :::
 
@@ -429,10 +451,11 @@ a.  Calcular el rango intercuartílico.
 
     ## Copilot
 
+    ```sh
     Calcular el rango intercuartílico de la columna medicamentos del data frame df.
 
     Interpreta el resultado obtenido.
-
+    ```
     :::
     :::
 
@@ -474,8 +497,9 @@ a.  Calcular la varianza
 
     ## Copilot
 
+    ```sh
     Calcular la varianza de la columna medicamentos del data frame df. Para ello, primero calcula la cuasivarianza y luego corrige la cuasivarianza multiplicando por (n-1)/n, donde n es el tamaño muestral.
-
+    ```
     :::
     :::
 
@@ -517,10 +541,11 @@ a.  Calcular la desviación típica.
 
     ## Copilot
 
+    ```sh
     Calcular la desviación típica de la columna medicamentos del data frame df. Para ello, primero calcula la cuasidesviación típica y luego corrige la cuasidesviación típica multiplicando por la raíz cuadrada de (n-1)/n, donde n es el tamaño muestral.
 
     Interpreta el resultado obtenido.
-
+    ```
     :::
     :::
 
@@ -549,10 +574,11 @@ a.  Calcular el coeficiente de variación.
 
     ## Copilot
 
+    ```sh
     Calcular el coeficiente de variación de la columna medicamentos del data frame df. Exprésarlo como un porcentaje.
 
     Interpreta el resultado obtenido.
-
+    ```
     :::
     :::
 
@@ -589,9 +615,12 @@ a.  Calcular el coeficiente de asimetría.
     ``` 
 
     ## Copilot
+
+    ```sh
     Calcular el coeficiente de asimetría de la columna medicamentos del data frame df. Utiliza la función skewness del paquete moments.
 
     Interpreta el resultado obtenido.
+    ```
     :::
 
     Como $g_1$ está próxima a $0$, la distribución es casi simétrica.
@@ -631,9 +660,12 @@ a.  Calcular el coeficiente de apuntamiento.
     ``` 
 
     ## Copilot
+
+    ```sh
     Calcular el coeficiente de apuntamiento de la columna medicamentos del data frame df. Utiliza la función kurtosis del paquete moments.
 
     Interpreta el resultado obtenido.
+    ```
     :::
 
     Como $g_2>0$, la distribución es más apuntada de lo normal (leptocúrtica). Como además $g_2\not\in(-2,2)$ se puede concluir que la muestra es demasiado apuntada para provenir de una población normal.
@@ -664,8 +696,9 @@ a.  Crear un data frame con los datos de todos los pacientes del estudio a parti
 
     ## Copilot
 
+    ```sh
     Crear un data frame de nombre df con los datos de todos los pacientes del estudio a partir del fichero https://aprendeconalf.es/estadistica-practicas-r/datos/colesterol.csv.
-
+    ```
     :::
     :::
 
@@ -711,8 +744,9 @@ a.  Obtener un resumen del data frame que muestre las variables que contiene, su
 
     ## Copilot
 
+    ```sh
     Obtener un resumen del data frame df que muestre las columnas que contiene, su tipo, el número de filas y el número de columnas.
-   
+    ```
     :::
     :::
 
@@ -755,8 +789,9 @@ a.  Calcular el número de valores perdidos en cada variable.
 
     ## Copilot
 
+    ```sh
     Calcular el número de valores perdidos en cada columna del data frame df.
-    
+    ```
     :::
     :::
 
@@ -786,8 +821,9 @@ a.  Calcular el tamaño muestral según el sexo.
 
     ## Copilot
 
+    ```sh
     Calcular el tamaño muestral según el sexo de los pacientes del data frame df.
-
+    ```
     :::
     :::
 
@@ -821,7 +857,9 @@ a.  Calcular la media y la desviación típica del nivel de colesterol sin tener
 
     ## Copilot
 
+    ```sh
     Calcular la media y la desviación típica de la columna colesterol de los pacientes del data frame df sin tener en cuenta los datos perdidos.
+    ```
     :::
     :::
     
@@ -880,8 +918,9 @@ a.  Realizar un resumen estadístico de todas las variables que incluya la media
 
     ## Copilot
 
+    ```sh
     Realizar un resumen estadístico de todas las columnas del data frame df que incluya la media, el mínimo, los cuartiles, el máximo y la desviación típica para las variables cuantitativas y la frecuencia absoluta para las variables cualitativas.
-
+    ```
     :::
     :::
 
@@ -945,10 +984,11 @@ a.  ¿En qué variable es más representativa la media?
 
     ## Copilot
 
+    ```sh
     Calcular la media, la desviación típica y el coeficiente de variación de las columnas numéricas del data frame df.
 
     Interpreta el resultado obtenido para determinar en qué variable es más representativa la media.
-
+    ```
     :::
 
     La variable con el coeficiente de variación más pequeño es la altura, por lo que es la que tiene la media más representativa.
@@ -998,10 +1038,11 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
 
     ## Copilot
 
+    ```sh
     Realizar un resumen estadístico con el coeficiente de asimetría y el coeficiente de apuntamiento de las columnas peso y estatura según el sexo de los pacientes del data frame df. Utiliza las funciones skewness y kurtosis del paquete moments.
 
     Interpreta el resultado obtenido para determinar qué grupo tiene un peso más normal y qué grupo tiene una estatura más normal.
-    
+    ```
     :::
 
     Las mujeres tienen un peso más normal ya que tanto el coeficiente de asimetría como el de apuntamiento están más próximos a 0. Lo mismo ocurre con la altura.

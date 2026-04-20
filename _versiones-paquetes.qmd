@@ -1,0 +1,27 @@
+:::{.callout-note collapse="true"}
+## Versiones de R y de los paquetes utilizados
+```{r}
+#| echo: false
+#| results: asis
+v <- paste(R.version$major, R.version$minor, sep = ".")
+cat(sprintf("![](https://img.shields.io/badge/R-%s-276DC3?logo=r)\n", v))
+
+pkgs <- sessioninfo::package_info(pkgs = .packages(), dependencies = FALSE)
+pkgs <- pkgs[pkgs$package %in% packages, ]
+
+for (i in seq_len(nrow(pkgs))) {
+  name    <- pkgs$package[i]
+  version <- pkgs$ondiskversion[i]
+  source  <- pkgs$source[i]
+  color   <- if (grepl("CRAN", source)) "blue" else "orange"
+
+  url <- sprintf(
+    "https://img.shields.io/badge/%s-%s-%s?logo=r",
+    URLencode(name, reserved = TRUE),
+    URLencode(version, reserved = TRUE),
+    color
+  )
+  cat(sprintf("![%s](%s) ", name, url))
+}
+```
+:::
