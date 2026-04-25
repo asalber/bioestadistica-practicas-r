@@ -1,5 +1,12 @@
 :::{.callout-note collapse="true"}
 ## Versiones de R y de los paquetes utilizados
+
+```{r}
+#| echo: false
+#| output: false
+lapply(packages, library, character.only = TRUE)
+```
+
 ```{r}
 #| echo: false
 #| results: asis

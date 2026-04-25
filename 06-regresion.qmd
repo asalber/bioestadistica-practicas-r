@@ -26,24 +26,27 @@ library(tidyverse)
 # - readr: para la lectura de ficheros csv. 
 # - dplyr: para el preprocesamiento y manipulación de datos.
 # - tidyr: para la organización de los datos.
-# - purrr: para aplicar funciones a vectores. 
+library(tidymodels) # para el ajuste de modelos de regresión.
 library(broom) # para convertir las listas con los resúmenes de los modelos de regresión a formato organizado.
 library(knitr) # para el formateo de tablas.
 ```
+
+```{r}
+#| echo: false
+packages <- c("readr", "dplyr", "tidyr", "tidymodels","broom", "knitr")
+```
+
+{{< include _versiones-paquetes.qmd >}}
 
 {{< include _contexto-copilot.qmd >}}
 
 ::: {#exr-regresion-1}
 Se han medido dos variables $X$ e $Y$ en 10 individuos obteniendo los siguientes resultados:
 
-$$
-\begin{array}{lrrrrrrrrrr}
-\hline
-X & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
-Y & 2 & 5 & 8 & 11 & 14 & 17 & 20 & 23 & 26 & 29\\
-\hline
-\end{array}
-$$
+|  |  |  |  |  |  |  |  |  |  |  |
+|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| X | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| Y | 2 | 5 | 8 | 11 | 14 | 17 | 20 | 23 | 26 | 29 |
 
 
 a.  Crear un conjunto de datos con las variables `x` e `y`.
@@ -51,12 +54,31 @@ a.  Crear un conjunto de datos con las variables `x` e `y`.
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+    ## Base
+
     ```{r}
     df <- data.frame(
         x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
         y = c(2, 5, 8, 11, 14, 17, 20, 23, 26, 29)
     )
     ```
+
+    ## Tidyverse
+
+    ```{r}
+    library(tidyverse)
+    df <- tibble(   
+        x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+        y = c(2, 5, 8, 11, 14, 17, 20, 23, 26, 29)
+    )
+    ```
+
+    ## Copilot
+    ```sh 
+    Crear un data frame de nombre df con dos columnas x e y, donde x contenga los valores del 0 al 9, e y contenga los valores 2, 5, 8, 11, 14, 17, 20, 23, 26 y 29.
+    ```
+    :::
     :::
 
 a.  Dibujar el diagrama de dispersión correspondiente. ¿Qué tipo de modelo de regresión se ajusta mejor a la nube de puntos?
@@ -66,20 +88,38 @@ a.  Dibujar el diagrama de dispersión correspondiente. ¿Qué tipo de modelo de
     :::{.panel-tabset}
 
     ## Base
-    Con la función [`plot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot) del paquete `graphics`.
-    
+    Para dibujar un diagrama de dispersión podemos usar la función [`plot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot) del paquete `graphics`.
+
+    Parámetros:
+    - `x`: vector con los valores de la variable independiente.
+    - `y`: vector con los valores de la variable dependiente.
+    - `xlab`: etiqueta del eje x.
+    - `ylab`: etiqueta del eje y.
+    - `main`: título del gráfico.
+
     ```{r}
     plot(df$x, df$y, xlab = "X", ylab = "Y", main = "Diagrama de dispersión")
     ```
   
     ## Tidyverse
-    Con la función [`geom_point`](https://aprendeconalf.es/manual-r/07-graficos.html#diagramas-de-puntos) del paquete `ggplot2` de `tidyverse`.
+    
+    Podemos dibujar un diagrama de dispersión con la función [`geom_point`](https://aprendeconalf.es/manual-r/07-graficos.html#diagramas-de-puntos) del paquete `ggplot2` de `tidyverse`.
+
+    Parámetros:
+    - `col`: color del punto en el gráfico.
+    - `shape:`: forma del punto en el gráfico.
+    - `size:`: tamaño del punto en el gráfico.
 
     ```{r}
     library(tidyverse)
     ggplot(df, aes(x = x, y = y)) +
         geom_point(col = "red") +
         labs(title = "Diagrama de dispersión", x = "X", y = "Y")
+    ```
+
+    ## Copilot
+    ```sh
+    Dibujar un diagrama de dispersión con los valores de la columna x del data frame df el eje x y los valores de la columna y en el eje y.
     ```
     :::
 
@@ -90,12 +130,44 @@ a.  Calcular la recta de regresión de $Y$ sobre $X$.
 
     ::: {.callout-tip collapse="true"}
     ## Solución
-    Para ajustar un modelo de regresión se utiliza la función [`lm`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/lm) del paquete `stats`. Esta función requiere que se le pase como parámetro la fórmula del modelo de regresión que debe tener la sintaxis `y ~ f(x)`, donde `y` es la variable dependiente en el modelo, `x` es la variable independiente, y `f(x)` es una expresión matemática que describe el modelo.
+
+    :::{.panel-tabset}
+
+    ## Stats
+
+    Para ajustar un modelo de regresión podemos usar la función [`lm`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/lm) del paquete `stats`. 
+    
+    Parámetros:
+    - `formula`: fórmula del modelo de regresión con la sintaxis `y ~ f(x)`, donde `y` es la variable dependiente en el modelo, `x` es la variable independiente, y `f(x)` es una expresión matemática que describe el modelo.
+
 
     ```{r}
+    library(broom)
+    library(knitr)
     recta_y_x <- lm(y ~ x, df) 
-    summary(recta_y_x)
+    tidy(recta_y_x) |> kable()
     ```
+
+    ## Tidymodels
+
+    Para ajustar un modelo de regresión también podemos usar las siguientes funciones del paquete `tidymodels`:
+
+    - [`linear_reg`](https://www.tidymodels.org/find/model_regression_linear_reg/): para definir un modelo de regresión lineal.
+    - [set_engine](https://www.tidymodels.org/find/engine_set_engine/): para especificar el motor de ajuste del modelo.  
+        Parámetros:
+        - `motor`: motor de ajuste del modelo. En este caso se utiliza el motor `lm` que es el motor de ajuste de modelos lineales del paquete `stats`.
+    -   [`fit`](https://www.tidymodels.org/find/fit/): para ajustar el modelo a los datos. Obtiene la estimación de los parámetros del modelo (pendiente y término independiente) a partir de los datos de la muestra.  
+        Parámetros:
+        - `formula`: fórmula del modelo de regresión con la sintaxis `y ~ f(x)`, donde `y` es la variable dependiente en el modelo, `x` es la variable independiente, y `f(x)` es una expresión matemática que describe el modelo. 
+
+    ```{r}
+    library(tidymodels)
+    modelo_lineal_y_x <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(y ~ x, df)
+    tidy(modelo_lineal_y_x) |> kable()
+    ```
+    :::
 
     La recta de regresión de $Y$ sobre $X$ es $y = `r recta_y_x$coefficients[["(Intercept)"]]` + `r recta_y_x$coefficients[["x"]]` x$.
     :::
@@ -105,11 +177,21 @@ a.  Obtener el coeficiente de regresión de la recta anterior e interpretarlo.
     ::: {.callout-tip collapse="true"}
     ## Solución
 
-    El coeficiente de regresión es la pendiente de la recta de regresión
+    El coeficiente de regresión es la pendiente de la recta de regresión.
+
+    :::{.panel-tabset}
+    ## Stats
 
     ```{r}
-    cat(paste("Coeficiente de regresión de Y sobre X:", recta_y_x$coefficients[["x"]]))
+    recta_y_x$coefficients[["x"]]
     ```
+
+    ## Tidymodels
+
+    ```{r}
+    modelo_lineal_y_x$fit$coefficients[2]
+    ```
+    :::
 
     El coeficiente de regresión de $Y$ sobre $X$ vale 3, lo que indica que $Y$ aumenta 3 unidades por cada unidad que aumenta $X$.
     :::
@@ -121,7 +203,12 @@ a.  Dibujar la recta de regresión de $Y$ sobre $X$ sobre el diagrama de dispers
     :::{.panel-tabset}
 
     ## Base
-    Con la función [`abline`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/abline) del paquete `graphics`.
+    
+    Para dibujar la recta de regresión sobre el diagrama de dispersión, podemos usar la función [`abline`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/abline) del paquete `graphics`.
+
+        Parámetros:
+        - `a`: término independiente de la recta de regresión.
+        - `b`: pendiente de la recta de regresión.
     
     ```{r}
     plot(df$x, df$y, xlab = "X", ylab = "Y", main = "Diagrama de dispersión")
@@ -129,7 +216,11 @@ a.  Dibujar la recta de regresión de $Y$ sobre $X$ sobre el diagrama de dispers
     ```
 
     ## Tidyverse
-    Con la función [`geom_smooth`](https://aprendeconalf.es/manual-r/07-graficos.html#interpolaci%C3%B3n-y-ajustes-de-regresi%C3%B3n) del paquete `ggplot2` de `tidyverse`.
+    
+    Para dibujar la recta de regresión sobre el diagrama de dispersión, podemos usar la función [`geom_smooth`](https://aprendeconalf.es/manual-r/07-graficos.html#interpolaci%C3%B3n-y-ajustes-de-regresi%C3%B3n) del paquete `ggplot2` de `tidyverse`.
+
+        Parámetros:
+        - `method`: método de ajuste de la recta de regresión, por defecto es "lm".
 
     ```{r}
     library(ggplot2)
@@ -148,9 +239,24 @@ a.  Calcular el coeficiente de determinación del modelo lineal e interpretarlo.
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+    ## Stats
+
     ```{r}
-    cat(paste("Coeficiente de determinación lineal R²:", summary(recta_y_x)$r.squared))
+    summary(recta_y_x)$r.squared
     ```
+
+    ## Tidymodels
+
+    ```{r} 
+    glance(modelo_lineal_y_x) |> kable()
+    ```
+
+    ## Copilot
+    ```sh
+    Calcular el coeficiente de determinación lineal R² del modelo de regresión lineal ajustado.
+    ```
+    :::
 
     Como el coeficiente de determinación lineal vale 1, el ajuste de la recta de regresión es perfecto.
     :::
@@ -160,34 +266,75 @@ a.  Calcular la recta de regresión de $X$ sobre $Y$. ¿Coincide con la recta de
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+    ## Stats
+
     ```{r}
     recta_x_y <- lm(x ~ y, df) 
     summary(recta_x_y)
     ```
+
+    ## Tidymodels
+
+    ```{r} 
+    modelo_lineal_x_y <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(x ~ y, df)
+    tidy(modelo_lineal_x_y) |> kable()
+    ```
+    :::
 
     La recta de regresión de $X$ sobre $Y$ es $x = `r recta_x_y$coefficients[["(Intercept)"]]` + `r recta_x_y$coefficients[["y"]]` x$, que es la misma que la recta de $Y$ sobre $X$, ya que el ajuste es perfecto, y tanto los residuos en $Y$ como los residuos en $X$ valen cero para esta recta.
     :::
 :::
 
 :::{#exr-regresion-2}
-El fichero [`horas-estudio.csv`](datos/horas-estudio.csv) contiene información sobre las horas de estudio diarias de una muestra de alumnos de ingeniería, y el número de asignaturas suspendidas al final del curso.
+El fichero [`horas-estudio.csv`](datos/horas-estudio.csv) contiene información sobre las horas de estudio diarias de una muestra de alumnos de Farmacia, y el número de asignaturas suspendidas al final del curso.
 
 a.  Crear un data frame con los datos de las horas de estudio y los suspensos a partir del fichero [`horas-estudio.csv`](https://aprendeconalf.es/estadistica-practicas-r/datos/horas-estudio.csv).
 
     :::{.callout-tip collapse="true"} 
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Base
+
     ```{r}
     library(readr)
     df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/horas-estudio.csv")
     head(df)
     ```
+
+    ## Tidyverse
+
+    ```{r}
+    library(tidyverse)
+    df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/horas-estudio.csv")
+    head(df)
+    ```
+
+    ## Copilot
+    ```sh
+    Crear un data frame con los datos del fichero csv https://aprendeconalf.es/estadistica-practicas-r/datos/horas-estudio.csv que contiene las horas de estudio diarias de una muestra de alumnos de Farmacia, y el número de asignaturas suspendidas al final del curso.
+    ```
+    :::
     :::
 
 a.  Dibujar el diagrama de dispersión correspondiente. ¿Qué tipo de modelo de regresión se ajusta mejor a la nube de puntos?
 
     :::{.callout-tip collapse="true"}
-    ## Solución 
+    ## Solución
+
+    :::{.panel-tabset}
+
+    ## Base
+
+    ```{r}
+    plot(df$Horas, df$Suspensos, xlab = "Horas de estudio", ylab = "Asignaturas suspensas", main = "Diagrama de dispersión")
+    ```
+
+    ## Tidyverse
 
     ```{r}
     library(ggplot2)
@@ -195,6 +342,12 @@ a.  Dibujar el diagrama de dispersión correspondiente. ¿Qué tipo de modelo de
         geom_point(col = "red") +
         labs(title = "Diagrama de dispersión", x = "Horas de estudio", y = "Asignaturas suspensas")
     ```
+
+    ## Copilot
+    ```sh
+    Dibujar un diagrama de dispersión con los valores de la columna Horas del data frame df el eje x y los valores de la columna Suspensos en el eje y.
+    ```
+    :::
 
     El tipo de modelo que mejor se ajusta es lineal, ya que hay una tendencia lineal en la nube de puntos y además es inversa.
     :::
@@ -204,10 +357,27 @@ a.  Calcular la recta de regresión de los suspensos sobre las horas de estudio.
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+    ## Stats
+
     ```{r}
     recta_suspensos_horas <- lm(Suspensos ~ Horas, df) 
-    summary(recta_suspensos_horas)
+    tidy(recta_suspensos_horas) |> kable()
     ```
+
+    ## Tidymodels
+
+    ```{r} 
+    modelo_lineal_suspensos_horas <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(Suspensos ~ Horas, df)
+    tidy(modelo_lineal_suspensos_horas) |> kable()
+    ```
+    ## Copilot
+    ```sh
+    Calcular la recta de regresión de los suspensos sobre las horas de estudio a partir del data frame df.
+    ```
+    :::
 
     La recta de regresión de los suspensos sobre las horas es $\textsf{suspensos}= `r recta_suspensos_horas$coefficients[["(Intercept)"]]` + `r recta_suspensos_horas$coefficients[["Horas"]]` \textsf{horas}$.
     :::
@@ -217,18 +387,44 @@ a.  Obtener el coeficiente de regresión de la recta anterior e interpretarlo.
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Stats
+
     ```{r}
-    cat(paste("Coeficiente de regresión de Suspensos sobre Horas:", recta_suspensos_horas$coefficients[["Horas"]]))
+    recta_suspensos_horas$coefficients[["Horas"]]
     ```
+
+    ## Tidymodels
+
+    ```{r}
+    modelo_lineal_suspensos_horas$fit$coefficients[2]
+    ```
+
+    ## Copilot
+    ```sh
+    Obtener el coeficiente de regresión (pendiente) de la recta de regresión de los suspensos sobre las horas de estudio a partir del modelo lineal ajustado.
+    ```
+    :::
 
     El coeficiente de regresión de los suspensos sobre las horas de estudio vale  `r recta_suspensos_horas$coefficients[["Horas"]]`, lo que indica que por cada hora de estudio se obtendrán `r recta_suspensos_horas$coefficients[["Horas"]] * (-1)` suspensos menos al final del curso.
     :::
 
 a.  Dibujar la recta de regresión  sobre el diagrama de dispersión. ¿El ajuste es mejor o peor que el del ejercicio anterior?
 
-
     :::{.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+
+    ## Base
+
+    ```{r}
+    plot(df$Horas, df$Suspensos, xlab = "Horas de estudio", ylab = "Asignaturas suspensas", main = "Diagrama de dispersión")    
+    abline(recta_suspensos_horas)
+    ```
+
+    ## Tidyverse
 
     ```{r}
     library(ggplot2)
@@ -238,6 +434,12 @@ a.  Dibujar la recta de regresión  sobre el diagrama de dispersión. ¿El ajust
         labs(title = "Diagrama de dispersión", x = "Horas de estudio", y = "Asignaturas suspensas")
     ```
 
+    ## Copilot
+    ```sh
+    Dibujar la recta de regresión de los suspensos sobre las horas de estudio sobre el diagrama de dispersión con los datos del data frame df.
+    ```
+    :::
+
     En este caso el ajuste no es perfecto, ya que es imposible que la recta pase por todos los puntos como ocurría en el ejercicio anterior. Por tanto, el ajuste es peor.
     :::
 
@@ -246,9 +448,25 @@ a.  Calcular el coeficiente de determinación del modelo lineal e interpretarlo.
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Stats
+
     ```{r}
-    cat(paste("Coeficiente de determinación lineal R²:", summary(recta_suspensos_horas)$r.squared))
+    summary(recta_suspensos_horas)$r.squared
     ```
+
+    ## Tidymodels
+
+    ```{r} 
+    glance(modelo_lineal_suspensos_horas) |> kable()
+    ```
+
+    ## Copilot
+    ```sh
+    Calcular el coeficiente de determinación lineal R² del modelo de regresión lineal ajustado del número de suspensos sobre el número de horas de estudio.
+    ```
+    :::
 
     Como el coeficiente de determinación lineal vale `r summary(recta_suspensos_horas)$r.squared` que está bastante próximo a 1, el ajuste es bueno, y el modelo puede utilizarse con fines predictivos.
     :::
@@ -258,9 +476,25 @@ a.  Utilizar la recta de regresión para predecir el número de suspensos corres
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+    ## Stats
+
     ```{r}
-    predict.lm(recta_suspensos_horas, newdata = list(Horas = 3))
+    predict.lm(recta_suspensos_horas, newdata = list(Horas = 3)) |> kable()
     ```
+
+    ## Tidymodels
+
+    ```{r}
+    augment(modelo_lineal_suspensos_horas, new_data = tibble(Horas = 3))
+    ```
+
+    ## Copilot
+
+    ```sh
+    Utilizar el modelo de regresión lineal ajustado del número de suspensos sobre el número de horas de estudio para predecir el número de suspensos correspondiente a 3 horas de estudio diarias.
+    ```
+    :::
 
     La predicción será fiable ya que el coeficiente de determinación está próximo a 1 y el tamaño de la muestra no es muy pequeño.
     :::
@@ -272,29 +506,47 @@ a.  Según el modelo lineal, ¿cuántas horas diarias tendrá que estudiar como 
 
     Como ahora queremos predecir el número de horas de estudio, necesitamos calcular la recta de regresión de la horas sobre los suspensos.
 
+    :::{.panel-tabset}
+    ## Stats
+
     ```{r}
     recta_horas_suspensos <- lm(Horas ~ Suspensos, df) 
-    predict.lm(recta_horas_suspensos, newdata = list(Suspensos = 0))
+    predict.lm(recta_horas_suspensos, newdata = list(Suspensos = 0)) |> kable()
     ```
+
+    ## Tidymodels
+
+    ```{r}
+    modelo_lineal_horas_suspensos <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(Horas ~ Suspensos, df)
+    augment(modelo_lineal_horas_suspensos, new_data = tibble(Suspensos = 0))
+    ```
+
+    ## Copilot
+
+    ```sh
+    Calcular la recta de regresión de las horas de estudio sobre el número de suspensos a partir del data frame df, y utilizarla para predecir el número de horas de estudio diarias correspondiente a 0 suspensos. 
+    ```
+    :::
     :::
 :::
 
 :::{#exr-regresion-3}
 Después de tomar un litro de vino se ha medido la concentración de alcohol en la sangre en distintos instantes, obteniendo los siguientes datos
 
-$$
-\begin{array}{lrrrrrrr}
-\hline 
-\mbox{Tiempo después (minutos)} & 30 & 60 & 90 & 120 & 150 & 180 & 210\\ 
-\mbox{Alcohol (gramos/litro)} & 1.6 & 1.7 & 1.5 & 1.1 & 0.7 & 0.2 & 2.1\\
-\hline
-\end{array}
-$$
+|  |  |  |  |  |  |  |  |
+|:------------------------|---:|---:|---:|----:|----:|----:|----:|
+| Tiempo después (minutos) | 30 | 60 | 90 | 120 | 150 | 180 | 210 |
+| Alcohol (gramos/litro)  | 1.6 | 1.7 | 1.5 | 1.1 | 0.7 | 0.2 | 2.1 |
 
 a.  Crear un data frame con los datos del tiempo y la concentración de alcohol.
 
     ::: {.callout-tip collapse="true"}
     ## Solución
+
+    :::{.panel-tabset}
+    ## Base
 
     ```{r}
     df <- data.frame(
@@ -302,6 +554,22 @@ a.  Crear un data frame con los datos del tiempo y la concentración de alcohol.
         Alcohol = c(1.6, 1.7, 1.5, 1.1, 0.7, 0.2, 2.1)
     )
     ```
+
+    ## Tidyverse
+
+    ```{r} 
+    library(tidyverse)
+    df <- tibble(
+        Tiempo = c(30, 60, 90, 120, 150, 180, 210),
+        Alcohol = c(1.6, 1.7, 1.5, 1.1, 0.7, 0.2, 2.1)
+    )
+    ```
+
+    ## Copilot
+    ```sh
+    Crear un data frame de nombre df con dos columnas Tiempo y Alcohol, donde Tiempo contenga los valores 30, 60, 90, 120, 150, 180 y 210, e Alcohol contenga los valores 1.6, 1.7, 1.5, 1.1, 0.7, 0.2 y 2.1.
+    ```
+    :::
     :::
 
 a.  Calcular el coeficiente de correlación lineal. ¿Existe relación lineal entre la concentración de alcohol y el tiempo que pasa?
@@ -309,19 +577,44 @@ a.  Calcular el coeficiente de correlación lineal. ¿Existe relación lineal en
     ::: {.callout-tip collapse="true"}
     ## Solución
 
-    Para calcular el coeficiente de correlación lineal de Pearson se puede utilar la función [`cor`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) del paquete `stats`.
+    :::{.panel-tabset}
+
+    ## Stats
+
+    Para calcular el coeficiente de correlación lineal de Pearson se puede utilizar la función [`cor`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) del paquete `stats`.
+
+    Parámetros:
+    - `x`, `y`: vectores con los valores de las variables.
 
     ```{r}
     cor(df$Tiempo, df$Alcohol)
     ```
 
-    El valore del coeficiente de correlación lineal es muy bajo, por lo que aparentemente no hay relación lineal entre la concentración de alcohol en sangre y el tiempo que pasa.
+    ## Copilot
+
+    ```sh
+    Calcular el coeficiente de correlación lineal de Pearson de las columnas Tiempo y Alcohol del dataframe `df`.
+    ```
+    :::
+
+    El valor del coeficiente de correlación lineal es muy bajo, por lo que aparentemente no hay relación lineal entre la concentración de alcohol en sangre y el tiempo que pasa.
     :::
 
 a.  Dibujar el diagrama de dispersión correspondiente y la recta de regresión de la concentración de alcohol sobre el tiempo. ¿Por qué el ajuste es tan malo?
 
     :::{.callout-tip collapse="true"}
     ## Solución 
+
+    :::{.panel-tabset}
+
+    ## Base
+
+    ```{r}
+    plot(df$Tiempo, df$Alcohol, xlab = "Tiempo en minutos", ylab = "Concentración de alcohol en sangre (g/l)", main = "Diagrama de dispersión")
+    abline(lm(Alcohol ~ Tiempo, df))
+    ```
+
+    ## Tidyverse
 
     ```{r}
     library(ggplot2)
@@ -331,6 +624,13 @@ a.  Dibujar el diagrama de dispersión correspondiente y la recta de regresión 
         labs(title = "Diagrama de dispersión", x = "Tiempo en minutos", y = "Concentración de alcohol en sangre (g/l)")
     ```
 
+    ## Copilot
+
+    ```sh
+    Dibujar un diagrama de dispersión con los valores de la columna Tiempo del data frame df el eje x y los valores de la columna Alcohol en el eje y, y dibujar la recta de regresión de la concentración de alcohol sobre el tiempo.
+    ```
+    :::
+
     El ajuste es malo porque hay un dato atípico que no sigue la misma tendencia que el resto. 
     :::
 
@@ -339,12 +639,39 @@ a.  Eliminar el dato atípico y calcular la recta de la concentración de alcoho
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    Se observa en el diagrama de dispersión que el dato atípico corresponde al la última fila del data frame.
+
+    :::{.panel-tabset}
+
+    ## Base
+
     ```{r}
-    # Eliminamos el dato atípico que está en la fila 
+    # Eliminamos el dato atípico que está en la última fila.
     df <- df[-c(7), ]
+    # Ajustamos al recta de regresión de la concentración de alcohol sobre el tiempo.
     recta_alcohol_tiempo <- lm(Alcohol ~ Tiempo, df) 
-    summary(recta_alcohol_tiempo)
+    tidy(recta_alcohol_tiempo) |> kable()
     ```
+
+    ## Tidymodels
+
+    ```{r}
+    library(tidymodels)
+    # Eliminamos el dato atípico que está en la última fila.
+    df <- df |> slice(-7)
+    # Ajustamos al recta de regresión de la concentración de alcohol sobre el tiempo.
+    modelo_lineal_alcohol_tiempo <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(Alcohol ~ Tiempo, df)
+    tidy(modelo_lineal_alcohol_tiempo) |> kable()
+    ```
+
+    ## Copilot
+    
+    ```sh
+    Eliminar el dato atípico que está en la última fila del data frame df, y ajustar la recta de regresión de la columna Alcohol sobre la columna Tiempo del del data frame df.
+    ```
+    :::
 
     La recta de regresión de la concentración de alcohol en sangre sobre el tiempo es $\textsf{alcohol}= `r recta_alcohol_tiempo$coefficients[["(Intercept)"]]` + `r recta_alcohol_tiempo$coefficients[["Tiempo"]]` \textsf{tiempo}$.
 
@@ -356,9 +683,27 @@ a.  Según el modelo de regresión lineal, ¿a qué velocidad metaboliza esta pe
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    La velocidad de metabolización del alcohol es el valor absoluto del coeficiente de regresión de la concentración de alcohol sobre el tiempo, ya que el coeficiente de regresión indica el cambio en la concentración de alcohol por cada unidad de tiempo que pasa.
+
+    :::{.panel-tabset}
+
+    ## Stats
+
     ```{r}
-    cat(paste("Coeficiente de regresión de la concentración de alchol sobre el tiempo:", recta_alcohol_tiempo$coefficients[["Tiempo"]]))
+    recta_alcohol_tiempo$coefficients[["Tiempo"]]
     ```
+
+    ## Tidymodels
+
+    ```{r}
+    modelo_lineal_suspensos_horas$fit$coefficients[2]
+    ```
+
+    ## Copilot
+    ```sh
+    Obtener el coeficiente de regresión (pendiente) de la recta de regresión de la concentración de alcohol sobre el tiempo a partir del modelo lineal ajustado.
+    ```
+    :::
 
     Así pues, la velocidad de metabolización del alcohol es `r recta_alcohol_tiempo$coefficients[["Tiempo"]]*(-1)` g/l$\cdot$min.
     :::
@@ -370,82 +715,212 @@ a.  Si la concentración máxima de alcohol en la sangre que permite la ley para
 
     Como ahora queremos predecir el tiempo, necesitamos calcular la recta de regresión del tiempo sobre la concentración de alcohol.
 
+    :::{.panel-tabset}
+
+    ## Stats
+
     ```{r}
     recta_tiempo_alcohol <- lm(Tiempo ~ Alcohol, df) 
-    predict.lm(recta_tiempo_alcohol, newdata = list(Alcohol = 0.3))
+    predict.lm(recta_tiempo_alcohol, newdata = list(Alcohol = 0.3)) |> kable()
     ```
 
-    Aunque el coeficiente de determinación lineal está próximo a 1, el tamaño muestral es demasiado pequeño para que la predicción sea fiable.
+    ## Tidymodels
+
+    ```{r}
+    modelo_lineal_tiempo_alcohol <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(Tiempo ~ Alcohol, df)
+    augment(modelo_lineal_tiempo_alcohol, new_data = tibble(Alcohol = 0.3))
+    ```
+
+    ## Copilot
+
+    ```sh
+    Calcular la recta de regresión de la columna Tiempo sobre la columna Alcohol del data frame df y usarla para predecir el tiempo correspondiente a una concentración de alcohol en sangre de 0.3 g/l.
+    ```
+    :::
+
+    Aunque el coeficiente de determinación lineal está próximo a 1, el tamaño muestra es demasiado pequeño para que la predicción sea fiable.
     :::
 :::
+    
 
 :::{#exr-regresion-4}
-El fichero [`pib-usa.csv`](datos/pib-usa.csv) contiene información sobre el producto interior bruto de Estados Unidos en billones de dólares americanos desde 1947 hasta 2022.
+En un experimento se ha medido el número de bacterias por unidad de volumen en un cultivo, cada hora transcurrida,
+obteniendo los siguientes resultados:
 
-a.  Crear un data frame con los datos del PIB y los años a partir del fichero [`pib-usa.csv`](https://aprendeconalf.es/estadistica-practicas-r/datos/horas-estudio.csv).
+|  |  |  |  |  |  |  |  |  |  |
+|:--|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| Horas | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| Nº Bacterias | 25 | 28 | 47 | 65 | 86 | 121 | 190 | 290 | 362 |
+
+a.  Crear un data frame con los datos del número de horas y el número de bacterias.
 
     :::{.callout-tip collapse="true"} 
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Base
+
+    ```{r}
+    df <- data.frame(
+        Horas = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
+        Bacterias = c(25, 28, 47, 65, 86, 121, 190, 290, 362)
+    )
+    ```
+
+    ## Tidyverse
+
     ```{r}
     library(tidyverse)
-    df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/pib-usa.csv")
-    head(df)
+    df <- tibble(
+        Horas = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
+        Bacterias = c(25, 28, 47, 65, 86, 121, 190, 290, 362)
+    )
+    ```
+
+    ## Copilot
+
+    ```sh
+    Crear un data frame de nombre df con dos columnas Horas y Bacterias, donde Horas contenga los valores 1, 2, 3, 4, 5, 6, 7, 8 y 9, y Bacterias contenga los valores 25, 28, 47, 65, 86, 121, 190, 290 y 362.
     ```
     :::
+    :::
 
-a.  Dibujar el diagrama de dispersión que represente la evolución anual del PIB. ¿Qué tipo de modelo de regresión se ajusta mejor a la nube de puntos?
+a.  Dibujar el diagrama de dispersión que represente la evolución del número de bacterias con el tiempo. ¿Qué tipo de modelo de regresión se ajusta mejor a la nube de puntos?
 
     :::{.callout-tip collapse="true"}
     ## Solución 
+    :::{.panel-tabset}
+
+    ## Base
 
     ```{r}
-    ggplot(df, aes(x = Año, y = PIB)) +
+    plot(df$Horas, df$Bacterias, xlab = "Horas", ylab = "Número de bacterias", main = "Diagrama de dispersión")
+    ```
+    
+    ## Tidyverse
+
+    ```{r}
+    library(ggplot2)
+    ggplot(df, aes(x = Horas, y = Bacterias)) +
         geom_point(col = "red") +
-        labs(title = "Evolución del PIB de Estados Unidos", x = "Año", y = "PIB en billones dólares")
+        labs(title = "Diagrama de dispersión", x = "Horas", y = "Número de bacterias")
     ```
 
-    A la vista de la forma de la nube de puntos parece que la evolución del PIB es exponencial.
+    ## Copilot
+
+    ```sh
+    Dibujar un diagrama de dispersión con los valores de la columna Horas del data frame df el eje x y los valores de la columna Bacterias en el eje y.
+    ```
+    :::
+    
+    A la vista de la forma de la nube de puntos parece que la evolución del número de bacterias es exponencial.
     :::
 
-a.  Dibujar el diagrama de dispersión del logaritmo del PIB y los años.
+a.  Dibujar el diagrama de dispersión del logaritmo del número de bacterias y el número de horas.
 
     :::{.callout-tip collapse="true"}
     ## Solución 
 
+    :::{.panel-tabset}
+    ## Base
+
     ```{r}
-    df <- mutate(df, logPIB = log(PIB)) 
-    ggplot(df, aes(x = Año, y = logPIB)) +
-            geom_point(col = "red") +
-            labs(title = "Evolución del PIB de Estados Unidos", x = "Año", y = "Logaritmo del PIB en billones dólares")
+    df$logBacterias <- log(df$Bacterias)
+    plot(df$Horas, df$logBacterias, xlab = "Horas", ylab = "Logaritmo del número de bacterias", main = "Diagrama de dispersión")
     ```
+
+    ## Tidyverse
+
+    ```{r}
+    df <- mutate(df, logBacterias = log(Bacterias)) 
+    ggplot(df, aes(x = Horas, y = logBacterias)) +
+            geom_point(col = "red") +
+            labs(title = "Diagrama de dispersión", x = "Horas", y = "Logaritmo del número de bacterias")
+    ```
+
+    ## Copilot
+
+    ```sh
+    Crear una nueva columna logBacterias en el data frame df con el logaritmo del número de bacterias, y dibujar un diagrama de dispersión con los valores de la columna Horas del data frame df el eje x y los valores de la columna logBacterias en el eje y.
+    ```
+    :::
 
     La nube de puntos tienen una clara forma lineal, lo que confirma que la evolución del PIB es exponencial.
     :::
 
-a.  Calcular el modelo de regresión exponencial del PIB sobre los años.
+a.  Calcular el modelo de regresión exponencial del número de bacterias sobre el número de horas.
 
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+    ## Base
+
     ```{r}
-    recta_logPIB_años <- lm(log(PIB) ~ Año, df) 
-    summary(recta_logPIB_años)
+    recta_logBacterias_horas <- lm(logBacterias ~ Horas, df) 
+    tidy(recta_logBacterias_horas) |> kable()
     ```
 
-    El modelo de regresión exponencial que mejor explica la evolución del PIB es $\textsf{PIB}= e^{`r recta_logPIB_años$coefficients[["(Intercept)"]]` + `r recta_logPIB_años$coefficients[["Año"]]` \textsf{Año}}$.
+    ## Tidymodels
+    
+    ```{r}
+    library(tidymodels)
+    modelo_lineal_logBacterias_horas <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(logBacterias ~ Horas, df)
+    tidy(modelo_lineal_logBacterias_horas) |> kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Calcular el modelo de regresión lineal del logaritmo del número de bacterias sobre el número de horas a partir del data frame df.
+    ```
+    :::
+    
+    El modelo de regresión exponencial que mejor explica la evolución del número de bacterias es $\textsf{Bacterias}= e^{`r round(recta_logBacterias_horas$coefficients[["(Intercept)"]],2)` + `r round(recta_logBacterias_horas$coefficients[["Horas"]],2)` \textsf{Horas}}$.
     :::
 
-a.  ¿Cuál es la tasa de crecimiento porcentual anual del PIB?
+a.  ¿Cuál es la tasa de crecimiento relativa de la población de bacterias?
 
     ::: {.callout-tip collapse="true"}
     ## Solución
 
-    ```{r}
-    cat(paste("Coeficiente de regresión del logaritmo del PIB sobre los años:", recta_logPIB_años$coefficients[["Año"]]))
+    La tasa de crecimiento relativa de un modelo exponencial $y = ae^{bx}$ es 
+    
+    $$
+    \frac{dy/dx}{y} = \frac{ae^{bx}b}{ae^{bx}} = b,
+    $$
+
+    que es la pendiente del modelo $\log(y)=\log(a) + bx$, por lo que la tasa de crecimiento relativa es el coeficiente del modelo de regresión lineal del logaritmo del número de bacterias sobre las horas.
+
+    :::{.panel-tabset}
+
+    ## Stats
+
+    ```{r} 
+    recta_logBacterias_horas$coefficients[["Horas"]]
     ```
 
-    El coeficiente de regresión de los suspensos sobre las horas de estudio vale  `r recta_logPIB_años$coefficients[["Año"]]`, lo que indica que la tasa de crecimiento anual del PIB es `r 100*recta_logPIB_años$coefficients[["Año"]]`%.
+    ## Tidymodels
+
+    ```{r}
+    modelo_lineal_logBacterias_horas$fit$coefficients[2]
+    ```
+
+    ## Copilot
+
+    ```sh
+    Obtener el coeficiente de regresión (pendiente) de la recta de regresión del logaritmo del número de bacterias sobre el número de horas a partir del modelo lineal ajustado.
+
+    Interpretarlo como la tasa de crecimiento relativa de la población de bacterias.
+    ```
+    :::
+
+    El coeficiente de regresión del logaritmo del número de bacterias sobre las horas vale `r recta_logBacterias_horas$coefficients[["Horas"]]`, lo que indica que por cada hora que pasa el número de bacterias se multiplica por $\exp(`r recta_logBacterias_horas$coefficients[["Horas"]]`)$.
     :::
 
 a.  Dibujar el modelo de regresión exponencial sobre el diagrama de dispersión.
@@ -454,59 +929,128 @@ a.  Dibujar el modelo de regresión exponencial sobre el diagrama de dispersión
     :::{.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Base
+
     ```{r}
-    ggplot(df, aes(x = Año, y = PIB)) +
+    plot(df$Horas, df$Bacterias, xlab = "Horas", ylab = "Número de bacterias", main = "Diagrama de dispersión")    
+    curve(exp(recta_logBacterias_horas$coefficients[["(Intercept)"]] + recta_logBacterias_horas$coefficients[["Horas"]]*x), add = TRUE, col = "blue")
+    ```
+
+    ## Tidyverse
+
+    ```{r}
+    ggplot(df, aes(x = Horas, y = Bacterias)) +
             geom_point(col = "red") +
-            geom_smooth(method = "glm", method.args = list(family=gaussian(link="log")))
-            labs(title = "Evolución del PIB de Estados Unidos", x = "Año", y = "Logaritmo del PIB en billones dólares")
+            geom_smooth(method = "glm", method.args = list(family = gaussian(link = "log"))) +
+            labs(title = "Evolución del número de bacterias", x = "Horas", y = "Número de bacterias")
     ```
 
-    En este caso el ajuste no es perfecto, ya que es imposible que la recta pase por todos los puntos como ocurría en el ejercicio anterior. Por tanto, el ajuste es peor.
+    ## Copilot
+
+    ```sh
+    Dibujar el modelo de regresión exponencial del número de bacterias sobre el número de horas sobre el diagrama de dispersión con los datos del data frame df.
+    ```
+    :::
     :::
 
 
-a.  ¿Es el modelo de regresión exponencial un buen modelo para explicar la evolución del PIB?
+a.  ¿Es el modelo de regresión exponencial un buen modelo para explicar la evolución de la población de bacterias?
+
+    ::: {.callout-tip collapse="true"}
+    ## Solución
+    
+    :::{.panel-tabset}
+
+    ## Stats
+
+    ```{r}
+    summary(recta_logBacterias_horas)$r.squared
+    ```
+
+    ## Tidymodels
+
+    ```{r}
+    glance(modelo_lineal_logBacterias_horas) |> kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Calcular el coeficiente de determinación lineal R² del modelo de regresión exponencial del número de bacterias sobre el número de horas a partir del modelo lineal ajustado del logaritmo del número de bacterias sobre el número de horas, e interpretarlo para valorar si el modelo de regresión exponencial es un buen modelo para explicar la evolución de la población de bacterias.
+    ```
+    :::
+
+    Como el coeficiente de determinación lineal vale `r summary(recta_logBacterias_horas)$r.squared` que está bastante próximo a 1, el ajuste es bueno, y el modelo exponencial explica muy bien la evolución del número de bacterias.
+    :::
+
+a.  Según el modelo de regresión exponencial ¿cuántas bacterias habrá al cabo de 3 horas y media del inicio del cultivo? 
+¿Y al cabo de 10 horas? ¿Son fiables estas predicciones? 
 
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    Como hemos construido el modelo de regresión lineal del logaritmo del número de bacterias sobre las horas, para predecir el número de bacterias a partir del número de horas, necesitamos aplicar la función exponencial a la predicción del modelo lineal.
+
+    :::{.panel-tabset}
+    
+    ## Stats
+    
     ```{r}
-    cat(paste("Coeficiente de determinación exponencial R²:", summary(recta_logPIB_años)$r.squared))
+    exp(predict.lm(recta_logBacterias_horas, newdata = list(Horas = c(3.5, 10)))) |> kable()
     ```
 
-    Como el coeficiente de determinación lineal vale `r summary(recta_logPIB_años)$r.squared` que está bastante próximo a 1, el ajuste es bueno, y el modelo exponencial explica muy bien la evolución del PIB.
+    ## Tidymodels
+
+    ```{r}
+    augment(modelo_lineal_logBacterias_horas, new_data = tibble(Horas = c(3.5, 10))) |> 
+        mutate(prediccion_Bacterias = exp(.pred)) |> kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Utilizar el modelo de regresión exponencial del número de bacterias sobre el número de horas para predecir el número de bacterias al cabo de 3.5 horas y 10 horas, aplicando la función exponencial a la predicción del modelo lineal del logaritmo del número de bacterias sobre el número de horas.
+    ```
     :::
 
-a.  Utilizar el modelo de regresión exponencial para predecir el PIB del año 2024. ¿Es fiable esta predicción? 
+    Las predicciones no son muy fiables ya que, aunque el coeficiente de determinación está próximo a 1, el tamaño de la muestra es muy pequeño.
+    :::
+
+a.  Dar una predicción lo más fiable posible del tiempo que tendría que transcurrir para que en el cultivo hubiese 100
+bacterias.
 
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    Como ahora queremos predecir el tiempo en el que se alcanzarán 100 bacterias en el cultivo, necesitamos construir el modelo de regresión de las horas sobre el número de bacterias. Como la relación entre el número de bacterias y las horas es exponencial, la relación entre las horas y el número de bacterias será la inversa, es decir, el modelo logarítmico.
+
+    :::{.panel-tabset}
+    ## Stats
+
     ```{r}
-    # El modelo exponencial devuelve el logaritmo del PIB, por lo que hay que aplicar la función exponencial para obtener el PIB.
-    exp(predict.lm(recta_logPIB_años, newdata = list(Año = 2024)))
+    log_horas_Bacterias <- lm(Horas ~ log(Bacterias), df) 
+    tidy(log_horas_Bacterias) |> kable()
+    predict.lm(log_horas_Bacterias, newdata = list(Bacterias = 100)) |> kable()
     ```
 
-    La predicción será fiable ya que el coeficiente de determinación está próximo a 1, el tamaño de la muestra no es muy pequeño y el año para el que se realiza la predicción no está lejos del rango de años de la muestra.
+    ## Tidymodels
+
+    ```{r}
+    modelo_log_horas_Bacterias <- linear_reg() |>
+      set_engine("lm") |> 
+      fit(Horas ~ log(Bacterias), df)
+    tidy(modelo_log_horas_Bacterias) |> kable()
+    augment(modelo_log_horas_Bacterias, new_data = tibble(Bacterias = 100)) |> kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Calcular el modelo de regresión lineal de las horas sobre el logaritmo del número de bacterias a partir del data frame df, y utilizarlo para predecir el número de horas correspondiente a un número de bacterias igual a 100.
+    ```
     :::
-
-a.  ¿Cuándo se alcanzará un PIB de 50000 billones de dólares?
-
-    ::: {.callout-tip collapse="true"}
-    ## Solución
-
-    Como ahora queremos predecir el año en el que se alcanzará el PIB dado, necesitamos construir el modelo de regresión de los años sobre el PIB. Como la relación entre el PIB y los años es exponencial, la relación entre los años y el PIB será la inversa, es decir, el modelo logarítmico.
-
-    ```{r}
-    log_años_PIB <- lm(Año ~ log(PIB), df) 
-    summary(log_años_PIB)
-    ```
-
-    El modelo de regresión logarítmico de los años sobre el PIB es $\textsf{Año}= `r log_años_PIB$coefficients[["(Intercept)"]]` + `r log_años_PIB$coefficients[["log(PIB)"]]` \log(\textsf{PIB})$.
-
-    ```{r}
-    predict.lm(log_años_PIB, newdata = list(PIB = 50000))
-    ```
     :::
 :::
 
@@ -572,7 +1116,8 @@ a.  Calcular los coeficientes de determinación lineal, cuadrático, exponencial
         kable(col.names = c("Tipo de Modelo", "R²"))
     ```
 
-    El mejor modelo es el Sigmoidal que explica el `r modelos[1, "r.squared"]*100`% de la variabilidad del peso perdido. 
+    El mejor modelo es el Sigmoidal que explica el 66.6% de la variabilidad del peso perdido. 
+
     :::
 
 a.  Dibujar el diagrama de dispersión de los kilos perdidos en función del número de días con la dieta según si la persona hace ejercicio o no. ¿Qué conclusiones se pueden sacar?
@@ -655,6 +1200,7 @@ a.  Construir el mejor modelo de regresión del peso perdido sobre los días de 
     ```
     :::
 
+
     Y ahora el modelo sigmoidal para el grupo de las personas que no hacen ejercicio.
 
     :::{.panel-tabset}
@@ -687,14 +1233,14 @@ a.  Según los mejores modelos de regresión en cada caso, ¿cuántos kilos perd
     Hacemos primero la predicción del peso perdido para la persona que hace ejercicio usando el modelo inverso.
 
     ```{r}
-    predict.lm(inverso_ejercicio, newdata = list(dias = 100))
+    predict.lm(inverso_ejercicio, newdata = list(dias = 100)) |> kable()
     ```
 
     Y ahora hacemos la predicción del peso perdido para la persona que no hace ejercicio usando el modelo sigmoidal.
     
     ```{r}
     # El modelo sigmoidal devuelve el logaritmo del peso perdido por lo que hay que aplicar la función exponencial para obtener el peso perdido.
-    exp(predict.lm(sigmoidal_no_ejercicio, newdata = list(dias = 100)))
+    exp(predict.lm(sigmoidal_no_ejercicio, newdata = list(dias = 100))) |> kable()
     ```
     :::
 :::

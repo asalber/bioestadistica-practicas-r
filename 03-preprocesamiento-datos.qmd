@@ -23,13 +23,14 @@ library(tidyverse)
 # Incluye los siguientes paquetes:
 # - readr: para la lectura de ficheros csv. 
 # - dplyr: para el preprocesamiento y manipulación de datos.
+# - tidyr: para la organización de los datos.
 # - lubridate: para el procesamiento de fechas.
 library(knitr) # Para el formateo de tablas.
 ```
 
 ```{r}
 #| echo: false
-packages <- c("readr", "dplyr", "lubridate", "knitr")
+packages <- c("readr", "dplyr", "tidyr", "lubridate", "knitr")
 ```
 {{< include _versiones-paquetes.qmd >}}
 
