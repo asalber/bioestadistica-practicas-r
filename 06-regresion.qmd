@@ -1062,11 +1062,29 @@ a.  Crear un data frame con los datos de la dieta a partir del fichero [`dieta.c
     :::{.callout-tip collapse="true"} 
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Base
+
+    ```{r}
+    df <- read.csv("https://aprendeconalf.es/estadistica-practicas-r/datos/dieta.csv")
+    df
+    ```
+
+    ## Tidyverse
+
     ```{r}
     library(tidyverse)
     df <- read_csv("https://aprendeconalf.es/estadistica-practicas-r/datos/dieta.csv")
     df
     ```
+
+    ## Copilot
+
+    ```sh
+    Crear un data frame de nombre df con los datos del fichero con la url https://aprendeconalf.es/estadistica-practicas-r/datos/dieta.csv.
+    ```
+    :::
     :::
 
 a.  Dibujar el diagrama de dispersión de los kilos perdidos en función del número de días con la dieta. ¿Qué tipo de modelo de regresión se ajusta mejor a la nube de puntos?
@@ -1074,11 +1092,28 @@ a.  Dibujar el diagrama de dispersión de los kilos perdidos en función del nú
     :::{.callout-tip collapse="true"}
     ## Solución 
 
+    :::{.panel-tabset}
+
+    ## Base
+
+    ```{r}
+    plot(df$dias, df$peso.perdido, xlab = "Días de dieta", ylab = "Peso perdido en Kg", main = "Diagrama de dispersión")
+    ```
+
+    ## Tidyverse
+
     ```{r}
     ggplot(df, aes(x = dias, y = peso.perdido)) +
         geom_point(col = "red") +
         labs(title = "Diagrama de dispersión del peso perdido y los días de dieta", x = "Días de dieta", y = "Peso perdido en Kg")
     ```
+
+    ## Copilot
+
+    ```sh
+    Dibujar un diagrama de dispersión con los valores de la columna dias del data frame df el eje x y los valores de la columna peso.perdido en el eje y.
+    ```
+    :::
 
     La nube de puntos es bastante difusa aunque parece apreciarse una tendencia logarítmica o sigmoidal.
     :::
@@ -1088,36 +1123,70 @@ a.  Calcular los coeficientes de determinación lineal, cuadrático, exponencial
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Base
+
     ```{r}
     library(knitr)
-    library(broom)
-    # Construimos un data frame con el ajuste de los modelos.
-    modelos <- tibble(
-            Lineal = list(lm(peso.perdido ~ dias, df)),
-            Cuadratico = list(lm(peso.perdido ~ dias + I(dias^2), df)),
-            Exponencial = list(lm(log(peso.perdido) ~ dias, df)),
-            Logaritmico = list(lm(peso.perdido ~ log(dias), df)),
-            Potencial = list(lm(log(peso.perdido) ~ log(dias), df)),
-            Inverso = list(lm(peso.perdido ~ I(1/dias), df)),
-            Sigmoidal = list(lm(log(peso.perdido) ~ I(1/dias), df)),
-        )  |> 
-        # 
-        # Reestructuramos el data frame para tener todos los modelos en la misma columna.
-        pivot_longer(everything(), names_to = "Tipo_Modelo", values_to = "Modelo")  |> 
-        # Obtenemos un resumen del ajuste de cada modelo en formato organizado (se obtiene una lista con los parámetros que describen el ajuste de cada modelo).
-        mutate(Resumen = map(Modelo, glance)) |> 
-        # Desanidamos el resumen (se obtiene una columna para cada parámetro del resumen del ajuste de los modelos).
-        unnest(Resumen)  |> 
-        # Ordenamos el data frame por el coeficiente de determinación.
-        arrange(-r.squared)
-        
-    modelos  |>
-        select(Tipo_Modelo, r.squared)  |> 
-        kable(col.names = c("Tipo de Modelo", "R²"))
+    modelos <- data.frame(
+        Tipo_Modelo = c("Lineal", "Cuadrático", "Exponencial", "Logarítmico", "Potencial", "Inverso", "Sigmoidal"),
+        R2 = c(
+            summary(lm(peso.perdido ~ dias, df))$r.squared,
+            summary(lm(peso.perdido ~ dias + I(dias^2), df))$r.squared,
+            summary(lm(log(peso.perdido) ~ dias, df))$r.squared,
+            summary(lm(peso.perdido ~ log(dias), df))$r.squared,
+            summary(lm(log(peso.perdido) ~ log(dias), df))$r.squared,
+            summary(lm(peso.perdido ~ I(1/dias), df))$r.squared,
+            summary(lm(log(peso.perdido) ~ I(1/dias), df))$r.squared
+        )
+    )
+    modelos <- modelos[order(-modelos$R2), ]
+    kable(modelos, col.names = c("Tipo de Modelo", "R²"), row.names = FALSE)
     ```
 
-    El mejor modelo es el Sigmoidal que explica el 66.6% de la variabilidad del peso perdido. 
+    ## Tidymodels
+    
+    ```{r}
+    library(tidymodels)
+    # Definimos las recetas para cada tipo de modelo.
+    recetas <- list(
+        lineal= recipe(peso.perdido ~ dias, df),
+        cuadrático = recipe(peso.perdido ~ dias, df) |> step_poly(dias, degree = 2),
+        exponencial = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE),
+        logarítmico = recipe(peso.perdido ~ dias, df) |> step_log(dias),
+        potencial = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE) |> step_log(dias),
+        inverso = recipe(peso.perdido ~ dias, df) |> step_mutate(dias = 1/dias),
+        sigmoidal = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE) |> step_mutate(dias = 1/dias)
+    )
 
+    # Definimos el modelo lineal para ajustar a cada receta.
+    modelo <- linear_reg() |> set_engine("lm")
+
+    # Ajustamos los modelos.
+    modelos <- recetas |> 
+        map(~ workflow() |> 
+                add_recipe(.x) |> 
+                add_model(modelo) |> 
+                fit(df))
+
+    # Calculamos los coeficientes de determinación de cada modelo.
+    modelos |> 
+        map(glance) |> 
+        map_dfr(~ select(.x, r.squared, adj.r.squared, AIC, BIC),
+                .id = "model") |> 
+        arrange(desc(r.squared)) |> 
+        kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Calcular los coeficientes de determinación lineal, cuadrático, exponencial, logarítmico, potencial, inverso y sigmoidal de la columna peso.perdido sobre la columna dias del data frame df.
+    ```
+    :::
+
+    El mejor modelo es el Sigmoidal que explica el 66.6% de la variabilidad del peso perdido.
     :::
 
 a.  Dibujar el diagrama de dispersión de los kilos perdidos en función del número de días con la dieta según si la persona hace ejercicio o no. ¿Qué conclusiones se pueden sacar?
@@ -1125,11 +1194,28 @@ a.  Dibujar el diagrama de dispersión de los kilos perdidos en función del nú
     :::{.callout-tip collapse="true"}
     ## Solución 
 
+    :::{.panel-tabset}
+    ## Base
+
+    ```{r}
+    plot(df$dias, df$peso.perdido, xlab = "Días de dieta", ylab = "Peso perdido en Kg", main = "Diagrama de dispersión del peso perdido y los días de dieta", col = ifelse(df$ejercicio == "si", "blue", "red"))
+     legend("topright", legend = c("Hace ejercicio", "No hace ejercicio"), col = c("blue", "red"), pch = 1)
+    ```
+    
+    ## Tidyverse
+
     ```{r}
     ggplot(df, aes(x = dias, y = peso.perdido, color = ejercicio)) +
         geom_point() +
         labs(title = "Diagrama de dispersión del peso perdido y los días de dieta", x = "Días de dieta", y = "Peso perdido en Kg")
     ```
+
+    ## Copilot
+
+    ```sh
+    Dibujar un diagrama de dispersión con los valores de la columna dias del data frame df el eje x y los valores de la columna peso.perdido en el eje y, diferenciando con colores los puntos correspondientes a las categorías de la columna ejercicio.
+    ```
+    :::
 
     Claramente la nube de puntos de las personas que hacen ejercicio está por encima de la de los que no hacen ejercicio, lo que indica que hacer ejercicio favorece la pérdida de peso. Los más razonable es construir modelos de regresión para cada grupo.
     :::
@@ -1139,35 +1225,134 @@ a.  ¿Qué tipo de modelo explica mejor la relación entre el peso perdido y los
     ::: {.callout-tip collapse="true"}
     ## Solución
 
+    :::{.panel-tabset}
+
+    ## Base
+
+    Grupo de personas que hacen ejercicio.
+
     ```{r}
-    library(kableExtra)
-    modelos <- df  |> 
-        # Anidamos por la columna ejercicio.
-        nest_by(ejercicio)  |> 
-        # Ajustamos los modelos de regresión.
-        mutate(
-            Lineal = list(lm(peso.perdido ~ dias, data)),
-            Cuadratico = list(lm(peso.perdido ~ dias + I(dias^2), data)),
-            Exponencial = list(lm(log(peso.perdido) ~ dias, data)),
-            Logaritmico = list(lm(peso.perdido ~ log(dias), data)),
-            Potencial = list(lm(log(peso.perdido) ~ log(dias), data)),
-            Inverso = list(lm(peso.perdido ~ I(1/dias), data)),
-            Sigmoidal = list(lm(log(peso.perdido) ~ I(1/dias), data)),
-        )  |> 
-        # Reestructuramos el data frame para tener todos los modelos en la misma columna.
-        pivot_longer(-c(ejercicio, data), names_to = "Tipo_Modelo", values_to = "Modelo")  |> 
-        # Obtenemos un resumen del ajuste de cada modelo en formato organizado (se obtiene una lista con los parámetros que describen el ajuste de cada modelo).
-        mutate(Resumen = map(Modelo, glance)) |> 
-        # Desanidamos el resumen (se obtiene una columna para cada parámetro del resumen del ajuste de los modelos).
-        unnest(Resumen)  |> 
-        # Ordenamos el data frame por la columna ejercicio y por el coeficiente de determinación.
-        arrange(ejercicio, -r.squared)
-        
-    modelos |> 
-        select(ejercicio, Tipo_Modelo, r.squared)  |> 
-        kable(col.names = c("Ejercicio", "Tipo de Modelo", "R²")) |>
-        group_rows(index = table(modelos$ejercicio))
+    library(knitr)
+    # Filtramos el data frame por el grupo de las personas que hacen ejercicio.
+    df_ejercicio <- df[df$ejercicio == "si", ]
+    # Calculamos los coeficientes de determinación de cada modelo para el grupo de las personas que hacen ejercicio.
+    modelos <- data.frame(
+        Tipo_Modelo = c("Lineal", "Cuadrático", "Exponencial", "Logarítmico", "Potencial", "Inverso", "Sigmoidal"),
+        R2 = c(
+            summary(lm(peso.perdido ~ dias, df_ejercicio))$r.squared,
+            summary(lm(peso.perdido ~ dias + I(dias^2), df_ejercicio))$r.squared,
+            summary(lm(log(peso.perdido) ~ dias, df_ejercicio))$r.squared,
+            summary(lm(peso.perdido ~ log(dias), df_ejercicio))$r.squared,
+            summary(lm(log(peso.perdido) ~ log(dias), df_ejercicio))$r.squared,
+            summary(lm(peso.perdido ~ I(1/dias), df_ejercicio))$r.squared,
+            summary(lm(log(peso.perdido) ~ I(1/dias), df_ejercicio))$r.squared
+        )
+    )
+    modelos <- modelos[order(-modelos$R2), ]
+    kable(modelos, col.names = c("Tipo de Modelo", "R²"), row.names = FALSE)
     ```
+    
+    Grupo de personas que no hacen ejercicio.
+
+    ```{r}
+    # Filtramos el data frame por el grupo de las personas que hacen ejercicio.
+    df_no_ejercicio <- df[df$ejercicio == "no", ]
+    # Calculamos los coeficientes de determinación de cada modelo para el grupo de las personas que hacen ejercicio.
+    modelos <- data.frame(
+        Tipo_Modelo = c("Lineal", "Cuadrático", "Exponencial", "Logarítmico", "Potencial", "Inverso", "Sigmoidal"),
+        R2 = c(
+            summary(lm(peso.perdido ~ dias, df_no_ejercicio))$r.squared,
+            summary(lm(peso.perdido ~ dias + I(dias^2), df_no_ejercicio))$r.squared,
+            summary(lm(log(peso.perdido) ~ dias, df_no_ejercicio))$r.squared,
+            summary(lm(peso.perdido ~ log(dias), df_no_ejercicio))$r.squared,
+            summary(lm(log(peso.perdido) ~ log(dias), df_no_ejercicio))$r.squared,
+            summary(lm(peso.perdido ~ I(1/dias), df_no_ejercicio))$r.squared,
+            summary(lm(log(peso.perdido) ~ I(1/dias), df_no_ejercicio))$r.squared
+        )
+    )
+    modelos <- modelos[order(-modelos$R2), ]
+    kable(modelos, col.names = c("Tipo de Modelo", "R²"), row.names = FALSE)
+    ```
+
+    ## Tidymodels
+    
+    Grupo de personas que hacen ejercicio.
+
+    ```{r}
+    # Filtramos el data frame por el grupo de las personas que no hacen ejercicio.
+    df_ejercicio <- df |> filter(ejercicio == "si")
+    # Definimos las recetas para cada tipo de modelo.
+    recetas <- list(
+        lineal= recipe(peso.perdido ~ dias, df),
+        cuadrático = recipe(peso.perdido ~ dias, df) |> step_poly(dias, degree = 2),
+        exponencial = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE),
+        logarítmico = recipe(peso.perdido ~ dias, df) |> step_log(dias),
+        potencial = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE) |> step_log(dias),
+        inverso = recipe(peso.perdido ~ dias, df) |> step_mutate(dias = 1/dias),
+        sigmoidal = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE) |> step_mutate(dias = 1/dias)
+    )
+
+    # Definimos el modelo lineal para ajustar a cada receta.
+    modelo <- linear_reg() |> set_engine("lm")
+
+    # Ajustamos los modelos.
+    modelos_ejercicio <- recetas |> 
+        map(~ workflow() |> 
+                add_recipe(.x) |> 
+                add_model(modelo) |> 
+                fit(df_ejercicio))
+
+    # Calculamos los coeficientes de determinación de cada modelo.
+    modelos_ejercicio |> 
+        map(glance) |> 
+        map_dfr(~ select(.x, r.squared, adj.r.squared, AIC, BIC),
+                .id = "model") |> 
+        arrange(desc(r.squared)) |> 
+        kable()
+    ```
+
+    Grupo de personas que no hacen ejercicio.
+
+    ```{r}
+    # Filtramos el data frame por el grupo de las personas que no hacen ejercicio.
+    df_no_ejercicio <- df |> filter(ejercicio == "no")
+    # Definimos las recetas para cada tipo de modelo.
+    recetas <- list(
+        lineal= recipe(peso.perdido ~ dias, df),
+        cuadrático = recipe(peso.perdido ~ dias, df) |> step_poly(dias, degree = 2),
+        exponencial = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE),
+        logarítmico = recipe(peso.perdido ~ dias, df) |> step_log(dias),
+        potencial = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE) |> step_log(dias),
+        inverso = recipe(peso.perdido ~ dias, df) |> step_mutate(dias = 1/dias),
+        sigmoidal = recipe(peso.perdido ~ dias, df) |> step_log(peso.perdido, skip = TRUE) |> step_mutate(dias = 1/dias)
+    )
+
+    # Definimos el modelo lineal para ajustar a cada receta.
+    modelo <- linear_reg() |> set_engine("lm")
+    # Ajustamos los modelos.
+    modelos_no_ejercicio <- recetas |> 
+        map(~ workflow() |> 
+            add_recipe(.x) |> 
+            add_model(modelo) |> 
+            fit(df_no_ejercicio))
+
+    # Calculamos los coeficientes de determinación de cada modelo.
+    modelos_no_ejercicio |> 
+        map(glance) |> 
+        map_dfr(~ select(.x, r.squared, adj.r.squared, AIC, BIC),
+                .id = "model") |> 
+        arrange(desc(r.squared)) |> 
+        kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Calcular los coeficientes de determinación lineal, cuadrático, exponencial, logarítmico, potencial, inverso y sigmoidal de la columna peso.perdido sobre la columna dias del data frame df para cada grupo de personas que hacen ejercicio.
+
+    Repetir lo mismo para el grupo de personas que no hacen ejercicio.
+    ```
+    :::
 
     El mejor modelo en el grupo de los que hacen ejercicio es el inverso y en el grupo de los que no el sigmoidal. Los modelos han mejorado bastante con respecto al modelo anterior, sobre todo el del grupo de personas que hace ejercicio.
     :::
@@ -1178,49 +1363,54 @@ a.  Construir el mejor modelo de regresión del peso perdido sobre los días de 
     ## Solución
 
     Construimos el modelo inverso para el grupo de las personas que hacen ejercicio.
-    
+
     :::{.panel-tabset}
 
     ## Base
-    Con la función [`lm`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/lm) del paquete `stats`.
-
+    
     ```{r}
+    # Ajustamos el modelo inverso para el grupo de las personas que hacen ejercicio.
     inverso_ejercicio <- lm(peso.perdido ~ I(1/dias), df[df$ejercicio == "si", ])
-    summary(inverso_ejercicio)
+    tidy(inverso_ejercicio) |> kable()
     ```
 
-    ## Tidyverse
+    ## Tidymodels
 
     ```{r}
-    df |>
-        nest_by(ejercicio) |> 
-        mutate(modelo = list(tidy(lm(peso.perdido ~ I(1/dias), data = data)))) |> 
-        unnest(modelo) |>
-        filter(ejercicio == "si")
+    # Obtenemos el modelo inverso para el grupo de las personas que hacen ejercicio.
+    modelos_ejercicio[["inverso"]] |> tidy() |> kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Construir el modelo de regresión inverso del peso perdido sobre los días de dieta para el grupo de las personas que hacen ejercicio a partir del data frame df.
     ```
     :::
-
 
     Y ahora el modelo sigmoidal para el grupo de las personas que no hacen ejercicio.
 
     :::{.panel-tabset}
 
     ## Base
-    Con la función [`lm`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/lm) del paquete `stats`.
-    
+        
     ```{r}
+    # Ajustamos el modelo sigmoidal para el grupo de las personas que no hacen ejercicio.
     sigmoidal_no_ejercicio <- lm(log(peso.perdido) ~ I(1/dias), df[df$ejercicio == "no", ])
-    summary(sigmoidal_no_ejercicio)
+    tidy(sigmoidal_no_ejercicio) |> kable()
     ```
 
-    ## Tidyverse
+    ## Tidymodels
 
     ```{r}
-    df |>
-        nest_by(ejercicio) |> 
-        mutate(modelo = list(tidy(lm(log(peso.perdido) ~ I(1/dias), data = data)))) |> 
-        unnest(modelo) |>
-        filter(ejercicio == "no")
+    # Obtenemos el modelo sigmoidal para el grupo de las personas que no hacen ejercicio.
+    modelos_no_ejercicio[["sigmoidal"]] |> tidy() |> kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Construir el modelo de regresión sigmoidal del peso perdido sobre los días de dieta para el grupo de las personas que no hacen ejercicio a partir del data frame df.
     ```
     :::
     :::
@@ -1232,16 +1422,54 @@ a.  Según los mejores modelos de regresión en cada caso, ¿cuántos kilos perd
 
     Hacemos primero la predicción del peso perdido para la persona que hace ejercicio usando el modelo inverso.
 
+    :::{.panel-tabset}
+
+    ## Base
+
     ```{r}
     predict.lm(inverso_ejercicio, newdata = list(dias = 100)) |> kable()
     ```
 
+    ## Tidymodels
+
+    ```{r}
+    augment(modelos_ejercicio[["inverso"]], new_data = tibble(dias = 100)) |> kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Utilizar el modelo de regresión inverso para predecir el peso perdido para una persona que hace ejercicio tras 100 días de dieta a partir del data frame df.
+    ```
+    :::
+   
     Y ahora hacemos la predicción del peso perdido para la persona que no hace ejercicio usando el modelo sigmoidal.
+
+    :::{.panel-tabset}
+
+    ## Base
     
     ```{r}
     # El modelo sigmoidal devuelve el logaritmo del peso perdido por lo que hay que aplicar la función exponencial para obtener el peso perdido.
     exp(predict.lm(sigmoidal_no_ejercicio, newdata = list(dias = 100))) |> kable()
     ```
+
+    ## Tidymodels
+
+    ```{r}
+    # El modelo sigmoidal devuelve el logaritmo del peso perdido por lo que hay que aplicar la función exponencial para obtener el peso perdido.
+    augment(modelos_no_ejercicio[["sigmoidal"]], new_data = tibble(dias = 100)) |> 
+        mutate(prediccion_peso_perdido = exp(.pred)) |> 
+        select(prediccion_peso_perdido) |> 
+        kable()
+    ```
+
+    ## Copilot
+
+    ```sh
+    Utilizar el modelo de regresión sigmoidal para predecir el peso perdido para una persona que no hace ejercicio tras 100 días de dieta a partir del data frame df, aplicando la función exponencial a la predicción del modelo sigmoidal para obtener el peso perdido.
+    ```
+    :::
     :::
 :::
 
