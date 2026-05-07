@@ -154,7 +154,7 @@ a.  Realizar un contraste ANOVA para ver si hay diferencias estadísticamente si
     ```
     :::
 
-    Como el p-valor del contraste es $0.00007$ que es mucho menor que el nivel de significación $\alpha=0.05$, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las concentraciones medias de NO2 de al menos dos lugares.
+    Como el p-valor del contraste es 0.00007 que es mucho menor que el nivel de significación $\alpha=0.05$, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las concentraciones medias de NO2 de al menos dos lugares.
     :::
 
 a.  Analizar los residuos del modelo ANOVA.
@@ -213,7 +213,7 @@ a.  Realizar un contraste *post-hoc* de comparación de las medias de N02 por pa
     ```
     :::
 
-    Existe una diferencia muy significativa entre la concentración media de NO2 de los lugares $A$ y $B$ (p-valor $0.00005$), y también entre los lugares $A$ y $C$ (p-valor $0.0049$), pero no entre los lugares $B$ y $C$ (p-valor $0.1558$).
+    Existe una diferencia muy significativa entre la concentración media de NO2 de los lugares $A$ y $B$ (p-valor 0.00005), y también entre los lugares $A$ y $C$ (p-valor 0.0049), pero no entre los lugares $B$ y $C$ (p-valor 0.1558).
     :::
 :::
 
@@ -267,9 +267,9 @@ b.  Realizar un contraste ANOVA para ver si la cosecha de trigo depende del abon
     ```
     :::
 
-    Como el p-valor del contraste es $0.0108$ que es menor que el nivel de significación $\alpha=0.05$, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las medias de las cosechas de trigo de los distintos abonos, y por tanto, la cosecha depende del tipo de abono.
+    Como el p-valor del contraste es 0.0108 que es menor que el nivel de significación $\alpha=0.05$, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las medias de las cosechas de trigo de los distintos abonos, y por tanto, la cosecha depende del tipo de abono.
 
-    La varianza residual del modelo es $8.891$.
+    La varianza residual del modelo es 8.891.
     :::
 
 c.  Realizar un contraste ANOVA para ver si la cosecha de trigo depende del abono y del tipo de semilla. ¿Cuánto se reduce la varianza residual al incluir el tipo de semilla en el modelo?
@@ -306,9 +306,9 @@ c.  Realizar un contraste ANOVA para ver si la cosecha de trigo depende del abon
     ```
     :::
 
-    Como tanto el p-valor correspondiente a la semilla, que es prácticamente $0$, como el correspondiente al abono, que es $0.002$, son menores que el nivel de significación $\alpha=0.05$, rechazamos la hipótesis nula y se concluye que la cosecha depende tanto del tipo de semilla como del tipo de abono.
+    Como tanto el p-valor correspondiente a la semilla, que es prácticamente 0, como el correspondiente al abono, que es 0.002, son menores que el nivel de significación $\alpha=0.05$, rechazamos la hipótesis nula y se concluye que la cosecha depende tanto del tipo de semilla como del tipo de abono.
 
-    Al incluir el tipo de semilla en el modelo, la varianza residual se reduce de $8.8689$ a $6.3528$, por lo que este modelo explica mejor la variabilidad de la cosecha.
+    Al incluir el tipo de semilla en el modelo, la varianza residual se reduce de 8.8689 a 6.3528, por lo que este modelo explica mejor la variabilidad de la cosecha.
     :::
 
 d.  Incluir en el modelo anterior también la interacción entre el tipo de semilla y el tipo de abono. ¿Es significativa la interacción entre los dos factores? ¿Cuánto se reduce la varianza residual al incluir la interacción en el modelo?
@@ -345,9 +345,9 @@ d.  Incluir en el modelo anterior también la interacción entre el tipo de semi
     ```
     :::
 
-    Al igual que antes, tanto el tipo de semilla como el tipo de abono son significativos en el modelo, pero además lo es su interacción ya que el p-valor correspondiente es $0.0483$ que es menor que el nivel de significación $\alpha = 0.05$.
+    Al igual que antes, tanto el tipo de semilla como el tipo de abono son significativos en el modelo, pero además lo es su interacción ya que el p-valor correspondiente es 0.0483 que es menor que el nivel de significación $\alpha = 0.05$.
 
-    Al incluir la interacción entre el tipo de semilla y el tipo de abono en el modelo, la varianza residual se reduce de $6.3528$ a $5.9391$, por lo que este modelo explica todavía mejor la variabilidad de la cosecha.
+    Al incluir la interacción entre el tipo de semilla y el tipo de abono en el modelo, la varianza residual se reduce de 6.3528 a 5.9391, por lo que este modelo explica todavía mejor la variabilidad de la cosecha.
     :::
 
 e.  Realizar un diagrama de interacción entre los factores con las medias de los distintos grupos experimentales.
@@ -638,7 +638,7 @@ a.  Realizar un contraste de comparación de medias por pares para ver entre qu�
         kable()
     ```
 
-    Existe una diferencia muy significativa entre el peso medio de las mujeres al inicio y a la mitad de la dieta (p-valor < $0.01$), pero no entre el peso a la mitad y al final de la dieta (p-valor > 0.05).
+    Existe una diferencia muy significativa entre el peso medio de las mujeres al inicio y a la mitad de la dieta (p-valor < 0.01), pero no entre el peso a la mitad y al final de la dieta (p-valor > 0.05).
     :::
 
 ::: -->

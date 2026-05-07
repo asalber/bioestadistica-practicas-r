@@ -623,7 +623,7 @@ a.  Calcular el coeficiente de asimetría.
     ```
     :::
 
-    Como $g_1$ está próxima a $0$, la distribución es casi simétrica.
+    Como $g_1$ está próxima a 0, la distribución es casi simétrica.
     :::
 
 a.  Calcular el coeficiente de apuntamiento.
@@ -1054,21 +1054,33 @@ a.  Realizar un resumen estadístico con el coeficiente de asimetría y el coefi
 :::{#exr-descriptiva-tension}
 En un estudio se ha medido la tensión arterial de 25 individuos. Además se les ha preguntado si fuman y beben:
 
-$$
-\begin{array}{lccccccccccccc}
-\hline
-\mbox{Fumador}  & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} \\
-\mbox{Bebedor} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{sí} \\
-\mbox{Tensión arterial} & 80 & 92 & 75 & 56 & 89 & 93 & 101 & 67 & 89 & 63 & 98 & 58 & 91 \\
-\hline
-\\
-\hline
-\mbox{Fumador}  & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} & \mbox{sí} \\
-\mbox{Bebedor} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{no} & \mbox{sí} & \mbox{sí} & \mbox{sí} & \mbox{no} & \mbox{sí} & \mbox{no} \\
-\mbox{Tensión arterial} & 71 & 52 & 98 & 104 & 57 & 89 & 70 & 93 & 69 & 82 & 70 & 49 \\
-\hline
-\end{array}
-$$
+| Fumador | Bebedor | Tensión arterial |
+|:-------:|:-------:|:----------------:|
+| sí | no | 80 |
+| no | no | 92 |
+| sí | sí | 75 |
+| sí | sí | 56 |
+| sí | no | 89 |
+| no | no | 93 |
+| no | sí | 101 |
+| sí | sí | 67 |
+| no | no | 89 |
+| sí | sí | 63 |
+| no | no | 98 |
+| sí | sí | 58 |
+| no | sí | 91 |
+| sí | sí | 71 |
+| no | no | 52 |
+| no | sí | 98 |
+| sí | sí | 104 |
+| no | no | 57 |
+| no | no | 89 |
+| no | sí | 70 |
+| sí | sí | 93 |
+| no | sí | 69 |
+| sí | no | 82 |
+| no | sí | 70 |
+| sí | no | 49 |
 
 a. Calcular la media aritmética, desviación típica, coeficiente de asimetría y curtosis de la tensión arterial de los fumadores y de los no fumadores. ¿Se puede considerar que las muestras provienen de una distribución normal?
 

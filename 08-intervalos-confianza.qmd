@@ -40,11 +40,11 @@ packages <- c("readr", "dplyr", "ggplot2", "broom", "tidymodels", "samplingbook"
 
 :::{#exr-intervalo-media-principio-activo}
 
-Se sabe que para que un fármaco sea efectivo, la concentración de su principio activo debe ser de al menos 16 mg/mm$^3$.[label](http://localhost:1313/09-contrastes-hipotesis-parametricos.html) Una farmacia va a comprar un lote de este medicamento, pero antes quiere asegurarse de que los medicamentos del lote son efectivos y para ello analiza la concentración de principio activo en una muestra aleatoria de 10 envases tomados del lote, obteniendo los siguientes resultados en mg/mm$^{3}$:
+Se sabe que para que un fármaco sea efectivo, la concentración de su principio activo debe ser de al menos 16 mg/mm$^3$. Una farmacia va a comprar un lote de este medicamento, pero antes quiere asegurarse de que los medicamentos del lote son efectivos y para ello analiza la concentración de principio activo en una muestra aleatoria de 10 envases tomados del lote, obteniendo los siguientes resultados en mg/mm$^{3}$:
 
-| |
-|:-:|
-| 17.6 − 19.2 − 21.3 − 15.1 − 17.6 − 18.9 − 16.2 − 18.3 − 19.0 − 16.4 |
+| | | | | | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 17.6 | 19.2 | 21.3 | 15.1 | 17.6 | 18.9 | 16.2 | 18.3 | 19.0 | 16.4 |
 
 
 a.  Crear un conjunto de datos con los datos de la muestra.

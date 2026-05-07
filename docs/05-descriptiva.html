@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>5&nbsp; Estadística Descriptiva – Prácticas de Bioestadística con R</title>
@@ -132,7 +133,7 @@ window.Quarto = {
 </script>
 <meta property="og:title" content="5&nbsp; Estadística Descriptiva – Prácticas de Bioestadística con R">
 <meta property="og:description" content="">
-<meta property="og:image" content="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAEKCAQAAAAcQQUKAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oEFBEcDdTSHOsAAAETSURBVHja7dZdDsFQFIVRFaMzAkbICEyP11s/oelub5yu/SbIipwmvuG+W3P7VbXi3KF9cXl7yNMwj2i/fhi/dXz58C3662rfDofD4XC4LtzTv3n2v/t1Q5snyzRn2yq1b9fzUbku0pkfOZ2Jw+FwONwfcjozOOEXXO3b4XA4HA63BU5nBqczg6t9OxwOh8PhtsDpzOB0ZnC1b4fD4XA4XBdO+AVXm9OZOBwOh8PhJk1nBleb05k4HA6Hw+EmTWcGJ/yCq307HA6Hw+G2wOnM4HRmcLVvh8PhcDjcFjidGZzODK727XA4HA6H68IJv+Bqcz905tydm+N97cy5Gz/rtW+Hw+FwOFwXrmdnLr/at1uZewBxe0ESBJWlqgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNC0yMFQxNzoyODoxMyswMDowMBW8pU8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDQtMjBUMTc6Mjg6MTMrMDA6MDBk4R3zAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA0LTIwVDE3OjI4OjEzKzAwOjAwM/Q8LAAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAEKCAQAAAAcQQUKAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFBw0hLwGqnmQAAAETSURBVHja7dZdDsFQFIVRFaMzAkbICEyP11s/oelub5yu/SbIipwmvuG+W3P7VbXi3KF9cXl7yNMwj2i/fhi/dXz58C3662rfDofD4XC4LtzTv3n2v/t1Q5snyzRn2yq1b9fzUbku0pkfOZ2Jw+FwONwfcjozOOEXXO3b4XA4HA63BU5nBqczg6t9OxwOh8PhtsDpzOB0ZnC1b4fD4XA4XBdO+AVXm9OZOBwOh8PhJk1nBleb05k4HA6Hw+EmTWcGJ/yCq307HA6Hw+G2wOnM4HRmcLVvh8PhcDjcFjidGZzODK727XA4HA6H68IJv+Bqcz905tydm+N97cy5Gz/rtW+Hw+FwOFwXrmdnLr/at1uZewBxe0ESBJWlqgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNS0wN1QxMzozMzo0NyswMDowMK7jKXMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDUtMDdUMTM6MzM6NDcrMDA6MDDfvpHPAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA1LTA3VDEzOjMzOjQ3KzAwOjAwiKuwEAAAAABJRU5ErkJggg==">
 <meta property="og:site_name" content="Prácticas de Bioestadística con R">
 </head>
 <body class="nav-sidebar floating fullcontent quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
@@ -463,7 +464,7 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<p><img src="https://img.shields.io/badge/R-4.5.1-276DC3?logo=r" class="img-fluid"><img src="https://img.shields.io/badge/DescTools-0.99.60-blue?logo=r" class="img-fluid" alt="DescTools"><img src="https://img.shields.io/badge/dplyr-1.1.4-blue?logo=r" class="img-fluid" alt="dplyr"><img src="https://img.shields.io/badge/knitr-1.50-blue?logo=r" class="img-fluid" alt="knitr"><img src="https://img.shields.io/badge/moments-0.14.1-blue?logo=r" class="img-fluid" alt="moments"><img src="https://img.shields.io/badge/readr-2.1.5-blue?logo=r" class="img-fluid" alt="readr"><img src="https://img.shields.io/badge/skimr-2.2.2-blue?logo=r" class="img-fluid" alt="skimr"><img src="https://img.shields.io/badge/summarytools-1.1.5-blue?logo=r" class="img-fluid" alt="summarytools"><img src="https://img.shields.io/badge/vtable-1.4.8-blue?logo=r" class="img-fluid" alt="vtable"></p>
+<p><img src="https://img.shields.io/badge/R-4.3.3-276DC3?logo=r" class="img-fluid"><img src="https://img.shields.io/badge/DescTools-0.99.60-blue?logo=r" class="img-fluid" alt="DescTools"><img src="https://img.shields.io/badge/dplyr-1.1.4-blue?logo=r" class="img-fluid" alt="dplyr"><img src="https://img.shields.io/badge/knitr-1.50-blue?logo=r" class="img-fluid" alt="knitr"><img src="https://img.shields.io/badge/moments-0.14.1-blue?logo=r" class="img-fluid" alt="moments"><img src="https://img.shields.io/badge/readr-2.1.5-blue?logo=r" class="img-fluid" alt="readr"><img src="https://img.shields.io/badge/skimr-2.2.1-blue?logo=r" class="img-fluid" alt="skimr"><img src="https://img.shields.io/badge/summarytools-1.1.4-blue?logo=r" class="img-fluid" alt="summarytools"><img src="https://img.shields.io/badge/vtable-1.4.6-blue?logo=r" class="img-fluid" alt="vtable"></p>
 </div>
 </div>
 </div>
@@ -1323,8 +1324,8 @@ Parámetros:
 <code>x</code>: vector numérico del que calcular la cuasivarianza.</li>
 <li>
 <code>na.rm</code>: si es <code>TRUE</code> se eliminan los valores perdidos antes de calcular la cuasivarianza.</li>
-<li></li>
-</ul>
+<li>
+</li></ul>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>cuasivarianza <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">medicamentos</span><span class="op">)</span>, </span>
 <span>    varianza <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">medicamentos</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1562,7 +1563,7 @@ Parámetros:
 </div>
 </div>
 </div>
-<p>Como <span class="math inline">\(g_1\)</span> está próxima a <span class="math inline">\(0\)</span>, la distribución es casi simétrica.</p>
+<p>Como <span class="math inline">\(g_1\)</span> está próxima a 0, la distribución es casi simétrica.</p>
 </div>
 </div>
 </div>
@@ -1903,7 +1904,7 @@ Parámetros:
 <td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
 </tr>
 </tbody></table></td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAADcAAAEKCAQAAAAcQQUKAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oEFBEcDdTSHOsAAAETSURBVHja7dZdDsFQFIVRFaMzAkbICEyP11s/oelub5yu/SbIipwmvuG+W3P7VbXi3KF9cXl7yNMwj2i/fhi/dXz58C3662rfDofD4XC4LtzTv3n2v/t1Q5snyzRn2yq1b9fzUbku0pkfOZ2Jw+FwONwfcjozOOEXXO3b4XA4HA63BU5nBqczg6t9OxwOh8PhtsDpzOB0ZnC1b4fD4XA4XBdO+AVXm9OZOBwOh8PhJk1nBleb05k4HA6Hw+EmTWcGJ/yCq307HA6Hw+G2wOnM4HRmcLVvh8PhcDjcFjidGZzODK727XA4HA6H68IJv+Bqcz905tydm+N97cy5Gz/rtW+Hw+FwOFwXrmdnLr/at1uZewBxe0ESBJWlqgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNC0yMFQxNzoyODoxMyswMDowMBW8pU8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDQtMjBUMTc6Mjg6MTMrMDA6MDBk4R3zAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA0LTIwVDE3OjI4OjEzKzAwOjAwM/Q8LAAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAADcAAAEKCAQAAAAcQQUKAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFBw0hLwGqnmQAAAETSURBVHja7dZdDsFQFIVRFaMzAkbICEyP11s/oelub5yu/SbIipwmvuG+W3P7VbXi3KF9cXl7yNMwj2i/fhi/dXz58C3662rfDofD4XC4LtzTv3n2v/t1Q5snyzRn2yq1b9fzUbku0pkfOZ2Jw+FwONwfcjozOOEXXO3b4XA4HA63BU5nBqczg6t9OxwOh8PhtsDpzOB0ZnC1b4fD4XA4XBdO+AVXm9OZOBwOh8PhJk1nBleb05k4HA6Hw+EmTWcGJ/yCq307HA6Hw+G2wOnM4HRmcLVvh8PhcDjcFjidGZzODK727XA4HA6H68IJv+Bqcz905tydm+N97cy5Gz/rtW+Hw+FwOFwXrmdnLr/at1uZewBxe0ESBJWlqgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNS0wN1QxMzozMzo0NyswMDowMK7jKXMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDUtMDdUMTM6MzM6NDcrMDA6MDDfvpHPAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA1LTA3VDEzOjMzOjQ3KzAwOjAwiKuwEAAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">14 (100.0%)</td>
 <td style="text-align: center;">0 (0.0%)</td>
 </tr>
@@ -1925,7 +1926,7 @@ Parámetros:
 </tr>
 </tbody></table></td>
 <td style="text-align: left; vertical-align: middle;">12 distinct values</td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oEFBEcDdTSHOsAAAFSSURBVHja7dzLCcJAFEBRI1ZnBVqhVmB7uh3dyImMH7xnJyTyuDBZPWa5biK2nx7g1xQMFQztxh/2PTtP/fwdlpmz2L+PD+/kxUd7ePaCT8+dZb2OJCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYuluom7tTaL5pltHDBuK79viek0lmzzLqSKKCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGXbqj7Xbaudxzu9PvTYOsXBzuSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGBoGVfxTl96jd6njRuIS41MRxIVDBUM3QB5IxYydzivEAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNC0yMFQxNzoyODoxMyswMDowMBW8pU8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDQtMjBUMTc6Mjg6MTMrMDA6MDBk4R3zAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA0LTIwVDE3OjI4OjEzKzAwOjAwM/Q8LAAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFBw0hLwGqnmQAAAFSSURBVHja7dzLCcJAFEBRI1ZnBVqhVmB7uh3dyImMH7xnJyTyuDBZPWa5biK2nx7g1xQMFQztxh/2PTtP/fwdlpmz2L+PD+/kxUd7ePaCT8+dZb2OJCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYuluom7tTaL5pltHDBuK79viek0lmzzLqSKKCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGXbqj7Xbaudxzu9PvTYOsXBzuSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGBoGVfxTl96jd6njRuIS41MRxIVDBUM3QB5IxYydzivEAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNS0wN1QxMzozMzo0NyswMDowMK7jKXMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDUtMDdUMTM6MzM6NDcrMDA6MDDfvpHPAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA1LTA3VDEzOjMzOjQ3KzAwOjAwiKuwEAAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">14 (100.0%)</td>
 <td style="text-align: center;">0 (0.0%)</td>
 </tr>
@@ -1954,7 +1955,7 @@ Parámetros:
 <td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
 </tr>
 </tbody></table></td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAGIAAAA3CAQAAABd71fBAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oEFBEcDdTSHOsAAACgSURBVGje7djBCYAwEADBRKzOCrRCrSDt6TcRBMknm2Pn50Nx4SJ4+U7zW0a/gBGRItb64pzogBz5IyKlbfS7/VSaqxDjZASFERRGUBhBYQSFERRGUBhBYQTF6x+79D1lsFwvOCZadqRq2RFjnEJENGfiGj5Pe+65C7U86/2shBgnIyiMoDCCwggKIyiMoDCCwggKIyjiLc9mFWKcjKB4AMlDC+F+elCbAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI2LTA0LTIwVDE3OjI4OjEzKzAwOjAwFbylTwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNi0wNC0yMFQxNzoyODoxMyswMDowMGThHfMAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjYtMDQtMjBUMTc6Mjg6MTMrMDA6MDAz9DwsAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAGIAAAA3CAQAAABd71fBAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFBw0hLwGqnmQAAACgSURBVGje7djBCYAwEADBRKzOCrRCrSDt6TcRBMknm2Pn50Nx4SJ4+U7zW0a/gBGRItb64pzogBz5IyKlbfS7/VSaqxDjZASFERRGUBhBYQSFERRGUBhBYQTF6x+79D1lsFwvOCZadqRq2RFjnEJENGfiGj5Pe+65C7U86/2shBgnIyiMoDCCwggKIyiMoDCCwggKIyjiLc9mFWKcjKB4AMlDC+F+elCbAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI2LTA1LTA3VDEzOjMzOjQ3KzAwOjAwruMpcwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNi0wNS0wN1QxMzozMzo0NyswMDowMN++kc8AAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjYtMDUtMDdUMTM6MzM6NDcrMDA6MDCIq7AQAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">14 (100.0%)</td>
 <td style="text-align: center;">0 (0.0%)</td>
 </tr>
@@ -1976,7 +1977,7 @@ Parámetros:
 </tr>
 </tbody></table></td>
 <td style="text-align: left; vertical-align: middle;">12 distinct values</td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oEFBEcDdTSHOsAAAFbSURBVHja7dzBbYMwAEBRiJguEzQTthNkvfTqVr08aCAR/90iIQRfMgfb8fyYIi5HP8C7KRgqGFrGH/Y9+8LP38d89MuuNT74svou0zRd4dr70W/9TxqSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGDox7Zz3Xl/Rr/26Z9x571pSKKCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqFNZ++Y5y6x7HUU0o7BbIFFrt5zQaYhiQqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoZ2nKJ+Hbq6cBvWC04ZbMsfOBqSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYGgep7c/O6zoT+Oc/lwj05BEBUMFQ99UMBOPZ+QYAQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNC0yMFQxNzoyODoxMyswMDowMBW8pU8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDQtMjBUMTc6Mjg6MTMrMDA6MDBk4R3zAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA0LTIwVDE3OjI4OjEzKzAwOjAwM/Q8LAAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFBw0hLwGqnmQAAAFbSURBVHja7dzBbYMwAEBRiJguEzQTthNkvfTqVr08aCAR/90iIQRfMgfb8fyYIi5HP8C7KRgqGFrGH/Y9+8LP38d89MuuNT74svou0zRd4dr70W/9TxqSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGDox7Zz3Xl/Rr/26Z9x571pSKKCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqFNZ++Y5y6x7HUU0o7BbIFFrt5zQaYhiQqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoZ2nKJ+Hbq6cBvWC04ZbMsfOBqSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYGgep7c/O6zoT+Oc/lwj05BEBUMFQ99UMBOPZ+QYAQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNS0wN1QxMzozMzo0NyswMDowMK7jKXMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDUtMDdUMTM6MzM6NDcrMDA6MDDfvpHPAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA1LTA3VDEzOjMzOjQ3KzAwOjAwiKuwEAAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">13 (92.9%)</td>
 <td style="text-align: center;">1 (7.1%)</td>
 </tr>
@@ -1998,7 +1999,7 @@ Parámetros:
 </tr>
 </tbody></table></td>
 <td style="text-align: left; vertical-align: middle;">14 distinct values</td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oEFBEcDdTSHOsAAAFfSURBVHja7dyxbcMwFEDBKPB0mSCZMJnA6yUtHbh5BEFB8F3nwqbwAKqgvnz8vlG8n30BVyNYJFh0Gz/svp/9TC74eey9znG52/SvLPEx8Z37qVdsS0aCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRUvGzmfn7Xevt2K+f9Gc/sy8/fzE/d7VHtmSkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0cn/vbPX7MOTr+HhyUsFW/HwxJaMBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEix6OqHe/oHBF/870z3xl4BpsyUiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLDoGI/xv53pPzXO6R8aNbZkJFgkWPQHoAkVNpKup5gAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjYtMDQtMjBUMTc6Mjg6MTMrMDA6MDAVvKVPAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI2LTA0LTIwVDE3OjI4OjEzKzAwOjAwZOEd8wAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyNi0wNC0yMFQxNzoyODoxMyswMDowMDP0PCwAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFBw0hLwGqnmQAAAFfSURBVHja7dyxbcMwFEDBKPB0mSCZMJnA6yUtHbh5BEFB8F3nwqbwAKqgvnz8vlG8n30BVyNYJFh0Gz/svp/9TC74eey9znG52/SvLPEx8Z37qVdsS0aCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRUvGzmfn7Xevt2K+f9Gc/sy8/fzE/d7VHtmSkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0cn/vbPX7MOTr+HhyUsFW/HwxJaMBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEix6OqHe/oHBF/870z3xl4BpsyUiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLDoGI/xv53pPzXO6R8aNbZkJFgkWPQHoAkVNpKup5gAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjYtMDUtMDdUMTM6MzM6NDcrMDA6MDCu4ylzAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI2LTA1LTA3VDEzOjMzOjQ3KzAwOjAw376RzwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyNi0wNS0wN1QxMzozMzo0NyswMDowMIirsBAAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">14 (100.0%)</td>
 <td style="text-align: center;">0 (0.0%)</td>
 </tr>
@@ -2020,13 +2021,13 @@ Parámetros:
 </tr>
 </tbody></table></td>
 <td style="text-align: left; vertical-align: middle;">13 distinct values</td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oEFBEcDdTSHOsAAAFiSURBVHja7d1BTsJAGIBRazgdJ9AT6gm4Hm5HF2ZeQx3A7+1ISGm+ZLr4aTvb9SXidfUJPJqCoYKh0/jh1tezz+kDvm2rQ/xmPLnT7qNMOU9967KuBWtJooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhg287v2fzTxG8Dzfq/+Ng+54iaEmigqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhJ5zpz/+5sccTBjv2FUktSVQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDD0bUS9bsOAY+fwt/Rjpr9qw4CZ373cxXYGLUlUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwtI3D9I+Hmaz/rfFlRVuNTEsSFQwVDH0BYZcWNs7B9l8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjYtMDQtMjBUMTc6Mjg6MTMrMDA6MDAVvKVPAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI2LTA0LTIwVDE3OjI4OjEzKzAwOjAwZOEd8wAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyNi0wNC0yMFQxNzoyODoxMyswMDowMDP0PCwAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFBw0hLwGqnmQAAAFiSURBVHja7d1BTsJAGIBRazgdJ9AT6gm4Hm5HF2ZeQx3A7+1ISGm+ZLr4aTvb9SXidfUJPJqCoYKh0/jh1tezz+kDvm2rQ/xmPLnT7qNMOU9967KuBWtJooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhg287v2fzTxG8Dzfq/+Ng+54iaEmigqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhJ5zpz/+5sccTBjv2FUktSVQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDD0bUS9bsOAY+fwt/Rjpr9qw4CZ373cxXYGLUlUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwtI3D9I+Hmaz/rfFlRVuNTEsSFQwVDH0BYZcWNs7B9l8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjYtMDUtMDdUMTM6MzM6NDcrMDA6MDCu4ylzAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI2LTA1LTA3VDEzOjMzOjQ3KzAwOjAw376RzwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyNi0wNS0wN1QxMzozMzo0NyswMDowMIirsBAAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">13 (92.9%)</td>
 <td style="text-align: center;">1 (7.1%)</td>
 </tr>
 </tbody>
 </table>
-<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.1.5 (<a href="https://www.r-project.org/">R</a> version 4.5.1)<br>2026-04-20</p>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.1.4 (<a href="https://www.r-project.org/">R</a> version 4.3.3)<br>2026-05-07</p>
 </div>
 </div>
 </div>
@@ -3300,21 +3301,140 @@ M
 <span class="header-section-number">5.2</span> Ejercicios propuestos</h2>
 <div id="exr-descriptiva-tension" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 5.3</strong></span> En un estudio se ha medido la tensión arterial de 25 individuos. Además se les ha preguntado si fuman y beben:</p>
-<p><span class="math display">\[
-\begin{array}{lccccccccccccc}
-\hline
-\mbox{Fumador}  &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{sí} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} \\
-\mbox{Bebedor} &amp; \mbox{no} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{sí} \\
-\mbox{Tensión arterial} &amp; 80 &amp; 92 &amp; 75 &amp; 56 &amp; 89 &amp; 93 &amp; 101 &amp; 67 &amp; 89 &amp; 63 &amp; 98 &amp; 58 &amp; 91 \\
-\hline
-\\
-\hline
-\mbox{Fumador}  &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{no} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} \\
-\mbox{Bebedor} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{sí} &amp; \mbox{sí} &amp; \mbox{no} &amp; \mbox{sí} &amp; \mbox{no} \\
-\mbox{Tensión arterial} &amp; 71 &amp; 52 &amp; 98 &amp; 104 &amp; 57 &amp; 89 &amp; 70 &amp; 93 &amp; 69 &amp; 82 &amp; 70 &amp; 49 \\
-\hline
-\end{array}
-\]</span></p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th style="text-align: center;">Fumador</th>
+<th style="text-align: center;">Bebedor</th>
+<th style="text-align: center;">Tensión arterial</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">80</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">89</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">101</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">89</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">98</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">58</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">91</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">52</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">98</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">104</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">89</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">93</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">82</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sí</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">49</td>
+</tr>
+</tbody>
+</table>
 <ol type="a">
 <li><p>Calcular la media aritmética, desviación típica, coeficiente de asimetría y curtosis de la tensión arterial de los fumadores y de los no fumadores. ¿Se puede considerar que las muestras provienen de una distribución normal?</p></li>
 <li><p>Calcular la media aritmética, desviación típica, coeficiente de asimetría y curtosis de la tensión arterial de los bebedores y de los no bebedores. ¿Se puede considerar que las muestras provienen de una distribución normal?</p></li>

@@ -231,7 +231,7 @@ a.  Si la empresa que da el servicio tiene operadores para atener como máximo 3
 :::
 
 :::{#exr-distribuciones-probabilidad-4}
-La [ley de los casos raros](https://en.wikipedia.org/wiki/Poisson_limit_theorem) establece que la función de probabilidad de un modelo de Poison $P(\lambda)$ se obtiene en el límite cuando $n$ tiende a $\infty$ y $p$ tiende a $0$ de la función de probabilidad de un modelo Binomial $B(n,p)$, donde $\lambda = np$.
+La [ley de los casos raros](https://en.wikipedia.org/wiki/Poisson_limit_theorem) establece que la función de probabilidad de un modelo de Poison $P(\lambda)$ se obtiene en el límite cuando $n$ tiende a $\infty$ y $p$ tiende a 0 de la función de probabilidad de un modelo Binomial $B(n,p)$, donde $\lambda = np$.
 
 a.  Aproximar un modelo binomial $B(10, 0.2)$ mediante el correspondiente modelo Poisson aplicando la ley de los casos raros y comparar las gráficas de las distribuciones de probabilidad de ambos modelos. ¿Es una buena aproximación?
 

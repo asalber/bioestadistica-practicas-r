@@ -708,7 +708,7 @@ a.  Según el modelo de regresión lineal, ¿a qué velocidad metaboliza esta pe
     Así pues, la velocidad de metabolización del alcohol es `r recta_alcohol_tiempo$coefficients[["Tiempo"]]*(-1)` g/l$\cdot$min.
     :::
 
-a.  Si la concentración máxima de alcohol en la sangre que permite la ley para poder conducir es $0.3$ g/l, ¿cuánto tiempo habrá que esperar después de tomarse un litro de vino para poder conducir sin infringir la ley? ¿Es fiable esta predicción?
+a.  Si la concentración máxima de alcohol en la sangre que permite la ley para poder conducir es 0.3 g/l, ¿cuánto tiempo habrá que esperar después de tomarse un litro de vino para poder conducir sin infringir la ley? ¿Es fiable esta predicción?
 
     ::: {.callout-tip collapse="true"}
     ## Solución
@@ -1523,5 +1523,5 @@ a. ¿Qué tipo de modelo explica mejor la evolución de la población con los a�
 
 b. ¿Qué tipo de modelo explica mejor la relación entre la esperanza de vida y el PIB per cápita?
 
-c. ¿Qué tipo de modelo explica mejor la relación entre la esperanza de vida y el PIB r cápita para cada continente? Construir el mejor modelo en cada caso y utilizarlo para predecir la esperanza de vida de una persona de cada continente con un PIB per cápita de 1000 dólares PPP.
+c. ¿Qué tipo de modelo explica mejor la relación entre la esperanza de vida y el PIB per cápita para cada continente? Construir el mejor modelo en cada caso y utilizarlo para predecir la esperanza de vida de una persona de cada continente con un PIB per cápita de 1000 dólares PPP.
 :::

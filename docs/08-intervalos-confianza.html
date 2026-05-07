@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>7&nbsp; Intervalos de confianza – Prácticas de Bioestadística con R</title>
@@ -132,7 +133,7 @@ window.Quarto = {
 </script>
 <meta property="og:title" content="7&nbsp; Intervalos de confianza – Prácticas de Bioestadística con R">
 <meta property="og:description" content="">
-<meta property="og:image" content="08-intervalos-confianza_files/figure-html/unnamed-chunk-16-1.png">
+<meta property="og:image" content="08-intervalos-confianza_files/figure-html/unnamed-chunk-17-1.png">
 <meta property="og:site_name" content="Prácticas de Bioestadística con R">
 </head>
 <body class="nav-sidebar floating fullcontent quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
@@ -464,7 +465,7 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<p><img src="https://img.shields.io/badge/R-4.5.1-276DC3?logo=r" class="img-fluid"><img src="https://img.shields.io/badge/broom-1.0.10-blue?logo=r" class="img-fluid" alt="broom"><img src="https://img.shields.io/badge/dplyr-1.1.4-blue?logo=r" class="img-fluid" alt="dplyr"><img src="https://img.shields.io/badge/ggplot2-4.0.0-blue?logo=r" class="img-fluid" alt="ggplot2"><img src="https://img.shields.io/badge/knitr-1.50-blue?logo=r" class="img-fluid" alt="knitr"><img src="https://img.shields.io/badge/readr-2.1.5-blue?logo=r" class="img-fluid" alt="readr"><img src="https://img.shields.io/badge/samplingbook-1.2.4-blue?logo=r" class="img-fluid" alt="samplingbook"><img src="https://img.shields.io/badge/tidymodels-1.4.1-blue?logo=r" class="img-fluid" alt="tidymodels"></p>
+<p><img src="https://img.shields.io/badge/R-4.3.3-276DC3?logo=r" class="img-fluid"><img src="https://img.shields.io/badge/broom-1.0.9-blue?logo=r" class="img-fluid" alt="broom"><img src="https://img.shields.io/badge/dplyr-1.1.4-blue?logo=r" class="img-fluid" alt="dplyr"><img src="https://img.shields.io/badge/ggplot2-3.5.2-blue?logo=r" class="img-fluid" alt="ggplot2"><img src="https://img.shields.io/badge/knitr-1.50-blue?logo=r" class="img-fluid" alt="knitr"><img src="https://img.shields.io/badge/readr-2.1.5-blue?logo=r" class="img-fluid" alt="readr"><img src="https://img.shields.io/badge/samplingbook-1.2.4-blue?logo=r" class="img-fluid" alt="samplingbook"><img src="https://img.shields.io/badge/tidymodels-1.4.1-blue?logo=r" class="img-fluid" alt="tidymodels"></p>
 </div>
 </div>
 </div>
@@ -504,9 +505,18 @@ window.Quarto = {
 </div>
 </div>
 <div id="exr-intervalo-media-principio-activo" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 7.1</strong></span> Se sabe que para que un fármaco sea efectivo, la concentración de su principio activo debe ser de al menos 16 mg/mm<span class="math inline">\(^3\)</span>.<a href="http://localhost:1313/09-contrastes-hipotesis-parametricos.html">label</a> Una farmacia va a comprar un lote de este medicamento, pero antes quiere asegurarse de que los medicamentos del lote son efectivos y para ello analiza la concentración de principio activo en una muestra aleatoria de 10 envases tomados del lote, obteniendo los siguientes resultados en mg/mm<span class="math inline">\(^{3}\)</span>:</p>
+<p><span class="theorem-title"><strong>Ejercicio 7.1</strong></span> Se sabe que para que un fármaco sea efectivo, la concentración de su principio activo debe ser de al menos 16 mg/mm<span class="math inline">\(^3\)</span>. Una farmacia va a comprar un lote de este medicamento, pero antes quiere asegurarse de que los medicamentos del lote son efectivos y para ello analiza la concentración de principio activo en una muestra aleatoria de 10 envases tomados del lote, obteniendo los siguientes resultados en mg/mm<span class="math inline">\(^{3}\)</span>:</p>
 <table class="caption-top table"><tbody><tr class="odd">
-<td style="text-align: center;">17.6 − 19.2 − 21.3 − 15.1 − 17.6 − 18.9 − 16.2 − 18.3 − 19.0 − 16.4</td>
+<td style="text-align: center;">17.6</td>
+<td style="text-align: center;">19.2</td>
+<td style="text-align: center;">21.3</td>
+<td style="text-align: center;">15.1</td>
+<td style="text-align: center;">17.6</td>
+<td style="text-align: center;">18.9</td>
+<td style="text-align: center;">16.2</td>
+<td style="text-align: center;">18.3</td>
+<td style="text-align: center;">19.0</td>
+<td style="text-align: center;">16.4</td>
 </tr></tbody></table>
 <ol type="a">
 <li>
@@ -986,7 +996,7 @@ Sample size needed: 50</code></pre>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Intervalos de confianza del 95% para la media"</span>, x <span class="op">=</span> <span class="st">"Granja"</span>, y <span class="op">=</span> <span class="st">"Porcentaje de grasa"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-intervalos-confianza_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure"><p><img src="08-intervalos-confianza_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1123,7 +1133,7 @@ Sample size needed: 50</code></pre>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Intervalos de confianza del 99% para la media"</span>, x <span class="op">=</span> <span class="st">"Granja"</span>, y <span class="op">=</span> <span class="st">"Porcentaje de grasa"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-intervalos-confianza_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure"><p><img src="08-intervalos-confianza_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>

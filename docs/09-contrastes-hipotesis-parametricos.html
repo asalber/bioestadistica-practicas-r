@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>8&nbsp; Contrastes de hipótesis paramétricos de una y dos poblaciones – Prácticas de Bioestadística con R</title>
@@ -444,14 +445,33 @@ window.Quarto = {
 <p>Para la realización de esta práctica se requieren los siguientes paquetes:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="co"># Incluye los siguientes paquetes:</span></span>
+<span><span class="co"># - readr: para la lectura de datos.</span></span>
 <span><span class="co"># - dplyr: para el preprocesamiento y manipulación de datos.</span></span>
 <span><span class="co"># - purrr: para aplicar funciones a vectores.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span> <span class="co"># para convertir las listas con los resúmenes de los modelos de regresión a formato organizado.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span> <span class="co"># para realizar contrastes de hipótesis en formato tidy.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span> <span class="co"># para el cálculo de tamaños muestrales.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span> <span class="co"># para el formateo de tablas.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Versiones de R y de los paquetes utilizados
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="center">
+<p><img src="https://img.shields.io/badge/R-4.5.3-276DC3?logo=r" class="img-fluid"><img src="https://img.shields.io/badge/broom-1.0.10-blue?logo=r" class="img-fluid" alt="broom"><img src="https://img.shields.io/badge/dplyr-1.1.4-blue?logo=r" class="img-fluid" alt="dplyr"><img src="https://img.shields.io/badge/knitr-1.50-blue?logo=r" class="img-fluid" alt="knitr"><img src="https://img.shields.io/badge/pwr-1.3-0-blue?logo=r" class="img-fluid" alt="pwr"><img src="https://img.shields.io/badge/readr-2.1.5-blue?logo=r" class="img-fluid" alt="readr"><img src="https://img.shields.io/badge/tidymodels-1.4.1-blue?logo=r" class="img-fluid" alt="tidymodels"><img src="https://img.shields.io/badge/tidyr-1.3.1-blue?logo=r" class="img-fluid" alt="tidyr"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -460,7 +480,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Si se va a usar <code>Copilot</code> para resolver los ejercicios se recomienda añadir el siguiente contexto al comienzo del script o al fichero <code>r.instructions.md</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
@@ -490,29 +510,10 @@ window.Quarto = {
 H_0 &amp;: p=0.5\\
 H_1 &amp;: p&lt;0.5
 \end{align*}\]</span></p>
-<p>Para ello se ha tomado una muestra aleatoria con reemplazamiento de <span class="math inline">\(10\)</span> personas.</p>
+<p>Para ello se ha tomado una muestra aleatoria con reemplazamiento de 10 personas.</p>
 <ol type="a">
 <li>
 <p>Suponiendo cierta la hipótesis nula, ¿qué distribución sigue la variable que mide el número de hombres en la muestra de tamaño 10?</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Solución
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Suponiendo cierta la hipótesis nula, es decir, que la proporción de hombres en la población es <span class="math inline">\(0.5\)</span>, el número de hombres en una muestra aleatoria con reemplazamiento de 10 personas sigue una distribución Binomial <span class="math inline">\(B(10, 0.5)\)</span>.</p>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Suponiendo cierta la hipótesis nula, ¿cuál es la probabilidad de que en la muestra se obtengan 0 hombres? ¿Se aceptaría la hipótesis nula en tal caso?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -525,20 +526,13 @@ H_1 &amp;: p&lt;0.5
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Tenemos que calcular la probabilidad de <span class="math inline">\(0\)</span> hombres con la distribución <span class="math inline">\(B(10, 0.5)\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0009765625</code></pre>
-</div>
-</div>
-<p>Como se ve, la probabilidad de obtener 0 hombres en una muestra aleatoria con reemplazamiento de 10 personas tomadas de una población con el mismo número de hombres y mujeres es muy baja, por lo que, en este caso rechazaríamos la hipótesis nula sin dudarlo.</p>
+<p>Suponiendo cierta la hipótesis nula, es decir, que la proporción de hombres en la población es 0.5, el número de hombres en una muestra aleatoria con reemplazamiento de 10 personas sigue una distribución Binomial <span class="math inline">\(B(10, 0.5)\)</span>.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Suponiendo cierta la hipótesis nula, si se decide rechazarla cuando en la muestra haya 2 o menos hombres, ¿cuál es el riesgo de equivocarse?</p>
+<p>Suponiendo cierta la hipótesis nula, ¿cuál es la probabilidad de que en la muestra se obtengan 0 hombres? ¿Se aceptaría la hipótesis nula en tal caso?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -551,20 +545,43 @@ H_1 &amp;: p&lt;0.5
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Tenemos que calcular la probabilidad de haya <span class="math inline">\(2\)</span> o menos hombres con la distribución <span class="math inline">\(B(10, 0.5)\)</span>.</p>
+<p>Tenemos que calcular la probabilidad de 0 hombres con la distribución <span class="math inline">\(B(10, 0.5)\)</span>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+Para calcular la probabilidad de obtener 0 hombres con la distribución binomial <span class="math inline">\(B(10, 0.5)\)</span>, podemos utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.3/topics/Binomial"><code>pbinom</code></a> del paquete <code>stats</code> de R.<br>
+Parámetros:
+<ul>
+<li>
+<code>q</code>: número de éxitos (en este caso, número de hombres) para el que queremos calcular la probabilidad. En este caso, 0.</li>
+<li>
+<code>size</code>: número de ensayos (tamaño de la muestra). En este caso, 10.</li>
+<li>
+<code>prob</code>: probabilidad de éxito en cada ensayo (proporción de hombres en la población). En este caso, 0.5.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0546875</code></pre>
+<pre><code>[1] 0.0009765625</code></pre>
 </div>
 </div>
-<p>La probabilidad de cometer un error de tipo I (rechazar la hipótesis nula cuando es cierta) es <span class="math inline">\(0.0547\)</span>.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Calcular</span> la probabilidad de obtener 0 hombres en una muestra aleatoria con reemplazamiento de 10 personas tomadas de una población con el mismo número de hombres y mujeres utilizando la distribución binomial B<span class="er">(</span><span class="ex">10,</span> 0.5<span class="kw">)</span><span class="bu">.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Como se ve, la probabilidad de obtener 0 hombres en una muestra aleatoria con reemplazamiento de 10 personas tomadas de una población con el mismo número de hombres y mujeres es muy baja, por lo que, en este caso rechazaríamos la hipótesis nula sin dudarlo.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Si el máximo riesgo de error de tipo I <span class="math inline">\(\alpha\)</span> que se tolera es <span class="math inline">\(0.05\)</span>, ¿qué número de hombres en la muestra formarían la región de rechazo de la hipótesis nula?</p>
+<p>Suponiendo cierta la hipótesis nula, si se decide rechazarla cuando en la muestra haya 2 o menos hombres, ¿cuál es el riesgo de equivocarse?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -577,31 +594,35 @@ H_1 &amp;: p&lt;0.5
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Si el máximo riesgo de error de tipo I se establece en <span class="math inline">\(\alpha=0.05\)</span>, solo podría rechazarse la hipótesis nula si en la muestra aleatoria con reemplazamiento de <span class="math inline">\(10\)</span> personas se obtuviese <span class="math inline">\(0\)</span> o <span class="math inline">\(1\)</span> hombres. Si se obtuviesen <span class="math inline">\(2\)</span> hombres ya no se podría rechazar la hipótesis nula porque la probabilidad de equivocarnos es mayor de <span class="math inline">\(0.05\)</span> como se ha visto en el apartado anterior.</p>
+<p>Tenemos que calcular la probabilidad de haya 2 o menos hombres con la distribución <span class="math inline">\(B(10, 0.5)\)</span>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0546875</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Calcular</span> la probabilidad de obtener 2 o menos hombres en una muestra aleatoria con reemplazamiento de 10 personas tomadas de una población con el mismo número de hombres y mujeres utilizando la distribución binomial B<span class="er">(</span><span class="ex">10,</span> 0.5<span class="kw">)</span><span class="bu">.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>La probabilidad de cometer un error de tipo I (rechazar la hipótesis nula cuando es cierta) es 0.0547.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Suponiendo que la proporción real de hombres en la población fuese de <span class="math inline">\(0.4\)</span>, ¿cuál es la potencia del contraste para la región de rechazo del apartado anterior?</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Ayuda
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>La potencia de un contraste es <span class="math inline">\(1-\beta\)</span>, donde <span class="math inline">\(\beta\)</span> es la probabilidad de cometer un error de tipo II (aceptar la hipótesis nula cuando es falsa).</p>
-</div>
-</div>
-</div>
+<p>Si el máximo riesgo de error de tipo I <span class="math inline">\(\alpha\)</span> que se tolera es 0.05, ¿qué número de hombres en la muestra formarían la región de rechazo de la hipótesis nula?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -610,22 +631,31 @@ H_1 &amp;: p&lt;0.5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Tenemos que calcular la probabilidad de haya <span class="math inline">\(1\)</span> o menos hombres con la distribución <span class="math inline">\(B(10, 0.4)\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">0.4</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0463574</code></pre>
-</div>
-</div>
-<p>La potencia del contraste suponiendo que la proporción real de hombres en la población es <span class="math inline">\(0.4\)</span>, es <span class="math inline">\(0.0464\)</span> que es muy baja.</p>
+<p>Si el máximo riesgo de error de tipo I se establece en <span class="math inline">\(\alpha=0.05\)</span>, solo podría rechazarse la hipótesis nula si en la muestra aleatoria con reemplazamiento de 10 personas se obtuviese 0 o 1 hombres. Si se obtuviesen 2 hombres ya no se podría rechazar la hipótesis nula porque la probabilidad de equivocarnos es mayor de 0.05 como se ha visto en el apartado anterior.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Si en lugar de una muestra de tamaño 10 se tomase una muestra de tamaño 100, y haciendo uso de la aproximación de una distribución binomial mediante una normal, ¿qué número de hombres en la muestra formarían la región de rechazo para un riesgo <span class="math inline">\(\alpha=0.05\)</span>? ¿Qué potencia tendría ahora el contraste si la proporción real de hombres fuese de <span class="math inline">\(0.4\)</span>? ¿Es mejor o peor contraste que el anterior?</p>
+<p>Suponiendo que la proporción real de hombres en la población fuese de 0.4, ¿cuál es la potencia del contraste para la región de rechazo del apartado anterior?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La potencia de un contraste es <span class="math inline">\(1-\beta\)</span>, donde <span class="math inline">\(\beta\)</span> es la probabilidad de cometer un error de tipo II (aceptar la hipótesis nula cuando es falsa).</p>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -638,36 +668,33 @@ H_1 &amp;: p&lt;0.5
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Si tomamos una muestra de <span class="math inline">\(100\)</span> personas, entonces el número de hombres en la muestra si en la población hay el mismo número de hombres que de mujeres sigue una distribución binomial <span class="math inline">\(B(100,0.5)\)</span>, que puede aproximarse mediante una distribución normal <span class="math inline">\(N(50,5)\)</span>, así que tenemos que calcular el percentil <span class="math inline">\(5\)</span> de esta distribución.</p>
+<p>Tenemos que calcular la probabilidad de haya 1 o menos hombres con la distribución <span class="math inline">\(B(10, 0.4)\)</span>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">50</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">0.4</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 41.77573</code></pre>
+<pre><code>[1] 0.0463574</code></pre>
 </div>
 </div>
-<p>Por tanto, para un riesgo <span class="math inline">\(\alpha=0.05\)</span>, rechazaremos la hipótesis nula si en la muestra se obtienen <span class="math inline">\(41\)</span> o menos hombres.</p>
-<p>Si la proporción real de hombres fuese de <span class="math inline">\(0.4\)</span>, la potencia del contraste es la probabilidad de obtener <span class="math inline">\(41\)</span> o menos hombres con una distribución binomial <span class="math inline">\(B(100, 0.4)\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">41</span>, <span class="fl">100</span>, <span class="fl">0.4</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6225327</code></pre>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Calcular</span> la probabilidad de obtener 1 o menos hombres en una muestra aleatoria con reemplazamiento de 10 personas tomadas de una población con una proporción real de hombres del 40% utilizando la distribución binomial B<span class="er">(</span><span class="ex">10,</span> 0.4<span class="kw">)</span><span class="bu">.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Ahora la potencia del contraste ha aumentado hasta <span class="math inline">\(0.6225\)</span> que es mucho mayor que la del contraste anterior.</p>
+</div>
+<p>La potencia del contraste suponiendo que la proporción real de hombres en la población es 0.4, es 0.0464 que es muy baja.</p>
 </div>
 </div>
 </div>
 </li>
-</ol>
-</div>
-<div id="exr-contraste-hipotesis-media-principio-activo" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 8.2</strong></span> Se sabe que para que un fármaco sea efectivo, la concentración de su principio activo debe ser de al menos <span class="math inline">\(16\)</span> mg/mm<span class="math inline">\(^3\)</span>. Una farmacia va a comprar un lote de este medicamento, pero antes quiere asegurarse de que los medicamentos del lote son efectivos y para ello analiza la concentración de principio activo en una muestra aleatoria de <span class="math inline">\(10\)</span> envases tomados del lote, obteniendo los siguientes resultados en mg/mm<span class="math inline">\(^{3}\)</span>:</p>
-<p><span class="math display">\[
-17.6 \quad 19.2 \quad 21.3 \quad 15.1 \quad 17.6 \quad 18.9 \quad 16.2 \quad 18.3 \quad 19.0 \quad 16.4
-\]</span></p>
-<ol type="a">
 <li>
-<p>Crear un conjunto de datos con los datos de la muestra.</p>
+<p>Si en lugar de una muestra de tamaño 10 se tomase una muestra de tamaño 100, y haciendo uso de la aproximación de una distribución binomial mediante una normal, ¿qué número de hombres en la muestra formarían la región de rechazo para un riesgo <span class="math inline">\(\alpha=0.05\)</span>? ¿Qué potencia tendría ahora el contraste si la proporción real de hombres fuese de 0.4? ¿Es mejor o peor contraste que el anterior?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -680,33 +707,122 @@ H_1 &amp;: p&lt;0.5
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Si tomamos una muestra de 100 personas, entonces el número de hombres en la muestra si en la población hay el mismo número de hombres que de mujeres sigue una distribución binomial <span class="math inline">\(B(100,0.5)\)</span>, que puede aproximarse mediante una distribución normal <span class="math inline">\(N(50,5)\)</span>, así que tenemos que calcular el percentil 5 de esta distribución.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+Para calcular el percentil 5 de la distribución normal <span class="math inline">\(N(50, 5)\)</span>, podemos utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Normal"><code>qnorm</code></a> del paquete <code>stats</code> de R.<br>
+Parámetros:
+<ul>
+<li>
+<code>p</code>: probabilidad para la cual queremos calcular el percentil. En este caso, 0.05.</li>
+<li>
+<code>mean</code>: media de la distribución normal. En este caso, 50.</li>
+<li>
+<code>sd</code>: desviación estándar de la distribución normal. En este caso, 5.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>concentracion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">17.6</span>, <span class="fl">19.2</span>, <span class="fl">21.3</span>, <span class="fl">15.1</span>, <span class="fl">17.6</span>, <span class="fl">18.9</span>, <span class="fl">16.2</span>, <span class="fl">18.3</span>, <span class="fl">19.0</span>, <span class="fl">16.4</span> <span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">50</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 41.77573</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Calcular</span> el percentil 5 de una distribución normal con media 50 y desviación estándar 5.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Por tanto, para un riesgo <span class="math inline">\(\alpha=0.05\)</span>, rechazaremos la hipótesis nula si en la muestra se obtienen 41 o menos hombres.</p>
+<p>Si la proporción real de hombres fuese de 0.4, la potencia del contraste es la probabilidad de obtener 41 o menos hombres con una distribución binomial <span class="math inline">\(B(100, 0.4)\)</span>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">41</span>, <span class="fl">100</span>, <span class="fl">0.4</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6225327</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Calcular</span> la probabilidad de obtener 41 o menos hombres en una muestra aleatoria con reemplazamiento de 100 personas tomadas de una población con una proporción real de hombres del 40% utilizando la distribución binomial B<span class="er">(</span><span class="ex">100,</span> 0.4<span class="kw">)</span><span class="bu">.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Ahora la potencia del contraste ha aumentado hasta 0.6225 que es mucho mayor que la del contraste anterior.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div id="exr-contraste-hipotesis-media-principio-activo" class="theorem exercise">
+<p><span class="theorem-title"><strong>Ejercicio 8.2</strong></span> Se sabe que para que un fármaco sea efectivo, la concentración de su principio activo debe ser de al menos 16 mg/mm<span class="math inline">\(^3\)</span>. Una farmacia va a comprar un lote de este medicamento, pero antes quiere asegurarse de que los medicamentos del lote son efectivos y para ello analiza la concentración de principio activo en una muestra aleatoria de 10 envases tomados del lote, obteniendo los siguientes resultados en mg/mm<span class="math inline">\(^{3}\)</span>:</p>
+<table class="caption-top table"><tbody><tr class="odd">
+<td>17.6</td>
+<td>19.2</td>
+<td>21.3</td>
+<td>15.1</td>
+<td>17.6</td>
+<td>18.9</td>
+<td>16.2</td>
+<td>18.3</td>
+<td>19.0</td>
+<td>16.4</td>
+</tr></tbody></table>
+<ol type="a">
+<li>
+<p>Crear un conjunto de datos con los datos de la muestra.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Tidyverse</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>concentracion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">17.6</span>, <span class="fl">19.2</span>, <span class="fl">21.3</span>, <span class="fl">15.1</span>, <span class="fl">17.6</span>, <span class="fl">18.9</span>, <span class="fl">16.2</span>, <span class="fl">18.3</span>, <span class="fl">19.0</span>, <span class="fl">16.4</span> <span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>concentracion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">17.6</span>, <span class="fl">19.2</span>, <span class="fl">21.3</span>, <span class="fl">15.1</span>, <span class="fl">17.6</span>, <span class="fl">18.9</span>, <span class="fl">16.2</span>, <span class="fl">18.3</span>, <span class="fl">19.0</span>, <span class="fl">16.4</span> <span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Crear</span> un data frame df con una columna llamada concentracion que contenga los siguientes valores: 17.6, 19.2, 21.3, 15.1, 17.6, 18.9, 16.2, 18.3, 19.0, 16.4.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Realizar un contraste de hipótesis para ver si la concentración media de principio activo es diferente de <span class="math inline">\(18\)</span> mg/mm<span class="math inline">\(^3\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Ayuda
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Para realizar un contraste de hipótesis para la media de una población podemos utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test"><code>t.test</code></a> del paquete <code>stats</code>.</p>
-<p>Si queremos mostrar la salida del test en formato de tabla podemos utilizar la función <code>tidy</code> del paquete <a href="https://broom.tidymodels.org/index.html"><code>broom</code></a>.</p>
-<p>Otra opción es utilizar la función <a href="https://infer.tidymodels.org/reference/t_test.html"><code>t_test</code></a> de la colección de paquetes <code>tidymodels</code>, que ofrece ya la salida en formato <code>tidy</code>.</p>
-</div>
-</div>
-</div>
+<p>Realizar un contraste de hipótesis para ver si la concentración media de principio activo es diferente de 18 mg/mm<span class="math inline">\(^3\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -726,33 +842,29 @@ H_1 &amp;: \mu\neq 18
 \end{align*}\]</span></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page"><code>stats</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><code>tidymodels</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Copilot</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+Para realizar un contraste de hipótesis para la media de una población podemos utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test"><code>t.test</code></a> del paquete <code>stats</code>.<br>
+Parámetros:
+<ul>
+<li>
+<code>x</code>: vector numérico con los datos de la muestra.</li>
+<li>
+<code>mu</code>: valor de la media que se establece en la hipótesis nula.</li>
+<li>
+<code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”.</li>
+<li>
+<code>conf.level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</li>
+</ul>
+<p>Si queremos mostrar la salida del test en formato de tabla podemos utilizar la función <code>tidy</code> del paquete <a href="https://broom.tidymodels.org/index.html"><code>broom</code></a>.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">18</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    One Sample t-test
-
-data:  df$concentracion
-t = -0.07078, df = 9, p-value = 0.9451
-alternative hypothesis: true mean is not equal to 18
-95 percent confidence interval:
- 16.68158 19.23842
-sample estimates:
-mean of x 
-    17.96 </code></pre>
-</div>
-</div>
-<p>Para mostrar la salida en formato tabla.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -789,9 +901,21 @@ mean of x
 </div>
 </div>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+Para realizar un contraste de hipótesis para la media de una población podemos utilizar la función <a href="https://infer.tidymodels.org/reference/t_test.html"><code>t_test</code></a> de la colección de paquetes <code>tidymodels</code>.<br>
+Parámetros:
+<ul>
+<li>
+<code>response</code>: variable numérica con los datos de la muestra.</li>
+<li>
+<code>mu</code>: valor de la media que se establece en la hipótesis nula.</li>
+<li>
+<code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”.</li>
+<li>
+<code>conf_level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">t_test</span><span class="op">(</span>response <span class="op">=</span> <span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -828,16 +952,19 @@ mean of x
 </div>
 </div>
 </div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis para ver si media de la columna concentracion del data frame df es diferente de 18.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.9451\)</span> que es mucho mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no rechazamos la hipótesis nula.</p>
-<p>Obsérvese que el valor de la media muestral es <span class="math inline">\(17.96\)</span> que está muy cerca del valor que establece la hipótesis nula, por lo que sería una locura rechazar la hipótesis nula con esta muestra.</p>
+</div>
+<p>Como el p-valor del contraste es 0.9451 que es mucho mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no rechazamos la hipótesis nula.</p>
+<p>Obsérvese que el valor de la media muestral es 17.96 que está muy cerca del valor que establece la hipótesis nula, por lo que sería una locura reRechazar la hipótesis nula con esta muestra.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Realizar un contraste de hipótesis para ver si la concentración media de principio activo es diferente de <span class="math inline">\(19.5\)</span> mg/mm<span class="math inline">\(^3\)</span>.</p>
+<p>Realizar un contraste de hipótesis para ver si la concentración media de principio activo es diferente de 19.5 mg/mm<span class="math inline">\(^3\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -857,13 +984,14 @@ H_1 &amp;: \mu\neq 19.5
 \end{align*}\]</span></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href=""><code>stats</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href=""><code>tidymodels</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false" href="">Copilot</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">19.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">19.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -901,9 +1029,9 @@ H_1 &amp;: \mu\neq 19.5
 </div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">t_test</span><span class="op">(</span>response <span class="op">=</span> <span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">19.5</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -931,16 +1059,19 @@ H_1 &amp;: \mu\neq 19.5
 </div>
 </div>
 </div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis para ver si media de la columna concentracion del data frame df es diferente de 19.5.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.0234\)</span> que es menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y concluimos que la concentración media es significativamente diferente de <span class="math inline">\(19\)</span>.</p>
-<p>Obsérvese que ahora el valor de la media muestral es <span class="math inline">\(17.96\)</span> está mucho más lejos del valor que establece la hipótesis nula, por lo que tiene más lógica rechazar la hipótesis nula.</p>
+</div>
+<p>Como el p-valor del contraste es 0.0234 que es menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y concluimos que la concentración media es significativamente diferente de 19.5.</p>
+<p>Obsérvese que ahora el valor de la media muestral es 17.96 está mucho más lejos del valor que establece la hipótesis nula, por lo que tiene más lógica rechazar la hipótesis nula.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Si el fabricante del lote asegura haber aumentado la concentración de principio activo con respecto a anteriores lotes, en los que la media era de <span class="math inline">\(17\)</span> mg/mm<span class="math inline">\(^3\)</span>, ¿podemos aceptar la afirmación del fabricante?</p>
+<p>Si el fabricante del lote asegura haber aumentado la concentración de principio activo con respecto a anteriores lotes, en los que la media era de 17 mg/mm<span class="math inline">\(^3\)</span>, ¿podemos aceptar la afirmación del fabricante?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -960,13 +1091,14 @@ H_1 &amp;: \mu&gt; 17
 \end{align*}\]</span></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href=""><code>stats</code>.</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href=""><code>tidymodels</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Copilot</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">17</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">17</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1004,9 +1136,9 @@ H_1 &amp;: \mu&gt; 17
 </div>
 </div>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">t_test</span><span class="op">(</span>response <span class="op">=</span> <span class="va">concentracion</span>, mu <span class="op">=</span> <span class="fl">19.5</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1034,15 +1166,18 @@ H_1 &amp;: \mu&gt; 17
 </div>
 </div>
 </div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis para ver si media de la columna concentracion del data frame df es mayor que 17.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.0618\)</span> que es mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no podemos rechazar la hipótesis nula y concluimos que con esta muestra no hay pruebas significativas de que la afirmación del fabricante sea cierta.</p>
+</div>
+<p>Como el p-valor del contraste es 0.0618 que es mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no podemos rechazar la hipótesis nula y concluimos que con esta muestra no hay pruebas significativas de que la afirmación del fabricante sea cierta.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>¿Cuál sería el tamaño muestral requerido para poder detectar una diferencia de <span class="math inline">\(0.5\)</span> mg/mm<span class="math inline">\(^{3}\)</span> más con un nivel de significación <span class="math inline">\(\alpha=0.05\)</span> y una potencia <span class="math inline">\(1-\beta=0.8\)</span>?</p>
+<p>¿Cuál sería el tamaño muestral requerido para poder detectar una diferencia de 0.5 mg/mm<span class="math inline">\(^{3}\)</span> más con un nivel de significación <span class="math inline">\(\alpha=0.05\)</span> y una potencia <span class="math inline">\(1-\beta=0.8\)</span>?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1055,21 +1190,52 @@ H_1 &amp;: \mu&gt; 17
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Ahora tenemos que realizar el contraste unilateral</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Pwr</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+Para calcular el tamaño muestral requerido para poder detectar una diferencia de 0.5 mg/mm<span class="math inline">\(^3\)</span> más con un nivel de significación <span class="math inline">\(\alpha=0.05\)</span> y una potencia <span class="math inline">\(1-\beta=0.8\)</span>, podemos utilizar la función <a href="https://www.rdocumentation.org/packages/pwr/versions/1.3-0/topics/pwr.t.test"><code>pwr.t.test</code></a> del paquete <code>pwr</code> de R.<br>
+Parámetros:
+<ul>
+<li>
+<code>d</code>: tamaño del efecto que se quiere detectar, que se calcula como la diferencia entre la media que se quiere detectar y la media establecida en la hipótesis nula, dividido por la desviación estándar de la población.</li>
+<li>
+<code>sig.level</code>: nivel de significación deseado. En este caso, sería 0.05.</li>
+<li>
+<code>power</code>: potencia deseada para el contraste. En este caso, sería 0.8.</li>
+<li>
+<code>type</code>: tipo de contraste que se va a realizar. En este caso, sería “one.sample” porque se trata de un contraste para la media de una población.</li>
+<li>
+<code>alternative</code>: tipo de hipótesis que se va a realizar. En este caso, sería “two.sided” porque se trata de un contraste para dos grupos diferentes.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span></span>
 <span><span class="va">efecto</span> <span class="op">&lt;-</span> <span class="fl">0.5</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">concentracion</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/power.t.test.html">power.t.test</a></span><span class="op">(</span>d <span class="op">=</span> <span class="va">efecto</span>, sig.level <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.8</span>, type <span class="op">=</span> <span class="st">"one.sample"</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-     One-sample t test power calculation 
-
-              n = 102.2077
-          delta = 0.2797806
-             sd = 1
-      sig.level = 0.05
-          power = 0.8
-    alternative = two.sided</code></pre>
+<span><span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span><span class="op">(</span>d <span class="op">=</span> <span class="va">efecto</span>, sig.level <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.8</span>, type <span class="op">=</span> <span class="st">"one.sample"</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">sig.level</th>
+<th style="text-align: right;">power</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">102.2074</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.8</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Calcular</span> el tamaño muestral requerido para poder detectar una diferencia de 0.5 mg/mm^3 más con un nivel de significación alpha=0.05 y una potencia 1-beta=0.8 utilizando  del paquete pwr de R.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </div>
 </div>
@@ -1095,36 +1261,37 @@ H_1 &amp;: \mu&gt; 17
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Tidyverse</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/biblioteca.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/biblioteca.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Crear</span> un data frame df a partir de la siguiente URL: https://aprendeconalf.es/estadistica-practicas-r/datos/biblioteca.csv.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Contrastar si el porcentaje de alumnos que utiliza habitualmente la biblioteca es superior al <span class="math inline">\(40\%\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Ayuda
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Para realizar un contraste de hipótesis para la proporción de una población podemos utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prop.test"><code>prop.test</code></a> del paquete <code>stats</code>.</p>
-<p>Si queremos mostrar la salida del test en formato de tabla podemos utilizar la función <code>tidy</code> del paquete <a href="https://broom.tidymodels.org/index.html"><code>broom</code></a>.</p>
-<p>Otra opción es utilizar la función <a href="https://infer.tidymodels.org/reference/prop_test.html"><code>prop_test</code></a> de la colección de paquetes <code>tidymodels</code>, que ofrece ya la salida en formato <code>tidy</code>.</p>
-</div>
-</div>
-</div>
+<p>Contrastar si el porcentaje de alumnos que utiliza habitualmente la biblioteca es superior al 40%.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1133,7 +1300,7 @@ H_1 &amp;: \mu&gt; 17
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Tenemos que realizar el contraste unilateral</p>
 <p><span class="math display">\[\begin{align*}
@@ -1142,17 +1309,32 @@ H_1 &amp;: p &gt; 0.4
 \end{align*}\]</span></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href=""><code>stats</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href=""><code>tidymodels</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false" href="">Copilot</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+Para realizar un contraste de hipótesis para la proporción de una población podemos utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prop.test"><code>prop.test</code></a> del paquete <code>stats</code>.<br>
+Parámetros:
+<ul>
+<li>
+<code>x</code>: número de éxitos en la muestra. En este caso, el número de alumnos que utilizan habitualmente la biblioteca.</li>
+<li>
+<code>n</code>: tamaño de la muestra. En este caso, el número total de alumnos encuestados.</li>
+<li>
+<code>p</code>: proporción esperada bajo la hipótesis nula. En este caso, 0.4.</li>
+<li>
+<code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”.</li>
+<li>
+<code>conf.level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
 <span><span class="va">frec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">respuesta</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/prop.test.html">prop.test</a></span><span class="op">(</span><span class="va">frec</span><span class="op">[</span><span class="st">"si"</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, p <span class="op">=</span> <span class="fl">0.4</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -1189,9 +1371,23 @@ H_1 &amp;: p &gt; 0.4
 </div>
 </div>
 </div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+Para realizar un contraste de hipótesis para la proporción de una población podemos utilizar la función <a href="https://infer.tidymodels.org/reference/prop_test.html"><code>prop_test</code></a> de la colección de paquetes <code>tidymodels</code>.<br>
+Parámetros:
+<ul>
+<li>
+<code>response</code>: variable categórica con los datos de la muestra.</li>
+<li>
+<code>p</code>: proporción esperada bajo la hipótesis nula. En este caso, 0.4.</li>
+<li>
+<code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”.</li>
+<li>
+<code>success</code>: categoría de la variable respuesta que se considera como éxito. En este caso, “si”.</li>
+<li>
+<code>conf_level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
 <span><span class="va">df</span>  <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">prop_test</span><span class="op">(</span>response <span class="op">=</span> <span class="va">respuesta</span>, p <span class="op">=</span> <span class="fl">0.4</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, success <span class="op">=</span> <span class="st">"si"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1214,9 +1410,12 @@ H_1 &amp;: p &gt; 0.4
 </div>
 </div>
 </div>
+<div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis para ver si el porcentaje de alumnos que utiliza habitualmente la biblioteca es superior al 40%.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.253\)</span>, que es mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no rechazamos la hipótesis nula.</p>
+</div>
+<p>Como el p-valor del contraste es 0.253, que es mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no rechazamos la hipótesis nula.</p>
 </div>
 </div>
 </div>
@@ -1225,13 +1424,105 @@ H_1 &amp;: p &gt; 0.4
 </div>
 <div id="exr-contraste-hipotesis-media-edad-andar" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 8.4</strong></span> Un estudio trata de averiguar si existen diferencias significativas en la edad media a la que los niños de África y Europa comienzan a andar por sí solos. Los investigadores obtuvieron los siguientes datos para la edad al comenzar a andar (expresada en meses):</p>
-<p><span class="math display">\[\begin{align*}
-\textrm{África}:&amp; \ 9.5-10.5-9.0-9.8-10.0-13.0-10.0-13.5-10.0-9.8\\
-\textrm{Europa}:&amp; \ 12.5-9.5-13.5-13.8-12.0-13.8-12.5-9.5-12.0-13.5-12.0-12.0
-\end{align*}\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">África</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">10.5</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">13.5</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Europa</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">13.5</td>
+<td style="text-align: right;">13.8</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">13.8</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">13.5</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">12.0</td>
+</tr>
+</tbody>
+</table>
 <ol type="a">
 <li>
 <p>Crear un conjunto de datos con los datos de la muestra.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Tidyverse</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-3" role="tab" aria-controls="tabset-13-3" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    edad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9.5</span>, <span class="fl">10.5</span>, <span class="fl">9.0</span>, <span class="fl">9.8</span>, <span class="fl">10.0</span>, <span class="fl">13.0</span>, <span class="fl">10.0</span>, <span class="fl">13.5</span>, <span class="fl">10.0</span>, <span class="fl">9.8</span>, <span class="fl">12.5</span>, <span class="fl">9.5</span>, <span class="fl">13.5</span>, <span class="fl">13.8</span>, <span class="fl">12.0</span>, <span class="fl">13.8</span>, <span class="fl">12.5</span>, <span class="fl">9.5</span>, <span class="fl">12.0</span>, <span class="fl">13.5</span>, <span class="fl">12.0</span>, <span class="fl">12.0</span><span class="op">)</span>,</span>
+<span>    continente <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"África"</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Europa"</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    edad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9.5</span>, <span class="fl">10.5</span>, <span class="fl">9.0</span>, <span class="fl">9.8</span>, <span class="fl">10.0</span>, <span class="fl">13.0</span>, <span class="fl">10.0</span>, <span class="fl">13.5</span>, <span class="fl">10.0</span>, <span class="fl">9.8</span>, <span class="fl">12.5</span>, <span class="fl">9.5</span>, <span class="fl">13.5</span>, <span class="fl">13.8</span>, <span class="fl">12.0</span>, <span class="fl">13.8</span>, <span class="fl">12.5</span>, <span class="fl">9.5</span>, <span class="fl">12.0</span>, <span class="fl">13.5</span>, <span class="fl">12.0</span>, <span class="fl">12.0</span><span class="op">)</span>,</span>
+<span>    continente <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"África"</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Europa"</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-13-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Crear</span> un data frame df con dos columnas: edad, que contenga los siguientes valores: 9.5, 10.5, 9.0, 9.8, 10.0, 13.0, 10.0, 13.5, 10.0, 9.8, 12.5, 9.5, 13.5, 13.8, 12.0, 13.8, 12.5, 9.5, 12.0, 13.5, 12.0 y continente que contenga los siguientes valores: África para las primeras 10 filas y Europa para las siguientes 12 filas.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Realizar un contraste de hipótesis con un nivel de significación de 0.05 para ver si existen diferencias estadísticamente significativas entre las edades medias a las que comienzan a andar los niños de África y los de Europa.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1244,101 +1535,106 @@ H_1 &amp;: p &gt; 0.4
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>    edad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9.5</span>, <span class="fl">10.5</span>, <span class="fl">9.0</span>, <span class="fl">9.8</span>, <span class="fl">10.0</span>, <span class="fl">13.0</span>, <span class="fl">10.0</span>, <span class="fl">13.5</span>, <span class="fl">10.0</span>, <span class="fl">9.8</span>, <span class="fl">12.5</span>, <span class="fl">9.5</span>, <span class="fl">13.5</span>, <span class="fl">13.8</span>, <span class="fl">12.0</span>, <span class="fl">13.8</span>, <span class="fl">12.5</span>, <span class="fl">9.5</span>, <span class="fl">12.0</span>, <span class="fl">13.5</span>, <span class="fl">12.0</span>, <span class="fl">12.0</span><span class="op">)</span>,</span>
-<span>    continente <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"África"</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Europa"</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Realizar un contraste de hipótesis con un nivel de significación de <span class="math inline">\(0.05\)</span> para ver si existen diferencias estadísticamente significativas entre las edades medias a las que comienzan a andar los niños de África y los de Europa.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Ayuda
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Para realizar un contraste de hipótesis para la diferencia de medias de dos población independientes utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test"><code>t.test</code></a> del paquete <code>stats</code>. Este test da resultados diferentes dependiendo de si las dos poblaciones que se comparan tienen varianzas diferentes o no, por lo que previamente debemos realizar un contraste de comparación de varianzas mediante la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/var.test"><code>var.test</code></a> del paquete <code>stats</code>. Si se acepta la hipótesis de igualdad de varianzas mediante este test, en la función <code>t.test</code> hay que añadir el parámetro <code>var.equal = TRUE</code>.</p>
-<p>Si queremos mostrar la salida del test en formato de tabla podemos utilizar la función <code>tidy</code> del paquete <a href="https://broom.tidymodels.org/index.html"><code>broom</code></a>.</p>
-<p>Otra opción es utilizar la función <a href="https://infer.tidymodels.org/reference/t_test.html"><code>t_test</code></a> de la colección de paquetes <code>tidymodels</code>, que ofrece ya la salida en formato <code>tidy</code>.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Solución
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p>Tenemos que realizar el contraste bilateral</p>
 <p><span class="math display">\[\begin{align*}
 H_0 &amp;: \mu_A = \mu_E \\
 H_1 &amp;: \mu_A \neq \mu_E
 \end{align*}\]</span></p>
 <p>Realizamos primero el test F para la comparación de las varianzas de las dos poblaciones.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+Para realizar un contraste de comparación de varianzas podemos usar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/var.test"><code>var.test</code></a> del paquete <code>stats</code>.<br>
+Parámetros:
+<ul>
+<li>
+<code>formula</code>: fórmula con la variable respuesta y la variable explicativa separadas por el símbolo <code>~</code>.</li>
+<li>
+<code>data</code>: data frame que contiene las variables de la fórmula.</li>
+<li>
+<code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”.</li>
+<li>
+<code>conf.level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/var.test.html">var.test</a></span><span class="op">(</span><span class="va">edad</span> <span class="op">~</span> <span class="va">continente</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    F test to compare two variances
-
-data:  edad by continente
-F = 1.0558, num df = 9, denom df = 11, p-value = 0.9164
-alternative hypothesis: true ratio of variances is not equal to 1
-95 percent confidence interval:
- 0.2942791 4.1305381
-sample estimates:
-ratio of variances 
-          1.055843 </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/var.test.html">var.test</a></span><span class="op">(</span><span class="va">edad</span> <span class="op">~</span> <span class="va">continente</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 29%">
+<col style="width: 11%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">num.df</th>
+<th style="text-align: right;">den.df</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
+<th style="text-align: left;">method</th>
+<th style="text-align: left;">alternative</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">1.055843</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1.055843</td>
+<td style="text-align: right;">0.9164489</td>
+<td style="text-align: right;">0.2942791</td>
+<td style="text-align: right;">4.130538</td>
+<td style="text-align: left;">F test to compare two variances</td>
+<td style="text-align: left;">two.sided</td>
+</tr></tbody>
+</table>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.9164\)</span>, que es mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no se rechaza la hipótesis nula y concluimos que no hay una diferencia estadísticamente significativas entre las varianzas de las dos poblaciones.</p>
+</div>
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis para comparar las varianzas de la columna edad según la columna continente del data frame df.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Como el p-valor del contraste es 0.9164, que es mayor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, no se rechaza la hipótesis nula y concluimos que no hay una diferencia estadísticamente significativas entre las varianzas de las dos poblaciones.</p>
 <p>A continuación realizamos el contraste de comparación de medias.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href=""><code>stats</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href=""><code>tidymodels</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-3" role="tab" aria-controls="tabset-15-3" aria-selected="false" href="">Copilot</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+Para realizar un contraste de hipótesis para la diferencia de medias de dos población independientes utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test"><code>t.test</code></a> del paquete <code>stats</code>.<br>
+Parámetros:
+<ul>
+<li>
+<code>formula</code>: fórmula con la variable respuesta y la variable explicativa separadas por el símbolo <code>~</code>.</li>
+<li>
+<code>data</code>: data frame que contiene las variables de la fórmula.</li>
+<li>
+<code>var.equal</code>: valor lógico que indica si se asume que las varianzas de las dos poblaciones son iguales o no. Por defecto es <code>FALSE</code>, es decir, no se asume que las varianzas son iguales.</li>
+<li>
+<code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”.</li>
+<li>
+<code>conf.level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">edad</span> <span class="op">~</span> <span class="va">continente</span>, data <span class="op">=</span> <span class="va">df</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Two Sample t-test
-
-data:  edad by continente
-t = -2.6982, df = 20, p-value = 0.01383
-alternative hypothesis: true difference in means between group África and group Europa is not equal to 0
-95 percent confidence interval:
- -3.0260864 -0.3872469
-sample estimates:
-mean in group África mean in group Europa 
-            10.51000             12.21667 </code></pre>
-</div>
-</div>
-<p>Para mostrar la salida en formato tabla.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">edad</span> <span class="op">~</span> <span class="va">continente</span>, data <span class="op">=</span> <span class="va">df</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">edad</span> <span class="op">~</span> <span class="va">continente</span>, data <span class="op">=</span> <span class="va">df</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1382,9 +1678,23 @@ mean in group África mean in group Europa
 </div>
 </div>
 </div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+Para realizar un contraste de hipótesis para la diferencia de medias de dos población independientes podemos utilizar la función <a href="https://infer.tidymodels.org/reference/t_test.html"><code>t_test</code></a> de la colección de paquetes <code>tidymodels</code>.<br>
+Parámetros:
+<ul>
+<li>
+<code>formula</code>: fórmula con la variable respuesta y la variable explicativa separadas por el símbolo <code>~</code>.</li>
+<li>
+<code>data</code>: data frame que contiene las variables de la fórmula.</li>
+<li>
+<code>var_equal</code>: valor lógico que indica si se asume que las varianzas de las dos poblaciones son iguales o no. Por defecto es <code>FALSE</code>, es decir, no se asume que las varianzas son iguales.</li>
+<li>
+<code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”.</li>
+<li>
+<code>conf_level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">edad</span> <span class="op">~</span> <span class="va">continente</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1421,10 +1731,13 @@ mean in group África mean in group Europa
 </div>
 </div>
 </div>
+<div id="tabset-15-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis para la diferencia de medias de la columna edad según la columna continente del data frame df. Asumir varianzas iguales o no en función del resultado del contraste de varianzas. </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.0138\)</span> que es menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, podemos rechazar la hipótesis nula y se concluye que existe una diferencia estadísticamente significativa entre las edades medias a las que comienzan a andar los niños de África y Europa.</p>
-<p>Aunque se ha planteado un contraste bilateral, observando el intervalo de confianza para la diferencia entre la edad media de los niños de África y los de Europa, que es completamente negativo, se puede concluir con un 95% de confianza que los niños de África comienzan a andar entre <span class="math inline">\(0.3872\)</span> meses y <span class="math inline">\(3.261\)</span> meses antes que los niños de Europa en promedio.</p>
+</div>
+<p>Como el p-valor del contraste es 0.0138 que es menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, podemos rechazar la hipótesis nula y se concluye que existe una diferencia estadísticamente significativa entre las edades medias a las que comienzan a andar los niños de África y Europa.</p>
+<p>Aunque se ha planteado un contraste bilateral, observando el intervalo de confianza para la diferencia entre la edad media de los niños de África y los de Europa, que es completamente negativo, se puede concluir con un 95% de confianza que los niños de África comienzan a andar entre 0.3872 meses y 3.261 meses antes que los niños de Europa en promedio.</p>
 </div>
 </div>
 </div>
@@ -1437,7 +1750,7 @@ mean in group África mean in group Europa
 <li>
 <p>Crear un conjunto de datos con los datos de la muestra.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1446,10 +1759,23 @@ mean in group África mean in group Europa
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">Base</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">Tidyverse</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-3" role="tab" aria-controls="tabset-16-3" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/hipertension.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://aprendeconalf.es/estadistica-practicas-r/datos/hipertension.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1473,31 +1799,19 @@ $ FARMACO   &lt;chr&gt; "Antagonista Calcio + Diurético", "Antagonista Cal…</
 </div>
 </div>
 </div>
+<div id="tabset-16-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Crear</span> un data frame df a partir de la siguiente URL: https://aprendeconalf.es/estadistica-practicas-r/datos/hipertension.csv.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </li>
 <li>
 <p>Realizar un contraste de hipótesis para ver si hay la media de la presión sistólica ha disminuido significativamente.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Ayuda
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Para realizar un contraste de hipótesis para la diferencia de medias de dos población pareadas utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test"><code>t.test</code></a> del paquete <code>stats</code> añadiendo el parámetro <code>paired = TRUE</code>.</p>
-<p>Si queremos mostrar la salida del test en formato de tabla podemos utilizar la función <code>tidy</code> del paquete <a href="https://broom.tidymodels.org/index.html"><code>broom</code></a>.</p>
-<p>Otra opción es utilizar la función <a href="https://infer.tidymodels.org/reference/t_test.html"><code>t_test</code></a> de la colección de paquetes <code>tidymodels</code>, que ofrece ya la salida en formato <code>tidy</code>.</p>
-</div>
-</div>
-</div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1506,41 +1820,24 @@ $ FARMACO   &lt;chr&gt; "Antagonista Calcio + Diurético", "Antagonista Cal…</
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Tenemos que realizar el contraste de hipótesis unilateral</p>
 <p><span class="math display">\[\begin{align*}
 H_0 &amp;: \mu_I = \mu_F \\
-H_1 &amp;: \mu_I \neq \mu_F
+H_1 &amp;: \mu_I &gt; \mu_F
 \end{align*}\]</span></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href=""><code>stats</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href=""><code>tidymodels</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-3" role="tab" aria-controls="tabset-17-3" aria-selected="false" href="">Copilot</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">PAS_INI</span>, <span class="va">df</span><span class="op">$</span><span class="va">PAS_FIN</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Paired t-test
-
-data:  df$PAS_INI and df$PAS_FIN
-t = 31.743, df = 99, p-value &lt; 2.2e-16
-alternative hypothesis: true mean difference is greater than 0
-95 percent confidence interval:
- 26.99975      Inf
-sample estimates:
-mean difference 
-          28.49 </code></pre>
-</div>
-</div>
-<p>Para mostrar la salida en formato tabla.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">PAS_INI</span>, <span class="va">df</span><span class="op">$</span><span class="va">PAS_FIN</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">PAS_INI</span>, <span class="va">df</span><span class="op">$</span><span class="va">PAS_FIN</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1578,9 +1875,9 @@ mean difference
 </div>
 </div>
 </div>
-<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>PAS_DIF <span class="op">=</span> <span class="va">PAS_INI</span> <span class="op">-</span> <span class="va">PAS_FIN</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">t_test</span><span class="op">(</span>response <span class="op">=</span> <span class="va">PAS_DIF</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1609,9 +1906,12 @@ mean difference
 </div>
 </div>
 </div>
+<div id="tabset-17-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis de muestras pareadas para ver si la media de la columna PAS_INI es mayor que la media de la columna PAS_FIN del data frame df.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Como el p-valor del contraste es prácticamente <span class="math inline">\(0\)</span>, que es mucho menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, podemos rechazar con contundencia la hipótesis nula y se concluye que existe una diferencia estadísticamente muy significativa entre las medias de la presión arterial sistólica antes y después del tratamiento.</p>
+</div>
+<p>Como el p-valor del contraste es prácticamente 0, que es mucho menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, podemos rechazar con contundencia la hipótesis nula y se concluye que existe una diferencia estadísticamente muy significativa entre las medias de la presión arterial sistólica antes y después del tratamiento.</p>
 </div>
 </div>
 </div>
@@ -1619,7 +1919,7 @@ mean difference
 <li>
 <p>Realizar el mismo contraste de antes, pero para cada tratamiento por separado.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1628,17 +1928,18 @@ mean difference
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href=""><code>stats</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href=""><code>tidymodels</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-3" role="tab" aria-controls="tabset-18-3" aria-selected="false" href="">Copilot</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span>data <span class="op">=</span> <span class="op">-</span><span class="va">FARMACO</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>test <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">data</span>, <span class="op">~</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">PAS_INI</span>, <span class="va">.x</span><span class="op">$</span><span class="va">PAS_FIN</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1707,9 +2008,9 @@ mean difference
 </div>
 </div>
 </div>
-<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>PAS_DIF <span class="op">=</span> <span class="va">PAS_INI</span> <span class="op">-</span> <span class="va">PAS_FIN</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span>data <span class="op">=</span> <span class="op">-</span><span class="va">FARMACO</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>test <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">data</span>, <span class="op">~</span> <span class="fu">t_test</span><span class="op">(</span>x <span class="op">=</span> <span class="va">.x</span>, response <span class="op">=</span> <span class="va">PAS_DIF</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1774,6 +2075,9 @@ mean difference
 </div>
 </div>
 </div>
+<div id="tabset-18-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis de muestras pareadas para ver si la media de la columna PAS_INI es mayor que la media de la columna PAS_FIN del data frame df para cada tratamiento de la columna FARMACO por separado.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </div>
 <p>Como se puede observar, todos los p-valores son menores que el nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, por lo que se puede concluir que existe una diferencia estadísticamente muy significativa entre las medias de la presión arterial sistólica antes y después de cada tratamiento. Si observamos los intervalos de confianza, se observa que la mayor diferencia entre se da para el tratamiento IECA, después el Antagonista del Calcio y finalmente el Placebo.</p>
@@ -1784,9 +2088,9 @@ mean difference
 </ol>
 </div>
 <div id="exr-contraste-hipotesis-proporciones-aprobados" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 8.6</strong></span> Un profesor universitario ha tenido dos grupos de clase a lo largo del año: uno con horario de mañana y otro de tarde. En el de mañana, sobre un total de <span class="math inline">\(80\)</span> alumnos, han aprobado <span class="math inline">\(55\)</span>; y en el de tarde, sobre un total de <span class="math inline">\(90\)</span> alumnos, han aprobado <span class="math inline">\(32\)</span>. ¿Se puede afirmar que hay diferencias significativas entre los porcentajes de aprobados en ambos grupos?</p>
+<p><span class="theorem-title"><strong>Ejercicio 8.6</strong></span> Un profesor universitario ha tenido dos grupos de clase a lo largo del año: uno con horario de mañana y otro de tarde. En el de mañana, sobre un total de 80 alumnos, han aprobado 55; y en el de tarde, sobre un total de 90 alumnos, han aprobado 32. ¿Se puede afirmar que hay diferencias significativas entre los porcentajes de aprobados en ambos grupos?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1795,21 +2099,31 @@ mean difference
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Tenemos que realizar el contraste bilateral</p>
 <p><span class="math display">\[\begin{align*}
 H_0 &amp;: p_M = p_T \\
 H_1 &amp;: p_M \neq p_T
 \end{align*}\]</span></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">Stats</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">Tidymodels</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-3" role="tab" aria-controls="tabset-19-3" aria-selected="false" href="">Copilot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
+<p>Para realizar un contraste de hipótesis para la diferencia de proporciones de dos población independientes utilizar la función <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prop.test"><code>prop.test</code></a> del paquete <code>stats</code>.<br>
+Parámetros: - <code>x</code>: vector numérico con el número de éxitos en cada grupo. - <code>n</code>: vector numérico con el tamaño de cada grupo. - <code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”. - <code>conf.level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span> </span>
 <span><span class="co"># Aplicamos el test de comparación de proporciones.</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/prop.test.html">prop.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">55</span>, <span class="fl">32</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/prop.test.html">prop.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">55</span>, <span class="fl">32</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="co"># Multiplicamos por 100 todas las columnas para obtener porcentajes.</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">estimate1</span>, <span class="va">estimate2</span>, <span class="va">conf.low</span>, <span class="va">conf.high</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="co"># Mostramos por pantalla en formato tabla.</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1849,7 +2163,50 @@ H_1 &amp;: p_M \neq p_T
 </table>
 </div>
 </div>
-<p>Como el p-valor del contraste es prácticamente <span class="math inline">\(0\)</span>, que es mucho menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, podemos rechazar con contundencia la hipótesis nula y se concluye que existe una diferencia estadísticamente muy significativa entre los porcentajes de aprobados en la mañana y la tarde. Si observamos el intervalo de confianza para diferencia entre la proporción de aprobados en la mañana y la tarde, que es completamente positivo, se concluye con un 95% de confianza que el porcentaje de aprobados en la mañana es significativamente mayor que en la tarde.</p>
+</div>
+<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
+<p>Para realizar un contraste de hipótesis para la diferencia de proporciones de dos población independientes podemos utilizar la función <a href="https://infer.tidymodels.org/reference/prop_test.html"><code>prop_test</code></a> de la colección de paquetes <code>tidymodels</code>.<br>
+Parámetros: - <code>formula</code>: fórmula con la variable respuesta y la variable explicativa separadas por el símbolo <code>~</code>. - <code>alternative</code>: tipo de contraste que se va a realizar (“two.sided” para bilateral, “less” para unilateral izquierda y “greater” para unilateral derecha). Por defecto es “two.sided”. - <code>success</code>: categoría de la variable respuesta que se considera como éxito. En este caso, “aprobado”. - <code>conf_level</code>: nivel de confianza deseado para el intervalo de confianza. Por defecto es 0.95.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
+<span><span class="co"># Creamos un data frame con los datos de la muestra.</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    grupo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"mañana"</span>, <span class="fl">80</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"tarde"</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    calificacion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"aprobado"</span>, <span class="fl">55</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"suspenso"</span>, <span class="fl">25</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"aprobado"</span>, <span class="fl">32</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"suspenso"</span>, <span class="fl">58</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Aplicamos el test de comparación de proporciones.</span></span>
+<span><span class="va">df</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">prop_test</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">calificacion</span> <span class="op">~</span> <span class="va">grupo</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, success <span class="op">=</span> <span class="st">"aprobado"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">chisq_df</th>
+<th style="text-align: right;">p_value</th>
+<th style="text-align: left;">alternative</th>
+<th style="text-align: right;">lower_ci</th>
+<th style="text-align: right;">upper_ci</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">17.37244</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.07e-05</td>
+<td style="text-align: left;">two.sided</td>
+<td style="text-align: right;">0.1783764</td>
+<td style="text-align: right;">0.4855125</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-19-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Realizar</span> un contraste de hipótesis para la diferencia de proporciones de dos población independientes para ver si hay diferencias significativas entre los porcentajes de aprobados en ambos grupos.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Como el p-valor del contraste es prácticamente 0, que es mucho menor que el riesgo <span class="math inline">\(\alpha=0.05\)</span>, podemos rechazar con contundencia la hipótesis nula y se concluye que existe una diferencia estadísticamente muy significativa entre los porcentajes de aprobados en la mañana y la tarde. Si observamos el intervalo de confianza para diferencia entre la proporción de aprobados en la mañana y la tarde, que es completamente positivo, se concluye con un 95% de confianza que el porcentaje de aprobados en la mañana es significativamente mayor que en la tarde.</p>
 </div>
 </div>
 </div>
@@ -1859,11 +2216,11 @@ H_1 &amp;: p_M \neq p_T
 <div id="exr-contraste-hipotesis-pulso" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 8.7</strong></span> El fichero <a href="https://aprendeconalf.es/estadistica-practicas-r/datos/pulso.csv"><code>pulso.csv</code></a> contiene información sobre el pulso de un grupo de pacientes que han realizado distintos ejercicios: pulso en reposo (pulse1), pulso después de hacer ejercicio (pulse2), tipo de ejercicio (ran, 1=correr, 2=andar), sexo (sex, 1=hombre, 2=mujer) y peso (weight).</p>
 <ol type="a">
-<li><p>Contrastar si el pulso en reposo está por debajo de <span class="math inline">\(75\)</span> pulsaciones.</p></li>
-<li><p>¿Qué tamaño muestral sería necesario para detectar una diferencia de 2 pulsaciones más en la media de las pulsaciones en reposo, con un nivel de significación <span class="math inline">\(0.05\)</span> y una potencia de <span class="math inline">\(0.9\)</span>?</p></li>
-<li><p>Contrastar si el pulso después de correr está por encima de <span class="math inline">\(85\)</span> pulsaciones.</p></li>
-<li><p>Contrastar si el porcentaje de personas con taquicardia leve (número de pulsaciones en reposo por encima de <span class="math inline">\(90\)</span>) supera el <span class="math inline">\(5\%\)</span>.</p></li>
-<li><p>¿Se puede afirmar que el ejercicio aumenta las pulsaciones con una significación de <span class="math inline">\(0.05\)</span>? ¿y con una significación <span class="math inline">\(0.01\)</span>?</p></li>
+<li><p>Contrastar si el pulso en reposo está por debajo de 75 pulsaciones.</p></li>
+<li><p>¿Qué tamaño muestral sería necesario para detectar una diferencia de 2 pulsaciones más en la media de las pulsaciones en reposo, con un nivel de significación 0.05 y una potencia de 0.9?</p></li>
+<li><p>Contrastar si el pulso después de correr está por encima de 85 pulsaciones.</p></li>
+<li><p>Contrastar si el porcentaje de personas con taquicardia leve (número de pulsaciones en reposo por encima de 90) supera el 5%.</p></li>
+<li><p>¿Se puede afirmar que el ejercicio aumenta las pulsaciones con una significación de 0.05? ¿y con una significación 0.01?</p></li>
 <li><p>¿Existe una diferencia significativa entre las medias de las pulsaciones después de andar y después de correr?</p></li>
 <li><p>¿Existe una diferencia significativa entre la media de las pulsaciones en reposo de hombres y mujeres? ¿Y entre las medias de las pulsaciones después de correr?</p></li>
 </ol>

@@ -35,9 +35,9 @@ packages <- c("readr", "dplyr", "ggplot2", "knitr")
 :::{#exr-frecuencias-graficos-hijos}
 En una encuesta a 25 matrimonios sobre el número de hijos que tenían se obtuvieron los siguientes datos:
 
-$$
-\mbox{1, 2, 4, 2, 2, 2, 3, 2, 1, 1, 0, 2, 2, 0, 2, 2, 1, 2, 2, 3, 1, 2, 2, 1, 2}
-$$
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 1 | 2 | 4 | 2 | 2 | 2 | 3 | 2 | 1 | 1 | 0 | 2 | 2 | 0 | 2 | 2 | 1 | 2 | 2 | 3 | 1 | 2 | 2 | 1 | 2 |
 
 a.  Crear un conjunto de datos con la variable `hijos`.
 
@@ -306,12 +306,10 @@ a.  Dibujar el polígono de frecuencias relativas.
 :::{#exr-frecuencias-graficos-urgencias}
 En un hospital se realizó un estudio sobre el número de personas que ingresaron en urgencias cada día del mes de noviembre. Los datos observados fueron:
 
-$$
-\begin{array}{c}
-\mbox{15, 23, 12, 10, 28, 50, 12, 17, 20, 21, 18, 13, 11, 12, 26} \\
-\mbox{30, 6, 16, 19, 22, 14, 17, 21, 28, 9, 16, 13, 11, 16, 20}
-\end{array}
-$$
+| | | | | | | | | | | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 15 | 23 | 12 | 10 | 28 | 50 | 12 | 17 | 20 | 21 | 18 | 13 | 11 | 12 | 26 |
+| 30 | 6 | 16 | 19 | 22 | 14 | 17 | 21 | 28 | 9 | 16 | 13 | 11 | 16 | 20 |
 
 a.  Crear un conjunto de datos con la variable `urgencias`.
 
@@ -658,11 +656,10 @@ a.  Dibujar el polígono de frecuencias relativas acumuladas (ojiva).
 :::{#exr-frecuencias-graficos-grupo-sanguineo}
 Los grupos sanguíneos de una muestra de 30 personas son:
 
-$$
-\begin{array}{c}
-\mbox{A, B, B, A, AB, 0, 0, A, B, B, A, A, A, A, AB, A, A, A, B, 0, B, B, B, A, A, A, 0, A, AB, 0}
-\end{array}
-$$
+| | | | | | | | | | | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| A | B | B | A | AB | 0 | 0 | A | B | B | A | A | A | A | AB |
+| A | A | A | B | 0 | B | B | B | A | A | A | 0 | A | AB | 0 |
 
 a.  Crear un conjunto de datos con la variable `grupo_sanguíneo`.
 
@@ -998,12 +995,10 @@ a.  Dibujar los histogramas de la edad según el estado civil tomando clases de 
 :::{#exr-frecuencias-graficos-lesiones}
 El número de lesiones padecidas durante una temporada por cada jugador de un equipo de fútbol fue el siguiente:
 
-$$
-\begin{array}{c}
-0, 1, 2, 1, 3, 0, 1, 0, 1, 2, 0, 1, \\
-1, 1, 2, 0, 1, 3, 2, 1, 2, 1, 0, 1.
-\end{array}
-$$
+| | | | | | | | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 1 | 2 | 1 | 3 | 0 | 1 | 0 | 1 | 2 | 0 | 1 |
+| 1 | 1 | 2 | 0 | 1 | 3 | 2 | 1 | 2 | 1 | 0 | 1 |
 
 a. Construir la tabla de frecuencias.
 
@@ -1016,13 +1011,11 @@ c. Dibujar el diagrama de sectores.
 Para realizar un estudio sobre la estatura de los estudiantes universitarios, seleccionamos, mediante un proceso de muestreo aleatorio, una muestra de 30 estudiantes, obteniendo los siguientes resultados (medidos en
 centímetros):
 
-$$
-\begin{array}{c}
-179, 173, 181, 170, 158, 174, 172, 166, 194, 185,\\
-162, 187, 198, 177, 178, 165, 154, 188, 166, 171,\\
-175, 182, 167, 169, 172, 186, 172, 176, 168, 187.
-\end{array}
-$$
+| | | | | | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 179 | 173 | 181 | 170 | 158 | 174 | 172 | 166 | 194 | 185 |
+| 162 | 187 | 198 | 177 | 178 | 165 | 154 | 188 | 166 | 171 |
+| 175 | 182 | 167 | 169 | 172 | 186 | 172 | 176 | 168 | 187 |
 
 a. Dibujar el histograma de las frecuencias absolutas agrupando desde 150 a 200 en clases de amplitud 10.
 
@@ -1036,9 +1029,9 @@ a.  Construir la tabla de frecuencias de la puntuación Apgar al minuto de nacer
 
 a.  Comparar las distribuciones de frecuencias de las puntuaciones Apgar al minuto de nacer según si la madre es mayor o menor de 20 años. ¿En qué grupo hay más neonatos deprimidos?
 
-a.  Construir la tabla de frecuencias para el peso de los neonatos, agrupando en clases de amplitud $0.5$ desde el $2$ hasta el $4.5$. ¿En qué intervalo de peso hay más neonatos?
+a.  Construir la tabla de frecuencias para el peso de los neonatos, agrupando en clases de amplitud 0.5 desde el 2 hasta el 4.5. ¿En qué intervalo de peso hay más neonatos?
 
-a.  Comparar la distribución de frecuencias relativas del peso de los neonatos según si la madre fuma o no. Si se considera como peso bajo un peso menor de $2.5$ kg, ¿En qué grupo hay un mayor porcentaje de niños con peso bajo?
+a.  Comparar la distribución de frecuencias relativas del peso de los neonatos según si la madre fuma o no. Si se considera como peso bajo un peso menor de 2.5 kg, ¿En qué grupo hay un mayor porcentaje de niños con peso bajo?
 
 a.  Construir el diagrama de barras de la puntuación Apgar al minuto. ¿Qué puntuación Apgar es la más frecuente?
 
@@ -1046,7 +1039,7 @@ a.  Construir el diagrama de frecuencias relativas acumuladas de la puntuación 
 
 a.  Comparar mediante diagramas de barras de frecuencias relativas las distribuciones de las puntuaciones Apgar al minuto según si la madre ha fumado o no durante el embarazo. ¿Qué se puede concluir?
 
-a.  Construir el histograma de pesos, agrupando en clases de amplitud $0.5$ desde el $2$ hasta el $4.5$. ¿En qué intervalo de peso hay más niños?
+a.  Construir el histograma de pesos, agrupando en clases de amplitud 0.5 desde el 2 hasta el 4.5. ¿En qué intervalo de peso hay más niños?
 
 a.  Comparar la distribución de frecuencias relativas del peso de los neonatos según si la madre fuma o no. ¿En qué grupo se aprecia menor peso de los niños de la muestra?
 

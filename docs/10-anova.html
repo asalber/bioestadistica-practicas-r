@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>9&nbsp; Análisis de la Varianza (ANOVA) – Prácticas de Bioestadística con R</title>
@@ -760,7 +761,7 @@ H_1 &amp;: \mbox{Existen diferencias entre al menos dos medias}
 </div>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.00007\)</span> que es mucho menor que el nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las concentraciones medias de NO2 de al menos dos lugares.</p>
+<p>Como el p-valor del contraste es 0.00007 que es mucho menor que el nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las concentraciones medias de NO2 de al menos dos lugares.</p>
 </div>
 </div>
 </div>
@@ -943,7 +944,7 @@ H_1 &amp;: \mbox{Existen diferencias entre al menos dos medias}
 </div>
 </div>
 </div>
-<p>Existe una diferencia muy significativa entre la concentración media de NO2 de los lugares <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> (p-valor <span class="math inline">\(0.00005\)</span>), y también entre los lugares <span class="math inline">\(A\)</span> y <span class="math inline">\(C\)</span> (p-valor <span class="math inline">\(0.0049\)</span>), pero no entre los lugares <span class="math inline">\(B\)</span> y <span class="math inline">\(C\)</span> (p-valor <span class="math inline">\(0.1558\)</span>).</p>
+<p>Existe una diferencia muy significativa entre la concentración media de NO2 de los lugares <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> (p-valor 0.00005), y también entre los lugares <span class="math inline">\(A\)</span> y <span class="math inline">\(C\)</span> (p-valor 0.0049), pero no entre los lugares <span class="math inline">\(B\)</span> y <span class="math inline">\(C\)</span> (p-valor 0.1558).</p>
 </div>
 </div>
 </div>
@@ -1131,8 +1132,8 @@ H_1 &amp;: \mbox{Existen diferencias entre al menos dos medias}
 </div>
 </div>
 </div>
-<p>Como el p-valor del contraste es <span class="math inline">\(0.0108\)</span> que es menor que el nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las medias de las cosechas de trigo de los distintos abonos, y por tanto, la cosecha depende del tipo de abono.</p>
-<p>La varianza residual del modelo es <span class="math inline">\(8.891\)</span>.</p>
+<p>Como el p-valor del contraste es 0.0108 que es menor que el nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y se concluye que existen diferencias estadísticamente significativas entre las medias de las cosechas de trigo de los distintos abonos, y por tanto, la cosecha depende del tipo de abono.</p>
+<p>La varianza residual del modelo es 8.891.</p>
 </div>
 </div>
 </div>
@@ -1269,8 +1270,8 @@ H_1 &amp;: \mbox{Existen diferencias entre al menos dos medias}
 </div>
 </div>
 </div>
-<p>Como tanto el p-valor correspondiente a la semilla, que es prácticamente <span class="math inline">\(0\)</span>, como el correspondiente al abono, que es <span class="math inline">\(0.002\)</span>, son menores que el nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y se concluye que la cosecha depende tanto del tipo de semilla como del tipo de abono.</p>
-<p>Al incluir el tipo de semilla en el modelo, la varianza residual se reduce de <span class="math inline">\(8.8689\)</span> a <span class="math inline">\(6.3528\)</span>, por lo que este modelo explica mejor la variabilidad de la cosecha.</p>
+<p>Como tanto el p-valor correspondiente a la semilla, que es prácticamente 0, como el correspondiente al abono, que es 0.002, son menores que el nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula y se concluye que la cosecha depende tanto del tipo de semilla como del tipo de abono.</p>
+<p>Al incluir el tipo de semilla en el modelo, la varianza residual se reduce de 8.8689 a 6.3528, por lo que este modelo explica mejor la variabilidad de la cosecha.</p>
 </div>
 </div>
 </div>
@@ -1423,8 +1424,8 @@ H_1 &amp;: \mbox{Existen diferencias entre al menos dos medias}
 </div>
 </div>
 </div>
-<p>Al igual que antes, tanto el tipo de semilla como el tipo de abono son significativos en el modelo, pero además lo es su interacción ya que el p-valor correspondiente es <span class="math inline">\(0.0483\)</span> que es menor que el nivel de significación <span class="math inline">\(\alpha = 0.05\)</span>.</p>
-<p>Al incluir la interacción entre el tipo de semilla y el tipo de abono en el modelo, la varianza residual se reduce de <span class="math inline">\(6.3528\)</span> a <span class="math inline">\(5.9391\)</span>, por lo que este modelo explica todavía mejor la variabilidad de la cosecha.</p>
+<p>Al igual que antes, tanto el tipo de semilla como el tipo de abono son significativos en el modelo, pero además lo es su interacción ya que el p-valor correspondiente es 0.0483 que es menor que el nivel de significación <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Al incluir la interacción entre el tipo de semilla y el tipo de abono en el modelo, la varianza residual se reduce de 6.3528 a 5.9391, por lo que este modelo explica todavía mejor la variabilidad de la cosecha.</p>
 </div>
 </div>
 </div>
@@ -2375,7 +2376,7 @@ a.  Realizar un contraste de comparación de medias por pares para ver entre qu�
     :::
 
 
-    Existe una diferencia muy significativa entre el peso medio de las mujeres al inicio y a la mitad de la dieta (p-valor < $0.01$), pero no entre el peso a la mitad y al final de la dieta (p-valor > 0.05).
+    Existe una diferencia muy significativa entre el peso medio de las mujeres al inicio y a la mitad de la dieta (p-valor < 0.01), pero no entre el peso a la mitad y al final de la dieta (p-valor > 0.05).
     :::
 
 ::: -->

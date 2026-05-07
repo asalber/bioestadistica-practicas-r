@@ -264,9 +264,9 @@ a.  Dividir la cadena anterior en subcadenas usando como separador la coma.
 :::{#exr-factores-1}
 Se ha tomado una muestra de alumnos de una clase y se ha recogido la información sobre el sexo de los alumnos obteniendo los siguientes datos:
 
-$$
-\mbox{Mujer, Hombre, Mujer, Hombre, Mujer, Mujer, Hombre, Hombre}
-$$
+| | | | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Mujer | Hombre | Mujer | Hombre | Mujer | Mujer | Hombre | Hombre |
 
 a.  Crear un vector con los datos de la muestra.
 
