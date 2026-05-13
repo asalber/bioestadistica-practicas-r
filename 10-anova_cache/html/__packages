@@ -16,3 +16,16 @@ rstatix
 Matrix
 lme4
 ggpubr
+tidymodels
+scales
+dials
+infer
+modeldata
+parsnip
+recipes
+rsample
+tailor
+tune
+workflows
+workflowsets
+yardstick

@@ -660,7 +660,7 @@ a.  Crear un conjunto de datos con los datos de la muestra.
     ## Copilot
 
     ```sh
-    Crear un data frame df a partir de la siguiente URL: https://aprendeconalf.es/estadistica-practicas-r/datos/hipertension.csv.
+    Crear un data frame df a partir del fichero csv con la siguiente URL: https://aprendeconalf.es/estadistica-practicas-r/datos/hipertension.csv.
     ```
     :::
     :::
